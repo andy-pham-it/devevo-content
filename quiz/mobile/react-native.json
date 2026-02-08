@@ -1,0 +1,242 @@
+[
+  {
+    "id": "rn-1",
+    "question": "Trong React Native, thành phần nào được sử dụng để hiển thị một danh sách cuộn hiệu năng cao?",
+    "options": [
+      "ScrollView",
+      "ListView",
+      "FlatList",
+      "RecyclerView"
+    ],
+    "correctAnswer": 2,
+    "explanation": "FlatList là thành phần tối ưu để hiển thị danh sách dữ liệu lớn, nó chỉ render các item đang hiển thị trên màn hình (lazy rendering)."
+  },
+  {
+    "id": "rn-2",
+    "question": "Hook nào được sử dụng để tạo animation trong React Native (với thư viện Animated)?",
+    "options": [
+      "useAnim",
+      "useRef",
+      "useAnimation",
+      "useTransition"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Animated.Value thường được khởi tạo bằng useRef (ví dụ: useRef(new Animated.Value(0)).current) để giữ giá trị tham chiếu qua các lần render."
+  },
+  {
+    "id": "rn-3",
+    "question": "Flexbox trong React Native mặc định có hướng (flexDirection) là gì?",
+    "options": [
+      "row",
+      "column",
+      "row-reverse",
+      "column-reverse"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Khác với web (mặc định là 'row'), React Native mặc định flexDirection là 'column' để phù hợp với bố cục dọc của thiết bị di động."
+  },
+  {
+    "id": "rn-4",
+    "question": "Phương pháp nào KHÔNG phải là cách hợp lệ để style trong React Native?",
+    "options": [
+      "StyleSheet.create",
+      "Inline styles",
+      "CSS file import (style.css)",
+      "Styled Components"
+    ],
+    "correctAnswer": 2,
+    "explanation": "React Native không hỗ trợ import file CSS truyền thống. Bạn phải dùng JavaScript objects (StyleSheet), hoặc thư viện như Styled Components/NativeWind."
+  },
+  {
+    "id": "rn-5",
+    "question": "Core component nào dùng để nhận input văn bản từ người dùng?",
+    "options": [
+      "Input",
+      "TextField",
+      "TextInput",
+      "EditText"
+    ],
+    "correctAnswer": 2,
+    "explanation": "TextInput là core component cơ bản để nhập liệu văn bản trong React Native."
+  },
+  {
+    "id": "rn-6",
+    "question": "Để xử lý điều hướng (navigation) trong React Native, thư viện nào là tiêu chuẩn phổ biến nhất?",
+    "options": [
+      "React Router",
+      "React Navigation",
+      "Native Navigation",
+      "Expo Router"
+    ],
+    "correctAnswer": 1,
+    "explanation": "React Navigation (và Expo Router được xây dựng trên nó) là giải pháp điều hướng phổ biến và được khuyến nghị nhất."
+  },
+  {
+    "id": "rn-7",
+    "question": "Kiến trúc mới (New Architecture) của React Native sử dụng gì để thay thế Bridge?",
+    "options": [
+      "JSI (JavaScript Interface)",
+      "TurboModules",
+      "Fabric",
+      "Hermes"
+    ],
+    "correctAnswer": 0,
+    "explanation": "JSI cho phép JavaScript gọi trực tiếp vào C++ objects (Native) mà không cần qua JSON serialization của Bridge, tăng hiệu năng đáng kể."
+  },
+  {
+    "id": "rn-8",
+    "question": "Hermes là gì trong hệ sinh thái React Native?",
+    "options": [
+      "Một thư viện UI",
+      "Một JavaScript Engine tối ưu cho Mobile",
+      "Một trình gỡ lỗi (Debugger)",
+      "Một công cụ build"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Hermes là một JavaScript engine mã nguồn mở được tối ưu hóa cho React Native để giảm thời gian khởi động app và giảm bộ nhớ sử dụng."
+  },
+  {
+    "id": "rn-9",
+    "question": "Làm thế nào để tối ưu hiệu năng khi render danh sách với hình ảnh lớn?",
+    "options": [
+      "Dùng độ phân giải 4K",
+      "Render tất cả hình ảnh cùng lúc",
+      "Dùng resizeMode='center'",
+      "Dùng getItemLayout và tối ưu kích thước ảnh (resize)"
+    ],
+    "correctAnswer": 3,
+    "explanation": "Sử dụng getItemLayout giúp FlatList tính toán layout nhanh hơn mà không cần đo kích thước từng item. Việc resize ảnh phù hợp giúp giảm bộ nhớ."
+  },
+  {
+    "id": "rn-10",
+    "question": "Component nào được dùng để hiển thị nội dung bên trong vùng an toàn (tránh tai thỏ, home indicator)?",
+    "options": [
+      "View",
+      "SafeAreaView",
+      "KeyboardAvoidingView",
+      "ScrollView"
+    ],
+    "correctAnswer": 1,
+    "explanation": "SafeAreaView (đặc biệt là từ react-native-safe-area-context) giúp nội dung không bị che khuất bởi các phần cứng như notch hay home indicator."
+  },
+  {
+    "id": "rn-11",
+    "question": "'Fast Refresh' trong React Native có chức năng gì?",
+    "options": [
+      "Tải lại toàn bộ ứng dụng khi code thay đổi",
+      "Giữ nguyên state của component khi code thay đổi (HMR)",
+      "Tăng tốc độ frame rate lên 120fps",
+      "Xóa cache bộ nhớ"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Fast Refresh kết hợp Hot Reloading, cho phép cập nhật code ngay lập tức mà không làm mất state hiện tại của ứng dụng."
+  },
+  {
+    "id": "rn-12",
+    "question": "Platform.select() dùng để làm gì?",
+    "options": [
+      "Chọn phiên bản React Native",
+      "Xác định code chạy riêng cho từng nền tảng (iOS/Android)",
+      "Chọn thiết bị để debug",
+      "Kiểm tra kết nối mạng"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Platform.select({ ios: ..., android: ... }) trả về giá trị tương ứng với nền tảng đang chạy code."
+  },
+  {
+    "id": "rn-13",
+    "question": "Shadow thread trong React Native Architecture cũ đảm nhiệm việc gì?",
+    "options": [
+      "Chạy JavaScript code",
+      "Tính toán Layout (Yoga)",
+      "Vẽ UI lên màn hình",
+      "Xử lý network request"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Shadow thread là nơi Yoga engine tính toán layout (Flexbox) trước khi chuyển thông tin cho UI thread để vẽ."
+  },
+  {
+    "id": "rn-14",
+    "question": "Thư viện nào thường dùng để quản lý Animation phức tạp với hiệu năng cao (chạy trên UI thread)?",
+    "options": [
+      "React Native Animated",
+      "React Spring",
+      "React Native Reanimated",
+      "Lottie"
+    ],
+    "correctAnswer": 2,
+    "explanation": "React Native Reanimated là tiêu chuẩn cho các animation phức tạp, cho phép logic animation chạy hoàn toàn trên UI thread (worklet)."
+  },
+  {
+    "id": "rn-15",
+    "question": "Props 'key' trong danh sách (List) có vai trò quan trọng gì?",
+    "options": [
+      "Chỉ để tránh warning",
+      "Định danh duy nhất giúp React tối ưu việc re-render",
+      "Không quan trọng",
+      "Để sắp xếp thứ tự"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Key giúp React xác định item nào đã thay đổi, thêm hoặc xóa, giúp thuật toán diffing hoạt động hiệu quả và tránh re-render không cần thiết."
+  },
+  {
+    "id": "rn-16",
+    "question": "Để truy cập Native Modules tùy chỉnh, ta thường sử dụng API nào?",
+    "options": [
+      "NativeModules",
+      "DeviceEventEmitter",
+      "Linking",
+      "AppState"
+    ],
+    "correctAnswer": 0,
+    "explanation": "NativeModules là object chứa tất cả các module native đã được export sang JavaScript."
+  },
+  {
+    "id": "rn-17",
+    "question": "KeyboardAvoidingView giải quyết vấn đề gì?",
+    "options": [
+      "Tự động ẩn bàn phím khi tap ra ngoài",
+      "Ngăn bàn phím che khuất input đang nhập",
+      "Thay đổi kiểu bàn phím",
+      "Tắt bàn phím hoàn toàn"
+    ],
+    "correctAnswer": 1,
+    "explanation": "KeyboardAvoidingView tự động điều chỉnh padding hoặc position để view không bị bàn phím che mất."
+  },
+  {
+    "id": "rn-18",
+    "question": "Lệnh CLI nào dùng để khởi tạo dự án React Native mới (không dùng Expo)?",
+    "options": [
+      "npx create-react-app",
+      "npx react-native init",
+      "npm install react-native",
+      "expo init"
+    ],
+    "correctAnswer": 1,
+    "explanation": "npx react-native init <ProjectName> là lệnh chuẩn để tạo dự án React Native CLI (bare workflow)."
+  },
+  {
+    "id": "rn-19",
+    "question": "OTA (Over-the-Air) updates như CodePush cho phép làm gì?",
+    "options": [
+      "Cập nhật Native code không cần review",
+      "Cập nhật JavaScript/Assets mà không cần qua App Store/Play Store review",
+      "Tăng tốc độ tải app",
+      "Debug app từ xa"
+    ],
+    "correctAnswer": 1,
+    "explanation": "OTA updates cho phép đẩy bản cập nhật JS bundle và assets trực tiếp tới thiết bị người dùng, bỏ qua quy trình duyệt store (miễn là không đổi native code)."
+  },
+  {
+    "id": "rn-20",
+    "question": "Khi nào nên sử dụng React.memo() trong React Native?",
+    "options": [
+      "Luôn luôn sử dụng cho mọi component",
+      "Khi component render tốn kém và props ít thay đổi",
+      "Chỉ dùng cho Class Component",
+      "Khi component có nhiều state"
+    ],
+    "correctAnswer": 1,
+    "explanation": "React.memo giúp ngăn component re-render nếu props không đổi. Chỉ nên dùng khi render nặng, lạm dụng có thể tốn chi phí so sánh props."
+  }
+]

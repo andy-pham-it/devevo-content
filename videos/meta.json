@@ -1,0 +1,282 @@
+{
+  "categories": [
+    {
+      "id": "all",
+      "name": "All",
+      "icon": "albums"
+    },
+    {
+      "id": "podcast",
+      "name": "Podcasts",
+      "icon": "mic"
+    },
+    {
+      "id": "tutorial",
+      "name": "Tutorials",
+      "icon": "school"
+    },
+    {
+      "id": "talk",
+      "name": "Tech Talks",
+      "icon": "megaphone"
+    },
+    {
+      "id": "course",
+      "name": "Courses",
+      "icon": "book"
+    }
+  ],
+  "videos": [
+    {
+      "id": "1",
+      "youtubeId": "mZbpuNSnAeI",
+      "title": "Don't Just Prompt, AI Architect: Mastering the CIRA Framework",
+      "description": "Learn how to architect AI solutions effectively using the CIRA Framework instead of just prompting.",
+      "author": "An Pham Official",
+      "authorChannel": "anphamofficial1865",
+      "duration": "45m",
+      "tags": [
+        "AI",
+        "Prompting",
+        "Architecture"
+      ],
+      "category": "talk",
+      "relatedExploreIds": [
+        "ai-prompting"
+      ]
+    },
+    {
+      "id": "2",
+      "youtubeId": "5Ytn14lWxVk",
+      "title": "Mastering React Hooks: From Fiber Architecture to React 19 Evolution",
+      "description": "Deep dive into React Hooks, Fiber architecture, and the evolution to React 19.",
+      "author": "An Pham Official",
+      "authorChannel": "anphamofficial1865",
+      "duration": "1h 15m",
+      "tags": [
+        "React",
+        "Hooks",
+        "React 19"
+      ],
+      "category": "course",
+      "relatedQuizCategory": "react",
+      "relatedExploreIds": [
+        "react-best-practices"
+      ]
+    },
+    {
+      "id": "3",
+      "youtubeId": "oWPSk2gO_AY",
+      "title": "I Mastered Software Craftsmanship in 30 Days - Improve English listening for IT",
+      "description": "A journey through mastering software craftsmanship principles in 30 days while improving English listening skills.",
+      "author": "An Pham Official",
+      "authorChannel": "anphamofficial1865",
+      "duration": "50m",
+      "tags": [
+        "Software Craftsmanship",
+        "English",
+        "Best Practices"
+      ],
+      "category": "podcast"
+    },
+    {
+      "id": "4",
+      "youtubeId": "8pDqJVdNa44",
+      "title": "React 18 for Beginners",
+      "description": "Learn React 18 from scratch with this comprehensive tutorial. Covers hooks, state management, and more.",
+      "author": "Programming with Mosh",
+      "authorChannel": "programmingwithmosh",
+      "duration": "1h 12m",
+      "tags": [
+        "React",
+        "JavaScript",
+        "Frontend"
+      ],
+      "category": "tutorial",
+      "relatedQuizCategory": "javascript",
+      "relatedExploreIds": [
+        "react-best-practices"
+      ]
+    },
+    {
+      "id": "5",
+      "youtubeId": "Tn6-PIqc4UM",
+      "title": "React in 100 Seconds",
+      "description": "A quick overview of React and what makes it so powerful for building user interfaces.",
+      "author": "Fireship",
+      "authorChannel": "Fireship",
+      "duration": "2m",
+      "tags": [
+        "React",
+        "Quick Learn"
+      ],
+      "category": "tutorial",
+      "relatedQuizCategory": "react",
+      "relatedExploreIds": [
+        "react-best-practices"
+      ]
+    },
+    {
+      "id": "6",
+      "youtubeId": "f2EqECiTBL8",
+      "title": "Node.js Tutorial for Beginners",
+      "description": "Complete Node.js course for beginners. Learn Node.js fundamentals, modules, npm, and building web servers.",
+      "author": "Programming with Mosh",
+      "authorChannel": "programmingwithmosh",
+      "duration": "1h 6m",
+      "tags": [
+        "Node.js",
+        "Backend",
+        "JavaScript"
+      ],
+      "category": "tutorial",
+      "relatedQuizCategory": "javascript",
+      "relatedExploreIds": [
+        "nodejs-basics"
+      ]
+    },
+    {
+      "id": "7",
+      "youtubeId": "FQPlEnKav48",
+      "title": "System Design Interview - Step By Step Guide",
+      "description": "Learn how to approach system design interviews with real examples and best practices.",
+      "author": "ByteByteGo",
+      "authorChannel": "ByteByteGo",
+      "duration": "31m",
+      "tags": [
+        "System Design",
+        "Interview"
+      ],
+      "category": "talk",
+      "relatedExploreIds": [
+        "system-design-basics"
+      ]
+    },
+    {
+      "id": "8",
+      "youtubeId": "30LWjhZzg50",
+      "title": "TypeScript Course for Beginners - Learn TypeScript from Scratch!",
+      "description": "Complete TypeScript tutorial for beginners. Learn types, interfaces, classes, and advanced TypeScript features.",
+      "author": "Academind",
+      "authorChannel": "Academind",
+      "duration": "3h 26m",
+      "tags": [
+        "TypeScript",
+        "JavaScript"
+      ],
+      "category": "course",
+      "relatedQuizCategory": "typescript"
+    },
+    {
+      "id": "9",
+      "youtubeId": "0fKg7e37bQE",
+      "title": "Netflix System Design Deep Dive",
+      "description": "How Netflix handles millions of concurrent streams with their distributed architecture.",
+      "author": "ByteByteGo",
+      "authorChannel": "ByteByteGo",
+      "duration": "15m",
+      "tags": [
+        "System Design",
+        "Architecture"
+      ],
+      "category": "talk",
+      "relatedExploreIds": [
+        "system-design-basics"
+      ]
+    },
+    {
+      "id": "10",
+      "youtubeId": "SqcY0GlETPk",
+      "title": "React Tutorial for Beginners",
+      "description": "Build a complete React app from scratch. Perfect for beginners.",
+      "author": "Programming with Mosh",
+      "authorChannel": "programmingwithmosh",
+      "duration": "1h 20m",
+      "tags": [
+        "React",
+        "Frontend"
+      ],
+      "category": "course",
+      "relatedQuizCategory": "react",
+      "relatedExploreIds": [
+        "react-best-practices"
+      ]
+    },
+    {
+      "id": "11",
+      "youtubeId": "Geq60OVyBPg",
+      "title": "JavaScript Interview Questions",
+      "description": "Top 50 JavaScript interview questions with detailed explanations.",
+      "author": "uidotdev",
+      "authorChannel": "uidotdev",
+      "duration": "45m",
+      "tags": [
+        "JavaScript",
+        "Interview"
+      ],
+      "category": "podcast",
+      "relatedQuizCategory": "javascript"
+    },
+    {
+      "id": "12",
+      "youtubeId": "MnpuK0MK4yo",
+      "title": "Expo React Native Tutorial",
+      "description": "Build mobile apps with React Native and Expo from scratch.",
+      "author": "notJust.dev",
+      "authorChannel": "notjustdev",
+      "duration": "2h 15m",
+      "tags": [
+        "React Native",
+        "Expo",
+        "Mobile"
+      ],
+      "category": "course"
+    },
+    {
+      "id": "13",
+      "youtubeId": "qw--VYLpxG4",
+      "title": "100+ JavaScript Concepts Every Developer Should Know",
+      "description": "Master JavaScript fundamentals with this comprehensive guide.",
+      "author": "Fireship",
+      "authorChannel": "Fireship",
+      "duration": "12m",
+      "tags": [
+        "JavaScript",
+        "Fundamentals"
+      ],
+      "category": "tutorial",
+      "relatedQuizCategory": "javascript"
+    },
+    {
+      "id": "14",
+      "youtubeId": "hQAHSlTtcmY",
+      "title": "Learn React Native Gestures and Animations",
+      "description": "Master gestures and animations in React Native with Reanimated.",
+      "author": "William Candillon",
+      "authorChannel": "wcandillon",
+      "duration": "50m",
+      "tags": [
+        "React Native",
+        "Animation"
+      ],
+      "category": "tutorial"
+    },
+    {
+      "id": "15",
+      "youtubeId": "QFaFIcGhPoM",
+      "title": "Docker Crash Course for Developers",
+      "description": "Learn Docker from scratch. Containers, images, Compose and more.",
+      "author": "Traversy Media",
+      "authorChannel": "TraversyMedia",
+      "duration": "1h",
+      "tags": [
+        "Docker",
+        "DevOps"
+      ],
+      "category": "tutorial",
+      "relatedExploreIds": [
+        "docker-commands"
+      ]
+    }
+  ]
+}

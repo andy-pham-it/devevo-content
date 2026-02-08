@@ -1,0 +1,222 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "junior",
+    "questionText": "When is the useEffect hook called in a component's lifecycle?",
+    "codeSnippet": null,
+    "options": ["After the DOM is rendered", "Before the DOM is rendered", "Simultaneously with the render process", "Before the component unmounts"],
+    "correctAnswerIndex": 0,
+    "explanation": "`useEffect` runs **after** React has updated the DOM. This is the appropriate place to perform side effects like fetching data, subscriptions, or DOM manipulations.\n\n```jsx\nuseEffect(() => {\n  console.log('DOM has been rendered');\n});\n```"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "junior",
+    "questionText": "What does an empty dependency array [] in useEffect mean?",
+    "codeSnippet": "useEffect(() => {\n  fetchData();\n}, []);",
+    "options": ["Effect runs after every render", "Effect runs only once when component mounts", "Effect never runs", "Effect runs when component unmounts"],
+    "correctAnswerIndex": 1,
+    "explanation": "An empty dependency array `[]` means the effect runs **only once** when the component mounts, similar to `componentDidMount` in class components.\n\n```jsx\nuseEffect(() => {\n  // Runs only once on mount\n  fetchData();\n}, []); // empty dependency array\n```"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "junior",
+    "questionText": "How do you cleanup an effect in useEffect?",
+    "codeSnippet": null,
+    "options": ["Call cleanup() in the effect", "Return a function from the effect", "Use useCleanup hook", "Cannot cleanup effects"],
+    "correctAnswerIndex": 1,
+    "explanation": "To cleanup an effect, you **return a function** from `useEffect`. This function will be called when the component unmounts or before the effect runs again.\n\n```jsx\nuseEffect(() => {\n  const subscription = subscribeToData();\n  \n  // Cleanup function\n  return () => {\n    subscription.unsubscribe();\n  };\n}, []);\n```"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "How does useLayoutEffect differ from useEffect?",
+    "codeSnippet": null,
+    "options": ["useLayoutEffect runs async, useEffect runs sync", "useLayoutEffect runs before browser paint, useEffect runs after paint", "useLayoutEffect has no cleanup function", "There is no difference"],
+    "correctAnswerIndex": 1,
+    "explanation": "`useLayoutEffect` runs **synchronously** right after DOM mutations but **before browser paint**, while `useEffect` runs **asynchronously** after the browser has painted.\n\n```jsx\n// useLayoutEffect - runs before paint\nuseLayoutEffect(() => {\n  // Measure DOM, animations\n  const height = ref.current.offsetHeight;\n});\n\n// useEffect - runs after paint\nuseEffect(() => {\n  // Normal side effects\n  fetchData();\n});\n```\n\nUse `useLayoutEffect` when you need to measure DOM or do animations to avoid flickering."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "What happens if you don't pass a dependency array to useEffect?",
+    "codeSnippet": "useEffect(() => {\n  console.log('Running');\n});",
+    "options": ["Effect runs only once", "Effect runs after every render", "Effect never runs", "There will be a runtime error"],
+    "correctAnswerIndex": 1,
+    "explanation": "When you **don't pass** a dependency array, the effect will run **after every render** of the component.\n\n```jsx\n// Runs after EVERY render\nuseEffect(() => {\n  console.log('Runs after every render');\n});\n\n// Runs only on mount\nuseEffect(() => {\n  console.log('Runs only once');\n}, []);\n\n// Runs when dependency changes\nuseEffect(() => {\n  console.log('Runs when count changes');\n}, [count]);\n```"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "When should you use useLayoutEffect instead of useEffect?",
+    "codeSnippet": null,
+    "options": ["When fetching data from an API", "When measuring DOM or doing synchronous animations", "When subscribing to events", "Always use useLayoutEffect"],
+    "correctAnswerIndex": 1,
+    "explanation": "Use `useLayoutEffect` when you need to:\n- Measure DOM elements (offsetHeight, scrollHeight, etc.)\n- Perform synchronous DOM mutations\n- Avoid visual flickering\n\n```jsx\nconst [height, setHeight] = useState(0);\nconst ref = useRef(null);\n\nuseLayoutEffect(() => {\n  // Measure BEFORE browser paint\n  setHeight(ref.current.offsetHeight);\n}, []);\n```\n\n**Note:** `useLayoutEffect` blocks browser painting, so only use it when truly necessary. In most cases, `useEffect` is the better choice."
+  },
+  {
+    "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "In the following code, how many times will console.log run when the component renders for the first time?",
+    "codeSnippet": "function Component() {\n  const [count, setCount] = useState(0);\n  \n  useEffect(() => {\n    console.log('Effect 1');\n  });\n  \n  useEffect(() => {\n    console.log('Effect 2');\n    setCount(1);\n  }, []);\n  \n  console.log('Render');\n  return <div>{count}</div>;\n}",
+    "options": ["Render: 1 time, Effect 1: 1 time, Effect 2: 1 time", "Render: 2 times, Effect 1: 2 times, Effect 2: 1 time", "Render: 2 times, Effect 1: 1 time, Effect 2: 1 time", "Render: 1 time, Effect 1: 2 times, Effect 2: 1 time"],
+    "correctAnswerIndex": 1,
+    "explanation": "Execution flow analysis:\n\n1. **Render 1:** `count = 0`, log 'Render'\n2. **Effect 1 runs:** log 'Effect 1' (no dependency array so runs after every render)\n3. **Effect 2 runs:** log 'Effect 2', calls `setCount(1)` (has `[]` so runs only once)\n4. **Render 2:** `count = 1`, log 'Render' (due to state change)\n5. **Effect 1 runs again:** log 'Effect 1' (runs after every render)\n\n```jsx\n// Console output:\n// 'Render'      <- render 1\n// 'Effect 1'    <- effect 1 after render 1\n// 'Effect 2'    <- effect 2 after render 1\n// 'Render'      <- render 2 (due to setCount)\n// 'Effect 1'    <- effect 1 after render 2\n```\n\n**Result:** Render: 2, Effect 1: 2, Effect 2: 1"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "What problems can occur with the following code and how to fix them?",
+    "codeSnippet": "function SearchResults({ query }) {\n  const [results, setResults] = useState([]);\n  \n  useEffect(() => {\n    fetchResults(query).then(data => {\n      setResults(data);\n    });\n  }, [query]);\n  \n  return <div>{results.map(r => r.name)}</div>;\n}",
+    "options": ["No problems", "Race condition - responses may arrive out of order", "Memory leak due to missing cleanup", "Both B and C are correct"],
+    "correctAnswerIndex": 3,
+    "explanation": "This code has **2 serious problems:**\n\n**1. Race Condition:** If `query` changes quickly, old requests may return after new ones, leading to displaying wrong results.\n\n**2. Memory Leak:** If component unmounts before request completes, `setResults` is still called on an unmounted component.\n\n**Solution:**\n\n```jsx\nfunction SearchResults({ query }) {\n  const [results, setResults] = useState([]);\n  \n  useEffect(() => {\n    let cancelled = false; // Flag to ignore stale requests\n    \n    fetchResults(query).then(data => {\n      if (!cancelled) { // Only update if not cancelled\n        setResults(data);\n      }\n    });\n    \n    // Cleanup: cancel request when query changes or unmounts\n    return () => {\n      cancelled = true;\n    };\n  }, [query]);\n  \n  return <div>{results.map(r => r.name)}</div>;\n}\n```\n\nOr use `AbortController` for fetch API to actually cancel the request."
+  },
+  {
+    "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "Can useEffect be an async function?",
+    "codeSnippet": "useEffect(async () => {\n  const data = await fetchData();\n  setData(data);\n}, []);",
+    "options": ["Yes, completely allowed", "No, will cause warnings and errors", "Yes, but only in React 18+", "Yes, but must return a Promise"],
+    "correctAnswerIndex": 1,
+    "explanation": "`useEffect` **CANNOT** be an async function because:\n\n1. Effect callback must return `undefined` or a cleanup function\n2. Async functions always return a Promise, not a function\n\n**Wrong:**\n```jsx\n// ❌ WRONG - async function returns Promise\nuseEffect(async () => {\n  const data = await fetchData();\n  setData(data);\n}, []);\n```\n\n**Correct - Method 1: IIFE (Immediately Invoked Function Expression):**\n```jsx\n// ✅ CORRECT\nuseEffect(() => {\n  (async () => {\n    const data = await fetchData();\n    setData(data);\n  })();\n}, []);\n```\n\n**Correct - Method 2: Separate async function:**\n```jsx\n// ✅ CORRECT\nuseEffect(() => {\n  const loadData = async () => {\n    const data = await fetchData();\n    setData(data);\n  };\n  loadData();\n}, []);\n```\n\n**Correct - Method 3: With cleanup:**\n```jsx\n// ✅ CORRECT - with cleanup\nuseEffect(() => {\n  let cancelled = false;\n  \n  const loadData = async () => {\n    const data = await fetchData();\n    if (!cancelled) setData(data);\n  };\n  \n  loadData();\n  \n  return () => { cancelled = true; };\n}, []);\n```"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "When is the cleanup function in useEffect called?",
+    "codeSnippet": null,
+    "options": ["Only when component unmounts", "Before each effect re-run and when unmounting", "Only when dependencies change", "After the effect finishes running"],
+    "correctAnswerIndex": 1,
+    "explanation": "The cleanup function is called in **2 cases:**\n\n1. **Before the effect runs again** (when dependencies change)\n2. **When the component unmounts**\n\n```jsx\nuseEffect(() => {\n  console.log('Effect runs');\n  \n  return () => {\n    console.log('Cleanup runs');\n  };\n}, [dependency]);\n```\n\n**Execution flow:**\n```jsx\n// Mount: dependency = 1\n// -> 'Effect runs'\n\n// Update: dependency = 2\n// -> 'Cleanup runs'  (cleanup of old effect)\n// -> 'Effect runs'    (new effect)\n\n// Update: dependency = 3\n// -> 'Cleanup runs'  (cleanup of old effect)\n// -> 'Effect runs'    (new effect)\n\n// Unmount\n// -> 'Cleanup runs'  (final cleanup)\n```"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "junior",
+    "questionText": "What should the dependencies in useEffect be?",
+    "codeSnippet": "const [count, setCount] = useState(0);\n\nuseEffect(() => {\n  console.log(count);\n}, [???]);",
+    "options": ["[]", "[count]", "Nothing", "[setCount]"],
+    "correctAnswerIndex": 1,
+    "explanation": "Dependencies must include **all values** from component scope that the effect uses (props, state, variables).\n\n```jsx\nconst [count, setCount] = useState(0);\n\n// ✅ CORRECT - count is used in effect\nuseEffect(() => {\n  console.log(count);\n}, [count]);\n\n// ❌ WRONG - missing dependency\nuseEffect(() => {\n  console.log(count);\n}, []); // count changes but effect doesn't re-run\n```\n\n**Note:**\n- `setCount`, `dispatch` from `useReducer` are **stable functions**, don't need to add to dependencies\n- Refs (`useRef`) are also stable, don't need to add\n- ESLint plugin `eslint-plugin-react-hooks` will warn about missing dependencies"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "Why does the following code cause an infinite loop?",
+    "codeSnippet": "function Component() {\n  const [data, setData] = useState([]);\n  \n  useEffect(() => {\n    fetchData().then(result => {\n      setData(result);\n    });\n  }, [data]);\n  \n  return <div>{data.length}</div>;\n}",
+    "options": ["fetchData is called multiple times", "setData is called in the effect", "data is a dependency and is changed by setData in the effect", "There is no infinite loop"],
+    "correctAnswerIndex": 2,
+    "explanation": "This is a classic **infinite loop:**\n\n**The infinite cycle:**\n1. Effect runs → `setData(result)` → `data` changes\n2. `data` changes → effect runs again (because `data` is in dependencies)\n3. Back to step 1 → ∞\n\n```jsx\n// ❌ WRONG - Infinite loop\nuseEffect(() => {\n  fetchData().then(result => {\n    setData(result); // Changes data\n  });\n}, [data]); // data is dependency → loop\n```\n\n**Solution 1 - Empty dependency array (if fetching only once):**\n```jsx\n// ✅ CORRECT\nuseEffect(() => {\n  fetchData().then(result => {\n    setData(result);\n  });\n}, []); // Runs only on mount\n```\n\n**Solution 2 - Use condition to check:**\n```jsx\n// ✅ CORRECT - with condition\nuseEffect(() => {\n  if (data.length === 0) { // Only fetch if no data\n    fetchData().then(result => {\n      setData(result);\n    });\n  }\n}, [data]);\n```\n\n**Solution 3 - Use ref to track:**\n```jsx\n// ✅ CORRECT - with ref\nconst hasFetched = useRef(false);\n\nuseEffect(() => {\n  if (!hasFetched.current) {\n    hasFetched.current = true;\n    fetchData().then(result => setData(result));\n  }\n}, [data]);\n```"
+  },
+  {
+    "id": "a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "What is the difference between useEffect and useLayoutEffect in terms of timing?",
+    "codeSnippet": "useEffect(() => { console.log('A'); });\nuseLayoutEffect(() => { console.log('B'); });",
+    "options": ["A runs before B", "B runs before A", "They run simultaneously", "Order is undefined"],
+    "correctAnswerIndex": 1,
+    "explanation": "`useLayoutEffect` (B) runs **BEFORE** `useEffect` (A).\n\n**Execution order in React:**\n\n```jsx\nfunction Component() {\n  console.log('1. Render');\n  \n  useLayoutEffect(() => {\n    console.log('2. useLayoutEffect');\n  });\n  \n  useEffect(() => {\n    console.log('3. useEffect');\n  });\n  \n  return <div>Component</div>;\n}\n\n// Output:\n// 1. Render\n// 2. useLayoutEffect  <- Runs synchronously, BEFORE browser paint\n// 3. useEffect        <- Runs asynchronously, AFTER browser paint\n```\n\n**Detailed timeline:**\n```\n1. React renders component\n2. React updates DOM\n3. useLayoutEffect runs (BLOCKING - synchronous)\n4. Browser paints screen\n5. useEffect runs (NON-BLOCKING - asynchronous)\n```\n\n**When to use which:**\n- `useLayoutEffect`: Measure DOM, animations, avoid flickering\n- `useEffect`: Most other cases (fetch data, subscriptions, logging)"
+  },
+  {
+    "id": "b4c5d6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "How do you avoid stale closures in useEffect?",
+    "codeSnippet": "function Counter() {\n  const [count, setCount] = useState(0);\n  \n  useEffect(() => {\n    const interval = setInterval(() => {\n      console.log(count);\n    }, 1000);\n    return () => clearInterval(interval);\n  }, []);\n  \n  return <button onClick={() => setCount(c => c + 1)}>\n    {count}\n  </button>;\n}",
+    "options": ["Add count to dependencies", "Use useRef to store count", "Use functional update: setCount(c => c + 1)", "Both A and B are correct"],
+    "correctAnswerIndex": 3,
+    "explanation": "The code above has a **stale closure** issue - `count` in the interval is always `0` (the value at mount).\n\n**Solution 1 - Add to dependencies:**\n```jsx\n// ✅ Effect re-runs when count changes\nuseEffect(() => {\n  const interval = setInterval(() => {\n    console.log(count); // Always logs latest value\n  }, 1000);\n  return () => clearInterval(interval);\n}, [count]); // Add count to dependencies\n```\n\n**Drawback:** Interval gets cleared and recreated every time count changes.\n\n**Solution 2 - Use useRef (better):**\n```jsx\n// ✅ Ref always holds latest value\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  const countRef = useRef(count);\n  \n  // Sync ref with state\n  useEffect(() => {\n    countRef.current = count;\n  }, [count]);\n  \n  useEffect(() => {\n    const interval = setInterval(() => {\n      console.log(countRef.current); // Always latest value\n    }, 1000);\n    return () => clearInterval(interval);\n  }, []); // Empty dependencies, interval not recreated\n  \n  return <button onClick={() => setCount(c => c + 1)}>\n    {count}\n  </button>;\n}\n```\n\n**Solution 3 - Custom hook:**\n```jsx\n// ✅ Reusable logic\nfunction useInterval(callback, delay) {\n  const savedCallback = useRef();\n  \n  useEffect(() => {\n    savedCallback.current = callback;\n  }, [callback]);\n  \n  useEffect(() => {\n    if (delay !== null) {\n      const interval = setInterval(() => {\n        savedCallback.current();\n      }, delay);\n      return () => clearInterval(interval);\n    }\n  }, [delay]);\n}\n\n// Usage\nfunction Counter() {\n  const [count, setCount] = useState(0);\n  \n  useInterval(() => {\n    console.log(count); // Always logs latest value\n  }, 1000);\n  \n  return <button onClick={() => setCount(c => c + 1)}>\n    {count}\n  </button>;\n}\n```"
+  },
+  {
+    "id": "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "junior",
+    "questionText": "Can you call hooks conditionally?",
+    "codeSnippet": "if (condition) {\n  useEffect(() => {\n    console.log('effect');\n  });\n}",
+    "options": ["Yes, completely allowed", "No, violates Rules of Hooks", "Yes, but only in React 18+", "Yes, but must have an else branch"],
+    "correctAnswerIndex": 1,
+    "explanation": "You **CANNOT** call hooks conditionally - this violates the **Rules of Hooks**.\n\n**Rules of Hooks:**\n1. Only call hooks at the **top level** (not in loops, conditions, nested functions)\n2. Only call hooks from **React function components** or **custom hooks**\n\n**❌ WRONG:**\n```jsx\n// Violates rule 1\nif (condition) {\n  useEffect(() => { /* ... */ });\n}\n\n// Violates rule 1\nfor (let i = 0; i < 10; i++) {\n  useState(i);\n}\n\n// Violates rule 1\nfunction handleClick() {\n  const [state] = useState(0);\n}\n```\n\n**✅ CORRECT - Put condition INSIDE the hook:**\n```jsx\nuseEffect(() => {\n  if (condition) {\n    console.log('effect');\n  }\n}, [condition]);\n```\n\n**✅ CORRECT - Early return:**\n```jsx\nuseEffect(() => {\n  if (!condition) return; // Early return OK\n  \n  console.log('effect');\n}, [condition]);\n```\n\n**Why?** React relies on the **order of hook calls** to track state. If the order changes between renders, React gets confused and causes errors."
+  },
+  {
+    "id": "d6e7f8a9-b0c1-4d2e-3f4a-5b6c7d8e9f0a",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "In React Strict Mode, how many times does useEffect run when a component mounts?",
+    "codeSnippet": null,
+    "options": ["1 time", "2 times", "3 times", "Does not run"],
+    "correctAnswerIndex": 1,
+    "explanation": "In **React Strict Mode** (development mode), `useEffect` runs **2 times** on mount to help detect bugs.\n\n**Behavior in Strict Mode:**\n```jsx\n<React.StrictMode>\n  <App />\n</React.StrictMode>\n```\n\n**Execution flow:**\n```jsx\nfunction Component() {\n  useEffect(() => {\n    console.log('Effect runs');\n    return () => console.log('Cleanup runs');\n  }, []);\n  \n  return <div>Component</div>;\n}\n\n// Development (Strict Mode):\n// 1. Mount → Effect runs\n// 2. Cleanup runs (simulate unmount)\n// 3. Effect runs again (simulate remount)\n\n// Production:\n// 1. Mount → Effect runs (only once)\n```\n\n**Purpose:**\n- Detect **missing cleanup functions**\n- Ensure component can **mount/unmount/remount** safely\n- Prepare for **React Concurrent Features** (Suspense, etc.)\n\n**Note:** Only happens in **development mode**. Production build runs normally (once)."
+  },
+  {
+    "id": "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "Which of the following is the best practice for fetching data with useEffect?",
+    "codeSnippet": null,
+    "options": ["Use async/await directly in useEffect", "Create a separate async function and call it in useEffect", "Use .then() chain", "Use useLayoutEffect to fetch data"],
+    "correctAnswerIndex": 1,
+    "explanation": "**Best practice** is to create a **separate async function** and call it in `useEffect`, with proper cleanup.\n\n**❌ WRONG way - async directly:**\n```jsx\n// useEffect cannot be an async function\nuseEffect(async () => {\n  const data = await fetchData(); // ❌ Error!\n  setData(data);\n}, []);\n```\n\n**✅ Best Practice - Separate async function + cleanup:**\n```jsx\nuseEffect(() => {\n  let cancelled = false;\n  \n  const loadData = async () => {\n    try {\n      const data = await fetchData();\n      if (!cancelled) {\n        setData(data);\n      }\n    } catch (error) {\n      if (!cancelled) {\n        setError(error);\n      }\n    }\n  };\n  \n  loadData();\n  \n  return () => {\n    cancelled = true; // Cleanup: ignore stale responses\n  };\n}, []);\n```\n\n**✅ With AbortController (modern approach):**\n```jsx\nuseEffect(() => {\n  const controller = new AbortController();\n  \n  const loadData = async () => {\n    try {\n      const response = await fetch(url, {\n        signal: controller.signal // Pass abort signal\n      });\n      const data = await response.json();\n      setData(data);\n    } catch (error) {\n      if (error.name !== 'AbortError') {\n        setError(error);\n      }\n    }\n  };\n  \n  loadData();\n  \n  return () => {\n    controller.abort(); // Cancel request on cleanup\n  };\n}, []);\n```\n\n**✅ Custom hook (best for reusability):**\n```jsx\nfunction useFetch(url) {\n  const [data, setData] = useState(null);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n  \n  useEffect(() => {\n    const controller = new AbortController();\n    \n    const fetchData = async () => {\n      try {\n        setLoading(true);\n        const response = await fetch(url, {\n          signal: controller.signal\n        });\n        const result = await response.json();\n        setData(result);\n      } catch (err) {\n        if (err.name !== 'AbortError') {\n          setError(err);\n        }\n      } finally {\n        setLoading(false);\n      }\n    };\n    \n    fetchData();\n    \n    return () => controller.abort();\n  }, [url]);\n  \n  return { data, loading, error };\n}\n```"
+  },
+  {
+    "id": "f8a9b0c1-d2e3-4f4a-5b6c-7d8e9f0a1b2c",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "In the following code, what will the value of count in the timeout be after 3 seconds when the user clicks the button 5 times?",
+    "codeSnippet": "function Component() {\n  const [count, setCount] = useState(0);\n  \n  const handleClick = () => {\n    setCount(count + 1);\n    setTimeout(() => {\n      console.log(count);\n    }, 3000);\n  };\n  \n  return <button onClick={handleClick}>{count}</button>;\n}",
+    "options": ["5", "0", "4", "Undefined"],
+    "correctAnswerIndex": 1,
+    "explanation": "This is a classic example of **closure** in React. Each click creates a closure with the value of `count` at that moment.\n\n**Analysis:**\n```jsx\n// Click 1: count = 0\nhandleClick() → setCount(0 + 1) → setTimeout logs 0\n\n// Click 2: count = 1 (but closure still holds count = 1)\nhandleClick() → setCount(1 + 1) → setTimeout logs 1\n\n// Click 3: count = 2\nhandleClick() → setCount(2 + 1) → setTimeout logs 2\n\n// ...\n```\n\n**But there's a problem:** Since all 5 clicks happen quickly (< 3s), each `handleClick` sees `count = 0` (the initial value), so:\n```jsx\n// All 5 timeouts will log: 0, 0, 0, 0, 0\n// And count on UI only goes to 1 (because setCount(0 + 1) 5 times)\n```\n\n**Solution 1 - Functional update:**\n```jsx\n// ✅ CORRECT\nconst handleClick = () => {\n  setCount(c => c + 1); // Always gets latest value\n  setTimeout(() => {\n    setCount(c => {\n      console.log(c); // Log latest value\n      return c;\n    });\n  }, 3000);\n};\n```\n\n**Solution 2 - useRef:**\n```jsx\n// ✅ CORRECT\nconst countRef = useRef(0);\nconst [count, setCount] = useState(0);\n\nconst handleClick = () => {\n  countRef.current += 1;\n  setCount(countRef.current);\n  \n  setTimeout(() => {\n    console.log(countRef.current); // Log latest value\n  }, 3000);\n};\n```\n\n**Answer to original question:** All timeouts log `0` because each closure captures `count = 0`."
+  },
+  {
+    "id": "a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "medium",
+    "questionText": "When should you use useEffect with empty dependency array []?",
+    "codeSnippet": null,
+    "options": ["When you want effect to run after every render", "When you want effect to run only once on mount", "When there are no dependencies", "When you want effect to never run"],
+    "correctAnswerIndex": 1,
+    "explanation": "Empty dependency array `[]` means the effect runs **only once** when the component **mounts**, similar to `componentDidMount` in class components.\n\n**Common use cases:**\n\n```jsx\n// 1. Fetch initial data\nuseEffect(() => {\n  fetchUserData().then(setUser);\n}, []);\n\n// 2. Set up subscriptions\nuseEffect(() => {\n  const subscription = subscribeToMessages(userId);\n  return () => subscription.unsubscribe();\n}, []);\n\n// 3. Initialize third-party libraries\nuseEffect(() => {\n  const chart = initChart('#chart-container');\n  return () => chart.destroy();\n}, []);\n\n// 4. Add event listeners\nuseEffect(() => {\n  const handleResize = () => setWidth(window.innerWidth);\n  window.addEventListener('resize', handleResize);\n  return () => window.removeEventListener('resize', handleResize);\n}, []);\n\n// 5. Analytics tracking\nuseEffect(() => {\n  analytics.trackPageView(pageId);\n}, []);\n```\n\n**Note:**\n- If effect uses props/state, you **MUST** add them to dependencies\n- ESLint will warn if dependencies are missing\n- In Strict Mode (dev), effect runs 2 times to test cleanup"
+  },
+  {
+    "id": "b0c1d2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e",
+    "category": "ReactJS",
+    "topic": "Hooks",
+    "level": "senior",
+    "questionText": "What problems does the following code have and how to fix them?",
+    "codeSnippet": "function UserProfile({ userId }) {\n  const [user, setUser] = useState(null);\n  \n  useEffect(() => {\n    fetchUser(userId).then(setUser);\n  }, []);\n  \n  return <div>{user?.name}</div>;\n}",
+    "options": ["No problems", "Missing userId in dependencies", "Missing cleanup function", "Both B and C"],
+    "correctAnswerIndex": 3,
+    "explanation": "The code has **2 serious problems:**\n\n**Problem 1: Missing dependency**\n```jsx\n// ❌ WRONG - userId changes but effect doesn't re-run\nuseEffect(() => {\n  fetchUser(userId).then(setUser); // Uses userId\n}, []); // But not in dependencies!\n```\n\n**Problem 2: No cleanup - race condition**\nWhen `userId` changes quickly, old responses may arrive after new ones.\n\n**✅ Correct fix:**\n```jsx\nfunction UserProfile({ userId }) {\n  const [user, setUser] = useState(null);\n  const [loading, setLoading] = useState(true);\n  const [error, setError] = useState(null);\n  \n  useEffect(() => {\n    let cancelled = false; // Flag to ignore stale requests\n    \n    setLoading(true);\n    setError(null);\n    \n    fetchUser(userId)\n      .then(data => {\n        if (!cancelled) {\n          setUser(data);\n          setLoading(false);\n        }\n      })\n      .catch(err => {\n        if (!cancelled) {\n          setError(err);\n          setLoading(false);\n        }\n      });\n    \n    // Cleanup: ignore response if userId changed\n    return () => {\n      cancelled = true;\n    };\n  }, [userId]); // ✅ Add userId to dependencies\n  \n  if (loading) return <div>Loading...</div>;\n  if (error) return <div>Error: {error.message}</div>;\n  return <div>{user?.name}</div>;\n}\n```\n\n**✅ With AbortController (modern):**\n```jsx\nuseEffect(() => {\n  const controller = new AbortController();\n  \n  setLoading(true);\n  \n  fetch(`/api/users/${userId}`, {\n    signal: controller.signal\n  })\n    .then(res => res.json())\n    .then(data => {\n      setUser(data);\n      setLoading(false);\n    })\n    .catch(err => {\n      if (err.name !== 'AbortError') {\n        setError(err);\n        setLoading(false);\n      }\n    });\n  \n  return () => controller.abort(); // Cancel request\n}, [userId]);\n```"
+  }
+]

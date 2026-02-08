@@ -1,0 +1,106 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-08T14:25:00+07:00",
+  "topics": [
+    {
+      "id": "reactjs-hooks",
+      "name": "ReactJS Hooks",
+      "slug": "reactjs-hooks",
+      "icon": "logo-react",
+      "color": "#61DAFB",
+      "totalQuestions": 20,
+      "filePath": "reactjs/hooks.json",
+      "category": "frontend"
+    },
+    {
+      "id": "css-scss",
+      "name": "CSS/SCSS",
+      "slug": "css-scss",
+      "icon": "logo-css3",
+      "color": "#1572B6",
+      "totalQuestions": 17,
+      "filePath": "languages/css-scss.json",
+      "category": "frontend"
+    },
+    {
+      "id": "javascript",
+      "name": "JavaScript Core",
+      "slug": "javascript",
+      "icon": "logo-javascript",
+      "color": "#F7DF1E",
+      "totalQuestions": 26,
+      "filePath": "languages/javascript.json",
+      "category": "languages"
+    },
+    {
+      "id": "typescript",
+      "name": "TypeScript",
+      "slug": "typescript",
+      "icon": "code-slash",
+      "color": "#3178C6",
+      "totalQuestions": 20,
+      "filePath": "languages/typescript.json",
+      "category": "languages"
+    },
+    {
+      "id": "git",
+      "name": "Git Commands",
+      "slug": "git",
+      "icon": "git-branch",
+      "color": "#F05032",
+      "totalQuestions": 15,
+      "filePath": "tools/git.json",
+      "category": "tools"
+    },
+    {
+      "id": "react-native",
+      "name": "React Native",
+      "slug": "react-native",
+      "icon": "phone-portrait-outline",
+      "color": "#61DAFB",
+      "totalQuestions": 20,
+      "filePath": "mobile/react-native.json",
+      "category": "mobile"
+    },
+    {
+      "id": "system-design",
+      "name": "System Design",
+      "slug": "system-design",
+      "icon": "server-outline",
+      "color": "#8b5cf6",
+      "totalQuestions": 20,
+      "filePath": "architecture/system-design.json",
+      "category": "architecture"
+    },
+    {
+      "id": "nodejs",
+      "name": "Node.js",
+      "slug": "nodejs",
+      "icon": "logo-nodejs",
+      "color": "#4ade80",
+      "totalQuestions": 20,
+      "filePath": "backend/nodejs.json",
+      "category": "backend"
+    },
+    {
+      "id": "sql-databases",
+      "name": "SQL & Databases",
+      "slug": "sql-databases",
+      "icon": "file-tray-full-outline",
+      "color": "#f59e0b",
+      "totalQuestions": 20,
+      "filePath": "backend/sql.json",
+      "category": "backend"
+    },
+    {
+      "id": "docker-devops",
+      "name": "Docker & DevOps",
+      "slug": "docker-devops",
+      "icon": "logo-docker",
+      "color": "#3b82f6",
+      "totalQuestions": 20,
+      "filePath": "devops/docker.json",
+      "category": "devops"
+    }
+  ]
+}

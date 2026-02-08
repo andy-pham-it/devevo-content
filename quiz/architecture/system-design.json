@@ -1,0 +1,242 @@
+[
+  {
+    "id": "sd-1",
+    "question": "Trong thiết kế hệ thống, 'Scalability' (Khả năng mở rộng) đề cập đến điều gì?",
+    "options": [
+      "Khả năng hệ thống chạy nhanh nhất có thể",
+      "Khả năng xử lý lượng tải ngày càng tăng bằng cách thêm tài nguyên",
+      "Khả năng bảo mật hệ thống trước tấn công",
+      "Khả năng tự động sửa lỗi"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Scalability là khả năng của hệ thống trong việc xử lý lượng công việc ngày càng tăng bằng cách thêm tài nguyên (phần cứng, server) mà không làm giảm hiệu năng."
+  },
+  {
+    "id": "sd-2",
+    "question": "Sự khác biệt chính giữa Vertical Scaling (Scale Up) và Horizontal Scaling (Scale Out) là gì?",
+    "options": [
+      "Scale Up thêm server mới, Scale Out nâng cấp server hiện tại",
+      "Scale Up nâng cấp server hiện tại (CPU/RAM), Scale Out thêm nhiều server mới",
+      "Scale Up rẻ hơn Scale Out",
+      "Scale Out chỉ dùng cho database"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Vertical Scaling (Up) là nâng cấp sức mạnh cho một máy đơn lẻ. Horizontal Scaling (Out) là thêm nhiều máy vào hệ thống để chia tải."
+  },
+  {
+    "id": "sd-3",
+    "question": "Load Balancer (Cân bằng tải) có chức năng chính là gì?",
+    "options": [
+      "Lưu trữ dữ liệu người dùng",
+      "Phân phối traffic đến các server khác nhau để tránh quá tải một server",
+      "Mã hóa dữ liệu truyền tải",
+      "Tăng tốc độ truy vấn database"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Load Balancer đứng giữa client và server farm, phân phối request đến các server dựa trên thuật toán (Round Robin, Least Connection...) để tối ưu hóa tài nguyên."
+  },
+  {
+    "id": "sd-4",
+    "question": "Trong CAP Theorem, một hệ thống phân tán chỉ có thể đảm bảo tối đa bao nhiêu thuộc tính cùng lúc?",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correctAnswer": 1,
+    "explanation": "CAP Theorem phát biểu rằng một hệ thống phân tán không thể đảm bảo cả 3 thuộc tính: Consistency (Tính nhất quán), Availability (Tính sẵn sàng), và Partition Tolerance (Khả năng chịu lỗi phân vùng) cùng lúc. Chỉ chọn được 2/3."
+  },
+  {
+    "id": "sd-5",
+    "question": "Database Sharding là kỹ thuật gì?",
+    "options": [
+      "Sao lưu database ra nhiều nơi",
+      "Chia nhỏ một database lớn thành nhiều phần nhỏ hơn (shards) lưu trên các server khác nhau",
+      "Mã hóa dữ liệu trong database",
+      "Tạo index cho database"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Sharding là kỹ thuật Horizontal Partitioning, chia tách dữ liệu theo chiều ngang (ví dụ theo User ID) để phân tán tải và vượt quá giới hạn của một máy chủ vật lý."
+  },
+  {
+    "id": "sd-6",
+    "question": "Caching (Bộ nhớ đệm) giúp cải thiện hiệu năng hệ thống như thế nào?",
+    "options": [
+      "Tăng tốc độ ghi dữ liệu vào ổ cứng",
+      "Giảm tải cho database bằng cách lưu trữ dữ liệu thường truy cập vào bộ nhớ nhanh (RAM)",
+      "Mã hóa dữ liệu an toàn hơn",
+      "Tự động sửa lỗi code"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Caching lưu data frequency access vào RAM (như Redis, Memcached), giúp trả về kết quả cực nhanh mà không cần query xuống Database chậm chạp."
+  },
+  {
+    "id": "sd-7",
+    "question": "CDN (Content Delivery Network) hữu ích nhất cho việc gì?",
+    "options": [
+      "Xử lý logic backend phức tạp",
+      "Phân phối nội dung tĩnh (ảnh, video, css/js) đến người dùng từ server gần nhất về mặt địa lý",
+      "Lưu trữ database giao dịch",
+      "Quản lý xác thực người dùng"
+    ],
+    "correctAnswer": 1,
+    "explanation": "CDN là mạng lưới server toàn cầu giúp cache và phân phối nội dung tĩnh (static assets) từ server gần người dùng nhất, giảm độ trễ (latency)."
+  },
+  {
+    "id": "sd-8",
+    "question": "Single Point of Failure (SPOF) là gì?",
+    "options": [
+      "Một lỗi phần mềm duy nhất",
+      "Một thành phần trong hệ thống mà nếu nó hỏng, toàn bộ hệ thống sẽ ngừng hoạt động",
+      "Một hacker tấn công hệ thống",
+      "Một server dự phòng"
+    ],
+    "correctAnswer": 1,
+    "explanation": "SPOF là điểm yếu chí mạng trong thiết kế. Mục tiêu của High Availability là loại bỏ SPOF bằng cách redundancy (dự phòng)."
+  },
+  {
+    "id": "sd-9",
+    "question": "Thuật ngữ 'Latency' (Độ trễ) đo lường điều gì?",
+    "options": [
+      "Số lượng request hệ thống xử lý được trong 1 giây (Throughput)",
+      "Thời gian để một gói tin đi từ nguồn đến đích (và ngược lại)",
+      "Dung lượng ổ cứng",
+      "Băng thông mạng"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Latency là thời gian trễ, thường tính bằng mili-giây (ms). Low latency là mục tiêu của các hệ thống realtime."
+  },
+  {
+    "id": "sd-10",
+    "question": "Microservices Architecture khác Monolithic Architecture ở điểm nào?",
+    "options": [
+      "Microservices dùng database nhỏ hơn",
+      "Monolithic là một khối code duy nhất, Microservices chia hệ thống thành nhiều dịch vụ nhỏ độc lập",
+      "Microservices chạy chậm hơn",
+      "Monolithic chỉ dùng cho start-up"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Microservices tách ứng dụng thành các service nhỏ, loosely coupled, có thể deploy và scale độc lập. Monolith gom tất cả vào một khối."
+  },
+  {
+    "id": "sd-11",
+    "question": "ACID trong Database Transaction là viết tắt của?",
+    "options": [
+      "Atomicity, Consistency, Isolation, Durability",
+      "Availability, Consistency, Isolation, Durability",
+      "Atomicity, Cache, Isolation, Database",
+      "Access, Control, Interface, Data"
+    ],
+    "correctAnswer": 0,
+    "explanation": "ACID là 4 tính chất đảm bảo tính toàn vẹn của transaction: Nguyên tử, Nhất quán, Cô lập, Bền vững."
+  },
+  {
+    "id": "sd-12",
+    "question": "Rate Limiting được sử dụng để làm gì?",
+    "options": [
+      "Giới hạn tốc độ internet của server",
+      "Kiểm soát số lượng request từ một client trong một khoảng thời gian để bảo vệ hệ thống (chống DDoS/Spam)",
+      "Giới hạn số lượng nhân viên truy cập",
+      "Tăng tốc độ xử lý"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Rate Limiting giúp ngăn chặn abuse, bảo vệ tài nguyên server khỏi bị quá tải bởi traffic đột biến hoặc tấn công."
+  },
+  {
+    "id": "sd-13",
+    "question": "SQL Injection là loại tấn công gì?",
+    "options": [
+      "Tấn công từ chối dịch vụ",
+      "Chèn mã SQL độc hại vào câu truy vấn thông qua input của người dùng để thao tác trái phép database",
+      "Chiếm quyền điều khiển server",
+      "Nghe lén traffic mạng"
+    ],
+    "correctAnswer": 1,
+    "explanation": "SQL Injection lợi dụng lỗ hổng trong việc không kiểm tra input đầu vào, cho phép hacker chạy lệnh SQL tùy ý (như DROP TABLE, SELECT * users)."
+  },
+  {
+    "id": "sd-14",
+    "question": "Giao thức nào thường được sử dụng cho giao tiếp thời gian thực (Real-time communication)?",
+    "options": [
+      "HTTP/1.1",
+      "FTP",
+      "WebSocket",
+      "SMTP"
+    ],
+    "correctAnswer": 2,
+    "explanation": "WebSocket cung cấp kênh giao tiếp hai chiều (full-duplex) liên tục giữa client và server, lý tưởng cho chat, game, live updates."
+  },
+  {
+    "id": "sd-15",
+    "question": "Message Queue (RabbitMQ, Kafka) giúp giải quyết vấn đề gì trong Microservices?",
+    "options": [
+      "Giúp các service giao tiếp đồng bộ (synchronous)",
+      "Giúp giao tiếp bất đồng bộ (asynchronous), decoupling các service và xử lý traffic spikes (làm mịn tải)",
+      "Thay thế hoàn toàn database",
+      "Tăng tốc độ CPU"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Message Queue giúp các service không phụ thuộc trực tiếp vào nhau (decoupling), producer có thể gửi message mà không cần consumer phải online ngay lập tức."
+  },
+  {
+    "id": "sd-16",
+    "question": "Consistent Hashing thường được dùng trong trường hợp nào?",
+    "options": [
+      "Mã hóa mật khẩu",
+      "Phân chia dữ liệu/keys vào các node trong hệ thống phân tán (Distributed Cache/DB) để giảm thiểu việc di chuyển dữ liệu khi thêm/bớt node",
+      "Nén dữ liệu",
+      "Sắp xếp dữ liệu"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Consistent Hashing giúp hệ thống khi scale (thêm/bớt server) chỉ phải remap một lượng nhỏ keys (k/n), thay vì remap gần như toàn bộ (như Modulo hashing)."
+  },
+  {
+    "id": "sd-17",
+    "question": "Sự khác biệt giữa SQL (Relational) và NoSQL (Non-relational) Database?",
+    "options": [
+      "SQL nhanh hơn NoSQL",
+      "SQL có cấu trúc cứng (Schema), tuân thủ ACID chặt chẽ; NoSQL linh hoạt (Schema-less), dễ scale ngang, often BASE",
+      "NoSQL không hỗ trợ lưu trữ text",
+      "SQL chỉ chạy trên Windows"
+    ],
+    "correctAnswer": 1,
+    "explanation": "SQL (MySQL, Postgres) dùng bảng và quan hệ chặt chẽ. NoSQL (MongoDB, Cassandra) dùng document, key-value, linh hoạt hơn cho dữ liệu phi cấu trúc và scale lớn."
+  },
+  {
+    "id": "sd-18",
+    "question": "Idempotency (Tính lũy đẳng) trong API nghĩa là gì?",
+    "options": [
+      "API trả về lỗi nếu gọi 2 lần",
+      "Thực hiện một thao tác nhiều lần vẫn cho ra cùng một kết quả như thực hiện một lần (an toàn để retry)",
+      "API luôn trả về 200 OK",
+      "API có tốc độ cực nhanh"
+    ],
+    "correctAnswer": 1,
+    "explanation": "Idempotency quan trọng trong hệ thống phân tán (ví dụ thanh toán), đảm bảo nếu request bị timeout và client retry, hệ thống không trừ tiền 2 lần."
+  },
+  {
+    "id": "sd-19",
+    "question": "HTTPS bảo vệ dữ liệu như thế nào?",
+    "options": [
+      "Ẩn IP người dùng",
+      "Mã hóa kết nối giữa Client và Server sử dụng SSL/TLS",
+      "Chặn quảng cáo",
+      "Tăng tốc độ mạng"
+    ],
+    "correctAnswer": 1,
+    "explanation": "HTTPS sử dụng giao thức TLS/SSL để mã hóa gói tin, đảm bảo hacker không thể đọc được nội dung (password, thẻ tín dụng) khi bắt gói tin trên đường truyền."
+  },
+  {
+    "id": "sd-20",
+    "question": "Database Indexing có nhược điểm gì không?",
+    "options": [
+      "Không, nó luôn tốt",
+      "Làm chậm tốc độ đọc (Read)",
+      "Tốn dung lượng lưu trữ và làm chậm tốc độ ghi (Write/Update/Insert)",
+      "Làm database hay bị lỗi"
+    ],
+    "correctAnswer": 2,
+    "explanation": "Index giúp đọc nhanh (như mục lục sách), nhưng khi ghi dữ liệu mới, DB phải cập nhật cả bảng chính và Index, nên làm chậm thao tác ghi và tốn dung lượng đĩa."
+  }
+]

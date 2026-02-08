@@ -1,0 +1,234 @@
+name: Validate Content
+
+on:
+  pull_request:
+    paths:
+      - "quiz/**"
+      - "explore/**"
+      - "videos/**"
+  push:
+    branches:
+      - main
+    paths:
+      - "quiz/**"
+      - "explore/**"
+      - "videos/**"
+
+jobs:
+  validate-json:
+    name: Validate JSON Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Validate all JSON files
+        run: |
+          echo "🔍 Validating JSON files..."
+          find . -name "*.json" -type f | while read file; do
+            echo "Checking: $file"
+            if ! node -e "JSON.parse(require('fs').readFileSync('$file', 'utf8'))"; then
+              echo "❌ Invalid JSON: $file"
+              exit 1
+            fi
+          done
+          echo "✅ All JSON files are valid!"
+
+      - name: Validate quiz metadata
+        run: |
+          echo "🔍 Validating quiz/meta.json structure..."
+          node -e "
+            const meta = JSON.parse(require('fs').readFileSync('quiz/meta.json', 'utf8'));
+            if (!meta.version || !meta.topics || !Array.isArray(meta.topics)) {
+              console.error('❌ Invalid quiz/meta.json structure');
+              process.exit(1);
+            }
+            console.log('✅ quiz/meta.json structure is valid!');
+            console.log('📊 Total topics:', meta.topics.length);
+          "
+
+      - name: Validate explore metadata
+        run: |
+          echo "🔍 Validating explore/meta.json structure..."
+          node -e "
+            const meta = JSON.parse(require('fs').readFileSync('explore/meta.json', 'utf8'));
+            if (!meta.version || !meta.resources || !Array.isArray(meta.resources)) {
+              console.error('❌ Invalid explore/meta.json structure');
+              process.exit(1);
+            }
+            console.log('✅ explore/meta.json structure is valid!');
+            console.log('📊 Total resources:', meta.resources.length);
+          "
+
+      - name: Validate videos metadata
+        run: |
+          echo "🔍 Validating videos/meta.json structure..."
+          node -e "
+            const meta = JSON.parse(require('fs').readFileSync('videos/meta.json', 'utf8'));
+            if (!meta.categories || !meta.videos || !Array.isArray(meta.videos)) {
+              console.error('❌ Invalid videos/meta.json structure');
+              process.exit(1);
+            }
+            console.log('✅ videos/meta.json structure is valid!');
+            console.log('📊 Total videos:', meta.videos.length);
+          "
+
+  validate-markdown:
+    name: Validate Markdown Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Install markdownlint
+        run: npm install -g markdownlint-cli
+
+      - name: Lint markdown files
+        run: |
+          echo "🔍 Linting markdown files..."
+          markdownlint 'explore/sources/**/*.md' --config .markdownlint.json || true
+          echo "✅ Markdown linting complete!"
+
+      - name: Check markdown file references
+        run: |
+          echo "🔍 Checking if all referenced markdown files exist..."
+          node -e "
+            const meta = JSON.parse(require('fs').readFileSync('explore/meta.json', 'utf8'));
+            const fs = require('fs');
+            let allExist = true;
+            
+            meta.resources.forEach(resource => {
+              const path = 'explore/' + resource.filePath;
+              if (!fs.existsSync(path)) {
+                console.error('❌ Missing file:', path);
+                allExist = false;
+              }
+            });
+            
+            if (!allExist) {
+              process.exit(1);
+            }
+            console.log('✅ All markdown files exist!');
+          "
+
+  validate-quiz-files:
+    name: Validate Quiz Question Files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Check quiz file references
+        run: |
+          echo "🔍 Checking if all referenced quiz files exist..."
+          node -e "
+            const meta = JSON.parse(require('fs').readFileSync('quiz/meta.json', 'utf8'));
+            const fs = require('fs');
+            let allExist = true;
+            let totalQuestions = 0;
+            
+            meta.topics.forEach(topic => {
+              const path = 'quiz/' + topic.filePath;
+              if (!fs.existsSync(path)) {
+                console.error('❌ Missing file:', path);
+                allExist = false;
+              } else {
+                const questions = JSON.parse(fs.readFileSync(path, 'utf8'));
+                totalQuestions += questions.length;
+                console.log('✅', topic.name + ':', questions.length, 'questions');
+              }
+            });
+            
+            if (!allExist) {
+              process.exit(1);
+            }
+            console.log('\\n📊 Total questions across all topics:', totalQuestions);
+          "
+
+      - name: Validate quiz question structure
+        run: |
+          echo "🔍 Validating quiz question structure..."
+          node -e "
+            const meta = JSON.parse(require('fs').readFileSync('quiz/meta.json', 'utf8'));
+            const fs = require('fs');
+            let isValid = true;
+            
+            meta.topics.forEach(topic => {
+              const path = 'quiz/' + topic.filePath;
+              if (fs.existsSync(path)) {
+                const questions = JSON.parse(fs.readFileSync(path, 'utf8'));
+                
+                questions.forEach((q, index) => {
+                  if (!q.id || !q.question || !q.options || !q.explanation) {
+                    console.error('❌ Invalid question structure in', path, 'at index', index);
+                    isValid = false;
+                  }
+                  if (!Array.isArray(q.options) || q.options.length < 2) {
+                    console.error('❌ Invalid options in', path, 'at index', index);
+                    isValid = false;
+                  }
+                  if (typeof q.correctAnswer !== 'number' || q.correctAnswer < 0 || q.correctAnswer >= q.options.length) {
+                    console.error('❌ Invalid correctAnswer in', path, 'at index', index);
+                    isValid = false;
+                  }
+                });
+              }
+            });
+            
+            if (!isValid) {
+              process.exit(1);
+            }
+            console.log('✅ All quiz questions have valid structure!');
+          "
+
+  content-stats:
+    name: Generate Content Statistics
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+
+      - name: Generate statistics
+        run: |
+          echo "📊 Content Statistics"
+          echo "===================="
+          echo ""
+
+          # Quiz stats
+          QUIZ_TOPICS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('quiz/meta.json', 'utf8')).topics.length)")
+          echo "Quiz Topics: $QUIZ_TOPICS"
+
+          # Explore stats
+          EXPLORE_RESOURCES=$(node -e "console.log(JSON.parse(require('fs').readFileSync('explore/meta.json', 'utf8')).resources.length)")
+          echo "Explore Resources: $EXPLORE_RESOURCES"
+
+          # Video stats
+          VIDEOS=$(node -e "console.log(JSON.parse(require('fs').readFileSync('videos/meta.json', 'utf8')).videos.length)")
+          echo "Videos: $VIDEOS"
+
+          echo ""
+          echo "✅ Content validation complete!"

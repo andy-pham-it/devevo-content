@@ -1,0 +1,114 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2026-02-08T14:25:00+07:00",
+  "resources": [
+    {
+      "id": "git-cheat-sheet",
+      "uuid": "88242253-333e-41da-8e3b-967679727508",
+      "title": "Git Commands Cheat Sheet",
+      "description": "Essential Git commands for version control",
+      "icon": "git-branch",
+      "category": "Git",
+      "filePath": "sources/git.md"
+    },
+    {
+      "id": "react-best-practices",
+      "uuid": "e9621571-5586-4e5a-8531-18e692224098",
+      "title": "React Best Practices",
+      "description": "Modern React development patterns and tips",
+      "icon": "code",
+      "category": "React",
+      "filePath": "sources/react.md"
+    },
+    {
+      "id": "javascript-tips",
+      "uuid": "67246069-0268-45ad-9721-a47732a39a06",
+      "title": "JavaScript Tips & Tricks",
+      "description": "Useful JavaScript techniques and shortcuts",
+      "icon": "terminal",
+      "category": "JavaScript",
+      "filePath": "sources/javascript.md"
+    },
+    {
+      "id": "system-design-primer",
+      "uuid": "d46f5e2b-c224-42ea-a4b5-654817342674",
+      "title": "System Design Primer",
+      "description": "Core concepts for designing scalable systems",
+      "icon": "server",
+      "category": "Architecture",
+      "filePath": "sources/system-design-primer.md"
+    },
+    {
+      "id": "sql-cheat-sheet",
+      "uuid": "0a4c2273-5163-490b-9865-0370d2417d4a",
+      "title": "SQL Cheat Sheet",
+      "description": "Essential SQL commands and optimization tips",
+      "icon": "file-tray-full",
+      "category": "Database",
+      "filePath": "sources/sql-cheat-sheet.md"
+    },
+    {
+      "id": "rn-performance",
+      "uuid": "f7267152-32b0-4573-bd85-643632906803",
+      "title": "React Native Performance",
+      "description": "Tips for building fast 60fps mobile apps",
+      "icon": "speedometer",
+      "category": "Mobile",
+      "filePath": "sources/react-native-performance.md"
+    },
+    {
+      "id": "clean-code",
+      "uuid": "b6e94474-9842-4f05-8e77-961445171736",
+      "title": "Clean Code & SOLID",
+      "description": "Principles for maintainable software engineering",
+      "icon": "construct",
+      "category": "Engineering",
+      "filePath": "sources/clean-code.md"
+    },
+    {
+      "id": "soft-skills",
+      "uuid": "28434759-399d-4340-97c7-010065275815",
+      "title": "Soft Skills Interview",
+      "description": "Guide to acing behavioral interviews",
+      "icon": "people",
+      "category": "Career",
+      "filePath": "sources/soft-skills.md"
+    },
+    {
+      "id": "html-basics",
+      "uuid": "4c8c7f73-1a2b-4e5c-9d6a-8b9e0f1d2c3a",
+      "title": "HTML Basics for Beginners",
+      "description": "Structure, tags, attributes, and basic elements",
+      "icon": "logo-html5",
+      "category": "HTML",
+      "filePath": "sources/html-basics.md"
+    },
+    {
+      "id": "html-forms",
+      "uuid": "9a2b3c4d-5e6f-7g8h-9i0j-1k2l3m4n5o6p",
+      "title": "HTML Forms & Input",
+      "description": "Building interactive forms with validations",
+      "icon": "create",
+      "category": "HTML",
+      "filePath": "sources/html-forms.md"
+    },
+    {
+      "id": "html-seo",
+      "uuid": "a1b2c3d4-e5f6-g7h8-i9j0-k1l2m3n4o5p6",
+      "title": "HTML5 Semantic & SEO",
+      "description": "Accessibility, meta tags, and semantic structure",
+      "icon": "search",
+      "category": "HTML",
+      "filePath": "sources/html-seo.md"
+    },
+    {
+      "id": "html-apis",
+      "uuid": "1p2o3i4u-5y6t-7r8e-9w0q-1l2k3j4h5g6f",
+      "title": "HTML5 Advanced APIs",
+      "description": "Geolocation, Storage, Canvas, and Web Workers",
+      "icon": "construct",
+      "category": "HTML",
+      "filePath": "sources/html-apis.md"
+    }
+  ]
+}

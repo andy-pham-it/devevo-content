@@ -1,0 +1,167 @@
+[
+  {
+    "id": "a1b2c3d4-git01-4a7b-8c9d-0e1f2a3b4c5d",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What does 'git clone' do?",
+    "codeSnippet": "git clone https://github.com/user/repo.git",
+    "options": ["Creates a new repository", "Copies a repository to your local machine", "Deletes a repository", "Renames a repository"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git clone` **copies a remote repository** to your local machine, including all history and branches.\n\n```bash\n# Clone a repository\ngit clone https://github.com/user/repo.git\n\n# Clone into specific directory\ngit clone https://github.com/user/repo.git my-folder\n\n# Clone specific branch\ngit clone -b develop https://github.com/user/repo.git\n\n# Shallow clone (only recent history)\ngit clone --depth 1 https://github.com/user/repo.git\n```"
+  },
+  {
+    "id": "b2c3d4e5-git02-4b8c-9d0e-1f2a3b4c5d6e",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What is the difference between 'git pull' and 'git fetch'?",
+    "codeSnippet": null,
+    "options": ["They are the same", "pull fetches and merges, fetch only downloads", "fetch fetches and merges, pull only downloads", "pull is deprecated"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git pull` = `git fetch` + `git merge`. **fetch** downloads changes, **pull** downloads and merges.\n\n```bash\n# git fetch - downloads changes but doesn't merge\ngit fetch origin\ngit log origin/main  # View changes\ngit merge origin/main  # Merge when ready\n\n# git pull - downloads and merges immediately\ngit pull origin main\n# Equivalent to:\ngit fetch origin\ngit merge origin/main\n\n# Pull with rebase instead of merge\ngit pull --rebase origin main\n```"
+  },
+  {
+    "id": "c3d4e5f6-git03-4c9d-0e1f-2a3b4c5d6e7f",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What does 'git status' show?",
+    "codeSnippet": null,
+    "options": ["Current branch and file changes", "Commit history", "Remote repositories", "Branch list"],
+    "correctAnswerIndex": 0,
+    "explanation": "`git status` shows the **current branch** and **state of files** (modified, staged, untracked).\n\n```bash\ngit status\n\n# Output shows:\n# - Current branch\n# - Changes staged for commit (green)\n# - Changes not staged (red)\n# - Untracked files\n# - Branch sync status with remote\n\n# Short format\ngit status -s\n# M  modified.txt    (staged)\n#  M unstaged.txt    (modified, not staged)\n# ?? untracked.txt  (untracked)\n```"
+  },
+  {
+    "id": "d4e5f6a7-git04-4d0e-1f2a-3b4c5d6e7f8a",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "medium",
+    "questionText": "What is the difference between 'git reset' and 'git revert'?",
+    "codeSnippet": null,
+    "options": ["They are the same", "reset rewrites history, revert creates new commit", "revert rewrites history, reset creates new commit", "reset is deprecated"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git reset` **rewrites history** (dangerous for shared branches), `git revert` **creates a new commit** that undoes changes (safe).\n\n```bash\n# git reset - rewrites history\ngit reset --soft HEAD~1   # Undo commit, keep changes staged\ngit reset --mixed HEAD~1  # Undo commit, unstage changes (default)\ngit reset --hard HEAD~1   # Undo commit, discard changes\n\n# git revert - creates new commit\ngit revert HEAD           # Create new commit undoing last commit\ngit revert abc123         # Revert specific commit\n\n# When to use:\n# - reset: local commits not pushed yet\n# - revert: commits already pushed to shared branch\n```"
+  },
+  {
+    "id": "e5f6a7b8-git05-4e1f-2a3b-4c5d6e7f8a9b",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What does 'git add .' do?",
+    "codeSnippet": null,
+    "options": ["Adds all files in current directory to staging", "Adds one file", "Commits changes", "Pushes changes"],
+    "correctAnswerIndex": 0,
+    "explanation": "`git add .` **stages all changes** in the current directory and subdirectories.\n\n```bash\n# Add all changes in current directory\ngit add .\n\n# Add specific file\ngit add file.txt\n\n# Add all files (including deleted)\ngit add -A\n# or\ngit add --all\n\n# Add by pattern\ngit add *.js\n\n# Interactive staging\ngit add -p  # Choose which changes to stage\n```"
+  },
+  {
+    "id": "f6a7b8c9-git06-4f2a-3b4c-5d6e7f8a9b0c",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "medium",
+    "questionText": "What is 'git stash' used for?",
+    "codeSnippet": null,
+    "options": ["Deletes changes", "Temporarily saves changes without committing", "Creates a new branch", "Merges branches"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git stash` **temporarily saves changes** so you can work on something else, then reapply them later.\n\n```bash\n# Save current changes\ngit stash\n# or with message\ngit stash save \"WIP: feature X\"\n\n# List stashes\ngit stash list\n# stash@{0}: WIP: feature X\n# stash@{1}: On main: bug fix\n\n# Apply most recent stash\ngit stash apply\n\n# Apply and remove from stash list\ngit stash pop\n\n# Apply specific stash\ngit stash apply stash@{1}\n\n# Delete stash\ngit stash drop stash@{0}\n\n# Clear all stashes\ngit stash clear\n```"
+  },
+  {
+    "id": "a7b8c9d0-git07-4a3b-4c5d-6e7f8a9b0c1d",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What does 'git commit -m' do?",
+    "codeSnippet": "git commit -m \"Add new feature\"",
+    "options": ["Creates a commit with a message", "Merges branches", "Creates a branch", "Deletes a commit"],
+    "correctAnswerIndex": 0,
+    "explanation": "`git commit -m` **creates a commit** with the specified message.\n\n```bash\n# Commit with message\ngit commit -m \"Add login feature\"\n\n# Commit all tracked changes (skip git add)\ngit commit -am \"Fix bug\"\n\n# Amend last commit\ngit commit --amend -m \"Updated message\"\n\n# Commit with detailed message\ngit commit -m \"Add feature\" -m \"Detailed description here\"\n\n# Empty commit (for CI triggers)\ngit commit --allow-empty -m \"Trigger build\"\n```"
+  },
+  {
+    "id": "b8c9d0e1-git08-4b4c-5d6e-7f8a9b0c1d2e",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "medium",
+    "questionText": "What is 'git rebase'?",
+    "codeSnippet": null,
+    "options": ["Deletes branches", "Rewrites commit history by moving commits", "Creates new branch", "Merges branches"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git rebase` **rewrites history** by moving commits to a new base, creating a linear history.\n\n```bash\n# Rebase current branch onto main\ngit rebase main\n\n# Interactive rebase (edit last 3 commits)\ngit rebase -i HEAD~3\n# Options: pick, reword, edit, squash, fixup, drop\n\n# Rebase vs Merge:\n# Merge: creates merge commit, preserves history\ngit merge feature\n\n# Rebase: linear history, no merge commit\ngit rebase main\n\n# ⚠️ Never rebase commits pushed to shared branches!\n```"
+  },
+  {
+    "id": "c9d0e1f2-git09-4c5d-6e7f-8a9b0c1d2e3f",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What does 'git branch' do?",
+    "codeSnippet": null,
+    "options": ["Lists branches", "Creates commits", "Deletes files", "Pushes changes"],
+    "correctAnswerIndex": 0,
+    "explanation": "`git branch` **lists, creates, or deletes branches**.\n\n```bash\n# List all local branches\ngit branch\n\n# List all branches (including remote)\ngit branch -a\n\n# Create new branch\ngit branch feature-x\n\n# Delete branch\ngit branch -d feature-x   # Safe delete (merged only)\ngit branch -D feature-x   # Force delete\n\n# Rename branch\ngit branch -m old-name new-name\n\n# Show current branch\ngit branch --show-current\n```"
+  },
+  {
+    "id": "d0e1f2a3-git10-4d6e-7f8a-9b0c1d2e3f4a",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "medium",
+    "questionText": "What is 'git cherry-pick'?",
+    "codeSnippet": null,
+    "options": ["Deletes commits", "Applies specific commit to current branch", "Creates branch", "Merges all commits"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git cherry-pick` **applies a specific commit** from another branch to your current branch.\n\n```bash\n# Cherry-pick single commit\ngit cherry-pick abc123\n\n# Cherry-pick multiple commits\ngit cherry-pick abc123 def456\n\n# Cherry-pick range\ngit cherry-pick abc123..def456\n\n# Cherry-pick without committing\ngit cherry-pick -n abc123\n\n# Use case: apply hotfix from main to release branch\ngit checkout release\ngit cherry-pick hotfix-commit-hash\n```"
+  },
+  {
+    "id": "e1f2a3b4-git11-4e7f-8a9b-0c1d2e3f4a5b",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "senior",
+    "questionText": "What is 'git reflog'?",
+    "codeSnippet": null,
+    "options": ["Shows commit history", "Shows reference log of HEAD movements", "Deletes logs", "Creates logs"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git reflog` shows **history of HEAD movements**, useful for recovering lost commits.\n\n```bash\n# View reflog\ngit reflog\n\n# Recover lost commit after reset\ngit reset --hard HEAD~3  # Oops, lost commits!\ngit reflog  # Find commit hash\ngit reset --hard abc123  # Recover\n\n# Recover deleted branch\ngit branch -D feature  # Oops!\ngit reflog  # Find last commit on feature\ngit checkout -b feature abc123  # Recreate\n\n# Reflog expires after 90 days by default\n```"
+  },
+  {
+    "id": "f2a3b4c5-git12-4f8a-9b0c-1d2e3f4a5b6c",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "junior",
+    "questionText": "What does 'git log' show?",
+    "codeSnippet": null,
+    "options": ["Current status", "Commit history", "Branch list", "File changes"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git log` shows **commit history** with author, date, and message.\n\n```bash\n# Basic log\ngit log\n\n# One line per commit\ngit log --oneline\n\n# Show last 5 commits\ngit log -5\n\n# Show commits with file changes\ngit log --stat\n\n# Show commits with diff\ngit log -p\n\n# Graph view\ngit log --graph --oneline --all\n\n# Filter by author\ngit log --author=\"John\"\n\n# Filter by date\ngit log --since=\"2 weeks ago\"\n```"
+  },
+  {
+    "id": "a3b4c5d6-git13-4a9b-0c1d-2e3f4a5b6c7d",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "medium",
+    "questionText": "What is 'git merge --squash'?",
+    "codeSnippet": null,
+    "options": ["Deletes commits", "Combines all commits into one", "Creates multiple commits", "Reverts merge"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git merge --squash` **combines all commits** from a branch into a single commit.\n\n```bash\n# Regular merge (keeps all commits)\ngit merge feature\n# Creates merge commit with all feature commits\n\n# Squash merge (single commit)\ngit merge --squash feature\ngit commit -m \"Add feature X\"\n# All changes in one commit, cleaner history\n\n# Use case: feature branch with many WIP commits\n# Result: clean main branch history\n```"
+  },
+  {
+    "id": "b4c5d6e7-git14-4b0c-1d2e-3f4a5b6c7d8e",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "senior",
+    "questionText": "What is 'git bisect'?",
+    "codeSnippet": null,
+    "options": ["Splits repository", "Binary search to find bug-introducing commit", "Creates two branches", "Deletes commits"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git bisect` uses **binary search** to find which commit introduced a bug.\n\n```bash\n# Start bisect\ngit bisect start\n\n# Mark current commit as bad\ngit bisect bad\n\n# Mark known good commit\ngit bisect good abc123\n\n# Git checks out middle commit\n# Test it, then mark:\ngit bisect good  # or\ngit bisect bad\n\n# Repeat until found\n# Git will identify the first bad commit\n\n# End bisect\ngit bisect reset\n\n# Automated bisect\ngit bisect run npm test\n```"
+  },
+  {
+    "id": "c5d6e7f8-git15-4c1d-2e3f-4a5b6c7d8e9f",
+    "category": "Tools",
+    "topic": "Git",
+    "level": "medium",
+    "questionText": "What is the difference between 'git merge' and 'git rebase'?",
+    "codeSnippet": null,
+    "options": ["They are the same", "merge preserves history, rebase creates linear history", "rebase preserves history, merge creates linear history", "merge is deprecated"],
+    "correctAnswerIndex": 1,
+    "explanation": "`git merge` **preserves history** with merge commits, `git rebase` **rewrites history** for linear commits.\n\n```bash\n# Merge - preserves branch history\ngit checkout main\ngit merge feature\n# Creates merge commit, shows branch existed\n\n# Rebase - linear history\ngit checkout feature\ngit rebase main\n# Moves feature commits on top of main\n# No merge commit, cleaner history\n\n# When to use:\n# Merge: public/shared branches, preserve history\n# Rebase: local branches, clean history\n\n# ⚠️ Golden rule: Never rebase public branches!\n```"
+  }
+]
