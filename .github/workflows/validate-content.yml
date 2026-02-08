@@ -177,16 +177,25 @@ jobs:
                 const questions = JSON.parse(fs.readFileSync(path, 'utf8'));
                 
                 questions.forEach((q, index) => {
-                  if (!q.id || !q.question || !q.options || !q.explanation) {
+                  // Check required fields (matching actual format)
+                  if (!q.id || !q.questionText || !q.options || !q.explanation) {
                     console.error('❌ Invalid question structure in', path, 'at index', index);
+                    console.error('   Missing: id, questionText, options, or explanation');
                     isValid = false;
                   }
+                  
+                  // Check options array
                   if (!Array.isArray(q.options) || q.options.length < 2) {
                     console.error('❌ Invalid options in', path, 'at index', index);
+                    console.error('   Options must be an array with at least 2 items');
                     isValid = false;
                   }
-                  if (typeof q.correctAnswer !== 'number' || q.correctAnswer < 0 || q.correctAnswer >= q.options.length) {
-                    console.error('❌ Invalid correctAnswer in', path, 'at index', index);
+                  
+                  // Check correctAnswerIndex (note: field name is correctAnswerIndex, not correctAnswer)
+                  const correctField = q.correctAnswerIndex !== undefined ? q.correctAnswerIndex : q.correctAnswer;
+                  if (typeof correctField !== 'number' || correctField < 0 || correctField >= q.options.length) {
+                    console.error('❌ Invalid correctAnswerIndex in', path, 'at index', index);
+                    console.error('   Expected: number between 0 and', q.options.length - 1, ', got:', correctField);
                     isValid = false;
                   }
                 });
