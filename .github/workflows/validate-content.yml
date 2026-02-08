@@ -177,10 +177,16 @@ jobs:
                 const questions = JSON.parse(fs.readFileSync(path, 'utf8'));
                 
                 questions.forEach((q, index) => {
-                  // Check required fields (matching actual format)
-                  if (!q.id || !q.questionText || !q.options || !q.explanation) {
+                  // Support both formats:
+                  // Format 1: question + correctAnswer (old)
+                  // Format 2: questionText + correctAnswerIndex (new)
+                  const hasQuestion = q.question || q.questionText;
+                  const hasCorrectAnswer = q.correctAnswer !== undefined || q.correctAnswerIndex !== undefined;
+                  
+                  // Check required fields
+                  if (!q.id || !hasQuestion || !q.options || !q.explanation) {
                     console.error('❌ Invalid question structure in', path, 'at index', index);
-                    console.error('   Missing: id, questionText, options, or explanation');
+                    console.error('   Missing: id, question/questionText, options, or explanation');
                     isValid = false;
                   }
                   
@@ -191,12 +197,17 @@ jobs:
                     isValid = false;
                   }
                   
-                  // Check correctAnswerIndex (note: field name is correctAnswerIndex, not correctAnswer)
-                  const correctField = q.correctAnswerIndex !== undefined ? q.correctAnswerIndex : q.correctAnswer;
-                  if (typeof correctField !== 'number' || correctField < 0 || correctField >= q.options.length) {
-                    console.error('❌ Invalid correctAnswerIndex in', path, 'at index', index);
-                    console.error('   Expected: number between 0 and', q.options.length - 1, ', got:', correctField);
+                  // Check correctAnswer/correctAnswerIndex
+                  if (!hasCorrectAnswer) {
+                    console.error('❌ Missing correctAnswer/correctAnswerIndex in', path, 'at index', index);
                     isValid = false;
+                  } else {
+                    const correctField = q.correctAnswerIndex !== undefined ? q.correctAnswerIndex : q.correctAnswer;
+                    if (typeof correctField !== 'number' || correctField < 0 || correctField >= q.options.length) {
+                      console.error('❌ Invalid correctAnswer in', path, 'at index', index);
+                      console.error('   Expected: number between 0 and', q.options.length - 1, ', got:', correctField);
+                      isValid = false;
+                    }
                   }
                 });
               }
