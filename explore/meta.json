@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-02-08T14:25:00+07:00",
+  "lastUpdated": "2026-02-11T23:47:00+07:00",
   "resources": [
     {
       "id": "git-cheat-sheet",
@@ -109,6 +109,78 @@
       "icon": "construct",
       "category": "HTML",
       "filePath": "sources/html-apis.md"
+    },
+    {
+      "id": "solid-principles",
+      "uuid": "7a8b9c0d-1e2f-3a4b-5c6d-7e8f9a0b1c2d",
+      "title": "SOLID Principles",
+      "description": "Five essential OOD principles for clean code",
+      "icon": "cube",
+      "category": "Engineering",
+      "filePath": "sources/SOLID-principles.md"
+    },
+    {
+      "id": "design-patterns",
+      "uuid": "8b9c0d1e-2f3a-4b5c-6d7e-8f9a0b1c2d3e",
+      "title": "Design Patterns (GoF)",
+      "description": "Gang of Four patterns: Creational, Structural, Behavioral",
+      "icon": "grid",
+      "category": "Architecture",
+      "filePath": "sources/design-patterns.md"
+    },
+    {
+      "id": "testing-strategy",
+      "uuid": "9c0d1e2f-3a4b-5c6d-7e8f-9a0b1c2d3e4f",
+      "title": "Testing Strategy",
+      "description": "Testing Pyramid vs Trophy for modern apps",
+      "icon": "flask",
+      "category": "Testing",
+      "filePath": "sources/testing-strategy.md"
+    },
+    {
+      "id": "web-components",
+      "uuid": "0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a",
+      "title": "Web Components",
+      "description": "Custom Elements, Shadow DOM, and HTML Templates",
+      "icon": "shapes",
+      "category": "Web",
+      "filePath": "sources/web-components.md"
+    },
+    {
+      "id": "ai-prompting",
+      "uuid": "1e2f3a4b-5c6d-7e8f-9a0b-1c2d3e4f5a6b",
+      "title": "AI Prompt Engineering",
+      "description": "CIRA framework and code review best practices",
+      "icon": "bulb",
+      "category": "AI",
+      "filePath": "sources/ai-prompting.md"
+    },
+    {
+      "id": "composition-over-inheritance",
+      "uuid": "2f3a4b5c-6d7e-8f9a-0b1c-2d3e4f5a6b7c",
+      "title": "Composition Over Inheritance",
+      "description": "Building flexible systems with HAS-A relationships",
+      "icon": "layers",
+      "category": "Engineering",
+      "filePath": "sources/composition-over-inheritance.md"
+    },
+    {
+      "id": "other-principles",
+      "uuid": "3a4b5c6d-7e8f-9a0b-1c2d-3e4f5a6b7c8d",
+      "title": "Beyond SOLID Principles",
+      "description": "DRY, KISS, YAGNI, SoC, and Boy Scout Rule",
+      "icon": "book",
+      "category": "Engineering",
+      "filePath": "sources/other-principles.md"
+    },
+    {
+      "id": "angular-14-to-18",
+      "uuid": "4b5c6d7e-8f9a-0b1c-2d3e-4f5a6b7c8d9e",
+      "title": "Angular 14-18 Changes",
+      "description": "Important changes from Angular 14 to 18",
+      "icon": "logo-angular",
+      "category": "Angular",
+      "filePath": "sources/angular-changes-from14-to-18.md"
     }
   ]
 }
