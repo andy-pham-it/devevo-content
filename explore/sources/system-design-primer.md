@@ -71,7 +71,65 @@ Decomposing a massive database into smaller, faster, more easily managed parts c
     -   **Resharding**: Hard to add new servers later (need Consistent Hashing).
     -   **Joins**: Joining data across shards is very expensive or impossible.
 
-## 6. System Design Interview Checklist
+## 6. SQL vs. NoSQL
+
+| Feature | SQL (Relational) | NoSQL (Non-Relational) |
+|---|---|---|
+| **Structure** | Structured (Tables, Schemas) | Flexible (Document, Key-Value, Graph) |
+| **Consistency** | Strong (ACID Transactions) | Often Eventual (BASE) |
+| **Scalability** | Vertical (mostly) | Horizontal (built-in) |
+| **Joins** | Powerful | Limited / None |
+| **Examples** | PostgreSQL, MySQL, SQL Server | MongoDB, Redis, Cassandra, Neo4j |
+
+### When to use?
+-   **SQL**:
+    -   Complex queries (Joins, Aggregations).
+    -   Strict ACID compliance (Financial systems).
+    -   Structured, unchanging data schema.
+-   **NoSQL**:
+    -   Flexible/Dynamic schema.
+    -   Massive write throughput needed.
+    -   Low latency simple lookups (Key-Value).
+    -   Graph data / Social networks (Graph DB).
+
+## 7. Message Queues (Async Processing)
+Decouple services to improve scalability and reliability.
+
+-   **Concept**: Producer sends message → Queue stores it → Consumer processes it asynchronously.
+-   **Benefits**:
+    -   **Decoupling**: Services don't need to know about each other.
+    -   **Throttling**: Preventing traffic spikes from crashing backend workers.
+    -   **Reliability**: Messages persist even if consumer is down.
+-   **Popular Tools**:
+    -   **Kafka**: High throughput, log-based, rigorous ordering.
+    -   **RabbitMQ**: Complex routing, task queues.
+    -   **AWS SQS**: Managed simple queue service.
+
+## 8. Communication Protocols
+
+| Protocol | Type | Use Case |
+|---|---|---|
+| **HTTP/REST** | Request-Response | Standard web APIs, public-facing services. |
+| **gRPC** | RPC (Protobuf) | Microservices internal comms (fast, type-safe). |
+| **WebSocket** | Bidirectional | Real-time chat, notifications, live updates. |
+| **GraphQL** | Query Language | Flexible frontend data fetching (avoid over-fetching). |
+
+## 9. Unique ID Generation in Distributed Systems
+In a distributed database (sharded), simple `AUTO_INCREMENT` doesn't work.
+
+1.  **UUID (Universally Unique ID)**:
+    -   *Pros*: Simple, generate locally.
+    -   *Cons*: Large (128-bit), unordered (bad for DB indexing).
+2.  **Snowflake ID (Twitter)**:
+    -   *Structure*: 64-bit integer (Timestamp + Machine ID + Sequence).
+    -   *Pros*: Sortable by time (k-ordered), compact (64-bit).
+    -   *Cons*: Requires coordination (Machine ID assignment).
+3.  **Database Ticket Server**:
+    -   Centralized DB purely for generating IDs.
+    -   *Pros*: Simple numeric IDs.
+    -   *Cons*: Single Point of Failure (SPOF).
+
+## 10. System Design Interview Checklist
 1.  **Requirements Clarification**: Functional (What it does) & Non-Functional (Traffic, Latency, Consistency).
 2.  **Back-of-the-envelope Estimation**: Calculate storage and bandwidth needs.
 3.  **API Design**: Define REST/GraphQL endpoints.
