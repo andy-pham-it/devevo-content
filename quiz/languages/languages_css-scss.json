@@ -1,0 +1,322 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What does the CSS box model consist of?",
+    "codeSnippet": null,
+    "options": [
+      "Content, Padding, Border, Margin",
+      "Width, Height, Color, Background",
+      "Display, Position, Float, Clear",
+      "Font, Text, Line, Word"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The CSS box model consists of four parts from inside out: **Content**, **Padding**, **Border**, and **Margin**.\n\n```css\n.box {\n  /* Content - the actual content area */\n  width: 200px;\n  height: 100px;\n  \n  /* Padding - space inside the border */\n  padding: 20px;\n  \n  /* Border - surrounds padding and content */\n  border: 5px solid black;\n  \n  /* Margin - space outside the border */\n  margin: 10px;\n}\n```\n\n**Visual representation:**\n```\n┌─────────────── Margin ───────────────┐\n│  ┌────────── Border ──────────┐      │\n│  │  ┌────── Padding ──────┐   │      │\n│  │  │                     │   │      │\n│  │  │      Content        │   │      │\n│  │  │                     │   │      │\n│  │  └─────────────────────┘   │      │\n│  └──────────────────────────  │      │\n└───────────────────────────────────   │\n```\n\n**box-sizing property:**\n```css\n/* content-box (default) - width/height only for content */\n.box1 {\n  box-sizing: content-box;\n  width: 200px;  /* Only content */\n  padding: 20px;\n  border: 5px;\n  /* Total width = 200 + 40 + 10 = 250px */\n}\n\n/* border-box - width/height includes padding and border */\n.box2 {\n  box-sizing: border-box;\n  width: 200px;  /* Includes padding and border */\n  padding: 20px;\n  border: 5px;\n  /* Total width = 200px (content shrinks to fit) */\n}\n```"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What is the difference between class and ID selectors in CSS?",
+    "codeSnippet": null,
+    "options": [
+      "Class can be reused, ID should be unique",
+      "ID can be reused, Class should be unique",
+      "They are exactly the same",
+      "Class is faster than ID"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**Class** selectors (`.classname`) can be used multiple times, while **ID** selectors (`#idname`) should be unique per page.\n\n```css\n/* Class selector - can be reused */\n.button {\n  padding: 10px 20px;\n  background: blue;\n}\n\n/* ID selector - should be unique */\n#header {\n  height: 80px;\n  background: white;\n}\n```\n\n```html\n<!-- Class can be used multiple times ✅ -->\n<button class=\"button\">Save</button>\n<button class=\"button\">Cancel</button>\n<button class=\"button\">Delete</button>\n\n<!-- ID should be unique ✅ -->\n<header id=\"header\">...</header>\n\n<!-- Multiple IDs - BAD! ❌ -->\n<div id=\"box\">Box 1</div>\n<div id=\"box\">Box 2</div>  <!-- Don't do this! -->\n```\n\n**Specificity difference:**\n```css\n/* ID has higher specificity (100) */\n#header { color: red; }      /* Specificity: 100 */\n\n/* Class has lower specificity (10) */\n.header { color: blue; }     /* Specificity: 10 */\n\n/* Element has lowest specificity (1) */\nheader { color: green; }     /* Specificity: 1 */\n\n/* Result: ID wins */\n```\n\n**Best practices:**\n```css\n/* ✅ Use classes for styling */\n.card { ... }\n.btn-primary { ... }\n\n/* ✅ Use IDs for unique elements and JavaScript hooks */\n#navigation { ... }\n#main-content { ... }\n\n/* ❌ Avoid styling with IDs (too specific) */\n#button { ... }  /* Hard to override */\n```"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What does display: none; do?",
+    "codeSnippet": null,
+    "options": [
+      "Hides element and removes it from document flow",
+      "Hides element but keeps its space",
+      "Makes element transparent",
+      "Reduces element size to 0"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`display: none;` **completely removes** the element from the document flow - it's not rendered and takes no space.\n\n```css\n.hidden {\n  display: none;  /* Element removed from layout */\n}\n```\n\n**Comparison with other hiding methods:**\n\n```css\n/* display: none - removes from flow */\n.method1 {\n  display: none;\n  /* - Not rendered */\n  /* - No space occupied */\n  /* - Not accessible to screen readers */\n  /* - Events don't fire */\n}\n\n/* visibility: hidden - keeps space */\n.method2 {\n  visibility: hidden;\n  /* - Not visible */\n  /* - Still occupies space */\n  /* - Not accessible to screen readers */\n  /* - Events don't fire */\n}\n\n/* opacity: 0 - fully transparent */\n.method3 {\n  opacity: 0;\n  /* - Not visible */\n  /* - Still occupies space */\n  /* - Accessible to screen readers */\n  /* - Events still fire */\n}\n\n/* position + clip - for screen readers */\n.method4 {\n  position: absolute;\n  left: -9999px;\n  /* - Not visible */\n  /* - No space in normal flow */\n  /* - Accessible to screen readers */\n}\n```\n\n**Example:**\n```html\n<div class=\"box\">Box 1</div>\n<div class=\"box\" style=\"display: none;\">Box 2</div>\n<div class=\"box\">Box 3</div>\n\n<!-- Result: Box 1 and Box 3 are next to each other -->\n<!-- Box 2 is completely removed from layout -->\n```\n\n**Use cases:**\n```css\n/* Toggle elements with JavaScript */\n.modal {\n  display: none;  /* Hidden by default */\n}\n\n.modal.active {\n  display: block;  /* Show when active */\n}\n\n/* Responsive design */\n@media (max-width: 768px) {\n  .desktop-only {\n    display: none;  /* Hide on mobile */\n  }\n}\n```"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is CSS specificity and how is it calculated?",
+    "codeSnippet": null,
+    "options": [
+      "A scoring system to determine which CSS rule applies",
+      "The speed at which CSS loads",
+      "The number of selectors in a file",
+      "The file size of CSS"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**Specificity** is a scoring system that determines which CSS rule applies when multiple rules target the same element.\n\n**Specificity hierarchy (from highest to lowest):**\n\n1. **Inline styles** - 1,0,0,0\n2. **IDs** - 0,1,0,0\n3. **Classes, attributes, pseudo-classes** - 0,0,1,0\n4. **Elements, pseudo-elements** - 0,0,0,1\n\n```css\n/* Specificity: 0,0,0,1 (1 element) */\np { color: black; }\n\n/* Specificity: 0,0,1,0 (1 class) */\n.text { color: blue; }\n\n/* Specificity: 0,1,0,0 (1 ID) */\n#paragraph { color: red; }\n\n/* Specificity: 1,0,0,0 (inline) */\n/* <p style=\"color: green;\"> */\n\n/* Result: inline > ID > class > element */\n```\n\n**Calculation examples:**\n\n```css\n/* 0,0,0,1 - one element */\nh1 { }\n\n/* 0,0,1,1 - one class, one element */\nh1.title { }\n\n/* 0,1,0,1 - one ID, one element */\n#header h1 { }\n\n/* 0,1,2,1 - one ID, two classes, one element */\n#nav .menu .item a { }\n\n/* 0,0,3,0 - three classes */\n.header.nav.menu { }\n\n/* 0,2,1,0 - two IDs, one class */\n#header #nav .menu { }\n```\n\n**Important rules:**\n\n```css\n/* !important overrides everything (use sparingly!) */\np { color: red !important; }  /* Wins over inline styles */\n\n/* Universal selector has no specificity */\n* { }  /* 0,0,0,0 */\n\n/* :not() doesn't add specificity, but its argument does */\n:not(p) { }  /* Same as p: 0,0,0,1 */\n\n/* Combinators don't add specificity */\ndiv > p { }  /* 0,0,0,2 (two elements, > doesn't count) */\n```\n\n**Best practices:**\n```css\n/* ✅ Keep specificity low */\n.button { }  /* Easy to override */\n\n/* ❌ Avoid high specificity */\n#header nav ul li a.link { }  /* Hard to override */\n\n/* ✅ Use classes for styling */\n.nav-link { }\n\n/* ❌ Avoid IDs for styling */\n#nav-link { }  /* Too specific */\n```"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is the difference between position: relative and position: absolute?",
+    "codeSnippet": null,
+    "options": [
+      "Relative positions from original location, absolute from nearest positioned ancestor",
+      "Absolute positions from original location, relative from nearest ancestor",
+      "They are the same",
+      "Relative is for text, absolute is for images"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**`position: relative`** positions an element relative to its **original position**, while **`position: absolute`** positions it relative to its **nearest positioned ancestor**.\n\n**position: relative**\n```css\n.relative-box {\n  position: relative;\n  top: 20px;    /* Move 20px down from original position */\n  left: 30px;   /* Move 30px right from original position */\n  \n  /* - Element stays in document flow */\n  /* - Original space is preserved */\n  /* - Positioned relative to itself */\n}\n```\n\n**position: absolute**\n```css\n.container {\n  position: relative;  /* Creates positioning context */\n}\n\n.absolute-box {\n  position: absolute;\n  top: 20px;    /* 20px from top of .container */\n  right: 30px;  /* 30px from right of .container */\n  \n  /* - Removed from document flow */\n  /* - No space preserved */\n  /* - Positioned relative to nearest positioned ancestor */\n}\n```\n\n**Visual example:**\n```html\n<div class=\"container\">\n  <div class=\"box box1\">Box 1</div>\n  <div class=\"box box2 relative\">Box 2 (relative)</div>\n  <div class=\"box box3\">Box 3</div>\n</div>\n```\n\n```css\n.relative {\n  position: relative;\n  top: 20px;\n  /* Box 2 moves down 20px, but its original space remains */\n  /* Box 3 stays in its position (doesn't move up) */\n}\n\n.absolute {\n  position: absolute;\n  top: 20px;\n  /* Box 2 removed from flow, positioned 20px from container top */\n  /* Box 3 moves up to fill the gap */\n}\n```\n\n**Positioning context:**\n```css\n/* Absolute looks for nearest positioned ancestor */\n.grandparent { position: static; }     /* Not positioned, skipped */\n.parent { position: relative; }        /* Positioned! Used as reference */\n.child { position: absolute; top: 0; } /* Positioned from .parent */\n\n/* If no positioned ancestor found, uses <body> */\n.orphan { position: absolute; top: 0; } /* Positioned from viewport */\n```\n\n**Common use cases:**\n```css\n/* Relative - slight adjustments */\n.icon {\n  position: relative;\n  top: 2px;  /* Align with text */\n}\n\n/* Absolute - overlays, tooltips */\n.tooltip {\n  position: absolute;\n  top: 100%;\n  left: 50%;\n  transform: translateX(-50%);\n}\n\n/* Absolute - corner badges */\n.badge {\n  position: absolute;\n  top: -10px;\n  right: -10px;\n}\n```"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What does the z-index property control?",
+    "codeSnippet": null,
+    "options": [
+      "Stacking order of positioned elements",
+      "Font size",
+      "Element width",
+      "Border thickness"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`z-index` controls the **stacking order** of positioned elements along the z-axis (depth/layering).\n\n```css\n.bottom {\n  position: relative;\n  z-index: 1;  /* Lower value, behind */\n}\n\n.top {\n  position: relative;\n  z-index: 10;  /* Higher value, in front */\n}\n```\n\n**Important rules:**\n\n```css\n/* 1. Only works on positioned elements */\n.works {\n  position: relative;  /* or absolute, fixed, sticky */\n  z-index: 10;  /* ✅ Works */\n}\n\n.doesnt-work {\n  position: static;  /* Default */\n  z-index: 10;  /* ❌ Ignored! */\n}\n\n/* 2. Higher values appear in front */\n.layer1 { z-index: 1; }   /* Back */\n.layer2 { z-index: 5; }   /* Middle */\n.layer3 { z-index: 10; }  /* Front */\n\n/* 3. Can be negative */\n.behind { z-index: -1; }  /* Behind parent */\n.normal { z-index: 0; }   /* Default */\n.front { z-index: 1; }    /* In front */\n```\n\n**Stacking context:**\n```html\n<div class=\"parent\" style=\"z-index: 1;\">\n  <div class=\"child\" style=\"z-index: 9999;\"></div>\n</div>\n<div class=\"other\" style=\"z-index: 2;\"></div>\n\n<!-- .other appears in front of .child -->\n<!-- Because .parent (z-index: 1) < .other (z-index: 2) -->\n<!-- Child's z-index only matters within parent's context -->\n```\n\n**Common stacking context triggers:**\n```css\n/* These create new stacking contexts: */\n.context1 { position: relative; z-index: 1; }\n.context2 { opacity: 0.99; }\n.context3 { transform: translateZ(0); }\n.context4 { filter: blur(1px); }\n.context5 { position: fixed; }\n.context6 { position: sticky; }\n```\n\n**Best practices:**\n```css\n/* ✅ Use meaningful scale */\n.header { z-index: 100; }\n.modal { z-index: 1000; }\n.tooltip { z-index: 10000; }\n\n/* ❌ Avoid z-index wars */\n.element { z-index: 999999; }  /* Bad! */\n\n/* ✅ Use CSS variables */\n:root {\n  --z-header: 100;\n  --z-modal: 1000;\n  --z-tooltip: 10000;\n}\n\n.header { z-index: var(--z-header); }\n```"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is Flexbox and what problem does it solve?",
+    "codeSnippet": null,
+    "options": [
+      "A layout model for arranging items in one dimension",
+      "A color scheme system",
+      "A font management tool",
+      "A JavaScript framework"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**Flexbox** is a one-dimensional layout model for arranging items in a **row** or **column** with flexible sizing and alignment.\n\n```css\n.container {\n  display: flex;  /* Enable flexbox */\n  \n  /* Main axis direction */\n  flex-direction: row;  /* row, row-reverse, column, column-reverse */\n  \n  /* Alignment on main axis */\n  justify-content: center;  /* flex-start, flex-end, center, space-between, space-around */\n  \n  /* Alignment on cross axis */\n  align-items: center;  /* flex-start, flex-end, center, stretch, baseline */\n  \n  /* Allow wrapping */\n  flex-wrap: wrap;  /* nowrap, wrap, wrap-reverse */\n}\n```\n\n**Problems it solves:**\n\n```css\n/* 1. Vertical centering (previously difficult) */\n.center {\n  display: flex;\n  justify-content: center;  /* Horizontal */\n  align-items: center;      /* Vertical */\n}\n\n/* 2. Equal height columns */\n.columns {\n  display: flex;  /* Children automatically same height */\n}\n\n/* 3. Flexible spacing */\n.nav {\n  display: flex;\n  justify-content: space-between;  /* Auto spacing */\n}\n\n/* 4. Reordering without HTML changes */\n.item1 { order: 2; }\n.item2 { order: 1; }  /* Appears first */\n.item3 { order: 3; }\n```\n\n**Flex item properties:**\n```css\n.item {\n  /* Grow to fill space */\n  flex-grow: 1;  /* Default: 0 */\n  \n  /* Shrink if needed */\n  flex-shrink: 1;  /* Default: 1 */\n  \n  /* Base size */\n  flex-basis: 200px;  /* Default: auto */\n  \n  /* Shorthand */\n  flex: 1 1 200px;  /* grow shrink basis */\n  \n  /* Override align-items */\n  align-self: flex-end;\n}\n```\n\n**Common patterns:**\n```css\n/* Navbar */\n.navbar {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n/* Card grid */\n.grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 20px;\n}\n\n.card {\n  flex: 1 1 300px;  /* Grow, shrink, min 300px */\n}\n\n/* Sticky footer */\n.page {\n  display: flex;\n  flex-direction: column;\n  min-height: 100vh;\n}\n\n.content {\n  flex: 1;  /* Takes remaining space */\n}\n```"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is CSS Grid and how does it differ from Flexbox?",
+    "codeSnippet": null,
+    "options": [
+      "Grid is 2D (rows and columns), Flexbox is 1D (row or column)",
+      "Flexbox is 2D, Grid is 1D",
+      "They are the same",
+      "Grid is for images only"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**CSS Grid** is a **two-dimensional** layout system (rows AND columns), while **Flexbox** is **one-dimensional** (row OR column).\n\n**Grid - Two dimensions:**\n```css\n.grid-container {\n  display: grid;\n  \n  /* Define columns */\n  grid-template-columns: 200px 1fr 200px;  /* 3 columns */\n  \n  /* Define rows */\n  grid-template-rows: auto 1fr auto;  /* 3 rows */\n  \n  /* Gap between cells */\n  gap: 20px;\n}\n\n.item {\n  /* Span multiple columns/rows */\n  grid-column: 1 / 3;  /* Span columns 1-2 */\n  grid-row: 1 / 3;     /* Span rows 1-2 */\n}\n```\n\n**Flexbox - One dimension:**\n```css\n.flex-container {\n  display: flex;\n  flex-direction: row;  /* Only row OR column, not both */\n  justify-content: space-between;\n}\n```\n\n**When to use each:**\n\n```css\n/* Use Grid for: */\n/* 1. Page layouts */\n.page {\n  display: grid;\n  grid-template-areas:\n    \"header header header\"\n    \"sidebar content aside\"\n    \"footer footer footer\";\n}\n\n/* 2. Complex 2D layouts */\n.gallery {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n}\n\n/* 3. When you need precise control over rows AND columns */\n\n/* Use Flexbox for: */\n/* 1. Navigation bars */\n.nav {\n  display: flex;\n  justify-content: space-between;\n}\n\n/* 2. Card layouts (single dimension) */\n.cards {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 20px;\n}\n\n/* 3. Centering content */\n.center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n```\n\n**Grid example:**\n```css\n.grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  grid-template-rows: 100px 200px 100px;\n  gap: 10px;\n}\n\n/* Item can span multiple cells */\n.header {\n  grid-column: 1 / -1;  /* Full width */\n}\n\n.sidebar {\n  grid-row: 2 / 4;  /* Span 2 rows */\n}\n```\n\n**They work great together:**\n```css\n/* Grid for overall layout */\n.page {\n  display: grid;\n  grid-template-columns: 250px 1fr;\n}\n\n/* Flexbox for components */\n.header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}\n\n.card {\n  display: flex;\n  flex-direction: column;\n}\n```"
+  },
+  {
+    "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "senior",
+    "questionText": "What is the CSS cascade and how does it determine which styles apply?",
+    "codeSnippet": null,
+    "options": [
+      "Origin, Specificity, Source Order",
+      "Color, Size, Position",
+      "HTML, CSS, JavaScript",
+      "Desktop, Tablet, Mobile"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The **CSS Cascade** determines which styles apply based on three factors in order: **Origin**, **Specificity**, and **Source Order**.\n\n**1. Origin (highest to lowest priority):**\n\n```css\n/* 1. Transition (temporary state) */\n.box { transition: all 0.3s; }\n\n/* 2. User !important */\n/* User's browser stylesheet with !important */\n\n/* 3. Author !important */\np { color: red !important; }\n\n/* 4. Author styles (your CSS) */\np { color: blue; }\n\n/* 5. User styles */\n/* User's custom browser CSS */\n\n/* 6. Browser default styles */\n/* Built-in browser styles */\n```\n\n**2. Specificity (when same origin):**\n\n```css\n/* Higher specificity wins */\n#id { }                    /* 0,1,0,0 */\n.class { }                 /* 0,0,1,0 */\nelement { }                /* 0,0,0,1 */\n\n/* Example conflict: */\np { color: blue; }          /* 0,0,0,1 */\n.text { color: red; }       /* 0,0,1,0 - WINS */\n#paragraph { color: green; } /* 0,1,0,0 - WINS */\n```\n\n**3. Source Order (when same origin AND specificity):**\n\n```css\n/* Last one wins */\np { color: red; }\np { color: blue; }   /* WINS - declared later */\n\n/* In different files: */\n/* style1.css */\n.box { color: red; }\n\n/* style2.css (loaded after style1.css) */\n.box { color: blue; }  /* WINS - loaded later */\n```\n\n**Complete cascade example:**\n\n```html\n<p id=\"text\" class=\"paragraph\" style=\"color: yellow;\">Hello</p>\n```\n\n```css\n/* Browser default */\np { color: black; }        /* Lowest priority */\n\n/* Author styles */\np { color: blue; }         /* 0,0,0,1 */\n.paragraph { color: red; } /* 0,0,1,0 - Higher specificity */\n#text { color: green; }    /* 0,1,0,0 - Even higher */\n\n/* Inline style */\n/* style=\"color: yellow;\"  1,0,0,0 - Wins! */\n\n/* !important overrides all */\np { color: purple !important; }  /* Wins over inline! */\n```\n\n**Inheritance in cascade:**\n\n```css\n/* Some properties inherit from parent */\nbody {\n  color: blue;       /* Inherited */\n  font-size: 16px;   /* Inherited */\n  border: 1px solid; /* NOT inherited */\n}\n\np {\n  /* Inherits color and font-size from body */\n  /* Does NOT inherit border */\n}\n\n/* Force inheritance */\n.child {\n  border: inherit;  /* Explicitly inherit */\n}\n\n/* Reset to initial value */\n.reset {\n  color: initial;   /* Browser default */\n}\n\n/* Use parent's computed value */\n.inherit-all {\n  all: inherit;\n}\n```\n\n**Cascade layers (modern CSS):**\n\n```css\n/* Define layers */\n@layer reset, base, components, utilities;\n\n/* Lower layers have lower priority */\n@layer reset {\n  * { margin: 0; }  /* Lowest */\n}\n\n@layer base {\n  p { color: blue; }  /* Higher */\n}\n\n@layer components {\n  .button { color: white; }  /* Even higher */\n}\n\n@layer utilities {\n  .text-red { color: red; }  /* Highest */\n}\n```"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What does the :hover pseudo-class do?",
+    "codeSnippet": null,
+    "options": [
+      "Applies styles when user hovers over element",
+      "Creates floating elements",
+      "Changes element color permanently",
+      "Adds animation"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "The `:hover` pseudo-class applies styles when the user **hovers their mouse** over an element.\n\n```css\n/* Basic hover effect */\n.button {\n  background: blue;\n  color: white;\n}\n\n.button:hover {\n  background: darkblue;  /* Changes on hover */\n  cursor: pointer;\n}\n```\n\n**Common pseudo-classes:**\n\n```css\n/* Link states (in order: LVHA) */\na:link { color: blue; }       /* Unvisited link */\na:visited { color: purple; }  /* Visited link */\na:hover { color: red; }       /* Mouse over */\na:active { color: orange; }   /* Click moment */\n\n/* Form states */\ninput:focus { outline: 2px solid blue; }   /* Has focus */\ninput:disabled { opacity: 0.5; }           /* Disabled */\ninput:checked { background: green; }       /* Checkbox checked */\n\n/* Structural */\nli:first-child { font-weight: bold; }      /* First element */\nli:last-child { border-bottom: none; }     /* Last element */\nli:nth-child(odd) { background: #f0f0f0; } /* Every odd */\nli:nth-child(3) { color: red; }            /* Third element */\n\n/* Negation */\np:not(.special) { color: gray; }           /* Not .special */\n```\n\n**Hover effects:**\n\n```css\n/* Color change */\n.button:hover {\n  background: #0066cc;\n}\n\n/* Transform */\n.card:hover {\n  transform: translateY(-5px);\n  box-shadow: 0 10px 20px rgba(0,0,0,0.2);\n}\n\n/* Opacity */\n.image:hover {\n  opacity: 0.8;\n}\n\n/* Child elements */\n.parent:hover .child {\n  display: block;  /* Show dropdown on parent hover */\n}\n\n/* With transition */\n.box {\n  background: blue;\n  transition: all 0.3s ease;\n}\n\n.box:hover {\n  background: red;\n  transform: scale(1.1);\n}\n```\n\n**Nested hovers:**\n\n```css\n/* Hover parent affects child */\n.card {\n  overflow: hidden;\n}\n\n.card img {\n  transition: transform 0.3s;\n}\n\n.card:hover img {\n  transform: scale(1.1);  /* Zoom image on card hover */\n}\n\n/* Multiple elements */\n.nav-item:hover {\n  color: blue;\n}\n\n.nav-item:hover .icon {\n  fill: blue;\n}\n\n.nav-item:hover .dropdown {\n  display: block;\n}\n```"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is the difference between em and rem units?",
+    "codeSnippet": null,
+    "options": [
+      "em is relative to parent, rem is relative to root",
+      "rem is relative to parent, em is relative to root",
+      "They are exactly the same",
+      "em is for fonts, rem is for spacing"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`em` is relative to the **parent element's** font size, while `rem` (root em) is relative to the **root element's** (`<html>`) font size.\n\n**em - Relative to parent:**\n\n```css\nhtml { font-size: 16px; }  /* Root */\n\n.parent {\n  font-size: 20px;  /* Parent size */\n}\n\n.child {\n  font-size: 2em;   /* 2 × 20px = 40px */\n  padding: 1em;     /* 1 × 40px = 40px (uses element's own font-size) */\n}\n```\n\n**rem - Relative to root:**\n\n```css\nhtml { font-size: 16px; }  /* Root */\n\n.parent {\n  font-size: 20px;  /* Parent size (ignored by rem) */\n}\n\n.child {\n  font-size: 2rem;  /* 2 × 16px = 32px (always from root) */\n  padding: 1rem;    /* 1 × 16px = 16px */\n}\n```\n\n**Compounding problem with em:**\n\n```css\nhtml { font-size: 16px; }\n\n.level1 {\n  font-size: 1.5em;  /* 1.5 × 16px = 24px */\n}\n\n.level2 {\n  font-size: 1.5em;  /* 1.5 × 24px = 36px (compounding!) */\n}\n\n.level3 {\n  font-size: 1.5em;  /* 1.5 × 36px = 54px (keeps growing!) */\n}\n\n/* With rem - consistent */\n.level1 { font-size: 1.5rem; }  /* 24px */\n.level2 { font-size: 1.5rem; }  /* 24px (same!) */\n.level3 { font-size: 1.5rem; }  /* 24px (same!) */\n```\n\n**When to use each:**\n\n```css\n/* Use rem for: */\n/* 1. Consistent sizing across site */\n.container {\n  padding: 2rem;      /* Always 32px (if root = 16px) */\n  margin: 1.5rem;     /* Always 24px */\n}\n\n/* 2. Responsive typography */\n@media (max-width: 768px) {\n  html { font-size: 14px; }  /* Changes all rem values */\n}\n\n/* Use em for: */\n/* 1. Padding/margin relative to font-size */\n.button {\n  font-size: 1rem;\n  padding: 0.5em 1em;  /* Scales with font-size */\n}\n\n/* 2. Component scaling */\n.small-button {\n  font-size: 0.875rem;\n  padding: 0.5em 1em;  /* Smaller padding too */\n}\n\n.large-button {\n  font-size: 1.25rem;\n  padding: 0.5em 1em;  /* Larger padding too */\n}\n```\n\n**Best practices:**\n\n```css\n/* Set root size */\nhtml {\n  font-size: 16px;  /* Base size */\n}\n\n/* Use rem for most things */\n.card {\n  padding: 1.5rem;\n  margin-bottom: 2rem;\n  font-size: 1rem;\n}\n\n/* Use em for component-relative spacing */\n.button {\n  font-size: 1rem;\n  padding: 0.75em 1.5em;  /* Scales with button font-size */\n  border-radius: 0.25em;\n}\n\n/* Avoid deep em nesting */\n/* ❌ Bad */\n.nav .menu .item .link { font-size: 0.9em; }  /* Compounds */\n\n/* ✅ Good */\n.nav-link { font-size: 0.9rem; }  /* Consistent */\n```"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "senior",
+    "questionText": "What are CSS Custom Properties (variables) and how do they work?",
+    "codeSnippet": null,
+    "options": [
+      "Variables defined with -- that can be reused throughout CSS",
+      "JavaScript variables in CSS",
+      "Browser default values",
+      "Compiler-only features"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**CSS Custom Properties** (CSS Variables) are entities defined with `--` prefix that store values for reuse throughout the stylesheet.\n\n**Basic syntax:**\n\n```css\n/* Define variables */\n:root {\n  --primary-color: #0066cc;\n  --secondary-color: #ff6600;\n  --spacing: 16px;\n  --border-radius: 4px;\n}\n\n/* Use variables with var() */\n.button {\n  background: var(--primary-color);\n  padding: var(--spacing);\n  border-radius: var(--border-radius);\n}\n\n.card {\n  border: 1px solid var(--primary-color);\n  margin: var(--spacing);\n}\n```\n\n**Scope and inheritance:**\n\n```css\n/* Global scope */\n:root {\n  --color: blue;\n}\n\n/* Local scope */\n.component {\n  --color: red;  /* Overrides for this component and children */\n}\n\n.component .child {\n  color: var(--color);  /* Uses red (from .component) */\n}\n\n.other {\n  color: var(--color);  /* Uses blue (from :root) */\n}\n```\n\n**Fallback values:**\n\n```css\n/* var(--variable, fallback) */\n.element {\n  color: var(--undefined-color, black);  /* Uses black if --undefined-color not defined */\n  padding: var(--spacing, 16px);\n}\n\n/* Multiple fallbacks */\n.element {\n  color: var(--color1, var(--color2, black));\n}\n```\n\n**Dynamic updates with JavaScript:**\n\n```javascript\n// Get variable value\nconst root = document.documentElement;\nconst color = getComputedStyle(root)\n  .getPropertyValue('--primary-color');\n\n// Set variable value\nroot.style.setProperty('--primary-color', '#ff0000');\n\n// Remove variable\nroot.style.removeProperty('--primary-color');\n```\n\n**Theming:**\n\n```css\n/* Light theme (default) */\n:root {\n  --bg-color: white;\n  --text-color: black;\n  --border-color: #ddd;\n}\n\n/* Dark theme */\n[data-theme=\"dark\"] {\n  --bg-color: #1a1a1a;\n  --text-color: white;\n  --border-color: #444;\n}\n\n/* Components use variables */\n.page {\n  background: var(--bg-color);\n  color: var(--text-color);\n}\n\n.card {\n  border: 1px solid var(--border-color);\n}\n```\n\n**Responsive variables:**\n\n```css\n:root {\n  --container-width: 1200px;\n  --font-size: 16px;\n}\n\n@media (max-width: 768px) {\n  :root {\n    --container-width: 100%;\n    --font-size: 14px;\n  }\n}\n\n.container {\n  max-width: var(--container-width);\n  font-size: var(--font-size);\n}\n```\n\n**Calculations:**\n\n```css\n:root {\n  --spacing-unit: 8px;\n}\n\n.element {\n  /* Use calc() with variables */\n  padding: calc(var(--spacing-unit) * 2);  /* 16px */\n  margin: calc(var(--spacing-unit) * 4);   /* 32px */\n  width: calc(100% - var(--spacing-unit));\n}\n```\n\n**Advantages over SCSS variables:**\n\n```css\n/* CSS Variables */\n- Can be changed at runtime\n- Inherit through DOM\n- Can be manipulated with JavaScript\n- Work in browser DevTools\n\n/* SCSS Variables */\n- Compile-time only\n- Don't inherit\n- No JavaScript access\n- Don't appear in compiled CSS\n```"
+  },
+  {
+    "id": "a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is the difference between inline, inline-block, and block display values?",
+    "codeSnippet": null,
+    "options": [
+      "Block takes full width, inline flows with text, inline-block combines both",
+      "They all behave the same",
+      "Block is for divs only",
+      "Inline-block is deprecated"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "These display values control how elements flow and what properties they accept.\n\n**display: block**\n\n```css\n.block {\n  display: block;\n  \n  /* Characteristics: */\n  /* - Takes full width available */\n  /* - Starts on new line */\n  /* - Height/width respected */\n  /* - Padding/margin work on all sides */\n  \n  width: 200px;      /* ✅ Works */\n  height: 100px;     /* ✅ Works */\n  margin: 20px;      /* ✅ Works on all sides */\n  padding: 15px;     /* ✅ Works on all sides */\n}\n\n/* Examples: div, p, h1-h6, section, header, footer */\n```\n\n**display: inline**\n\n```css\n.inline {\n  display: inline;\n  \n  /* Characteristics: */\n  /* - Only takes necessary width */\n  /* - Flows with text (no line break) */\n  /* - Height/width IGNORED */\n  /* - Vertical padding/margin don't affect layout */\n  \n  width: 200px;      /* ❌ Ignored */\n  height: 100px;     /* ❌ Ignored */\n  margin: 20px;      /* ⚠️ Only left/right work */\n  padding: 15px;     /* ⚠️ Top/bottom don't push other elements */\n}\n\n/* Examples: span, a, strong, em, code */\n```\n\n**display: inline-block**\n\n```css\n.inline-block {\n  display: inline-block;\n  \n  /* Characteristics: */\n  /* - Only takes necessary width (like inline) */\n  /* - Flows with text (like inline) */\n  /* - Height/width RESPECTED (like block) */\n  /* - Padding/margin work on all sides (like block) */\n  \n  width: 200px;      /* ✅ Works */\n  height: 100px;     /* ✅ Works */\n  margin: 20px;      /* ✅ Works on all sides */\n  padding: 15px;     /* ✅ Works on all sides */\n  vertical-align: middle;  /* ✅ Can align */\n}\n\n/* No default HTML elements, must be set explicitly */\n```\n\n**Visual comparison:**\n\n```html\n<div class=\"block\">Block</div>\n<div class=\"block\">Block</div>\n<!-- Each block on new line -->\n\n<span class=\"inline\">Inline</span>\n<span class=\"inline\">Inline</span>\n<!-- Both on same line -->\n\n<div class=\"inline-block\" style=\"width:100px\">Box 1</div>\n<div class=\"inline-block\" style=\"width:100px\">Box 2</div>\n<!-- Side by side with custom widths -->\n```\n\n**Common use cases:**\n\n```css\n/* Block - Sections and containers */\n.container,\n.section,\n.card {\n  display: block;\n  width: 100%;\n}\n\n/* Inline - Text formatting */\n.highlight {\n  display: inline;\n  background: yellow;\n}\n\n/* Inline-block - Buttons, badges, grid items */\n.button {\n  display: inline-block;\n  padding: 10px 20px;\n  width: 150px;\n  text-align: center;\n}\n\n.badge {\n  display: inline-block;\n  padding: 2px 8px;\n  border-radius: 12px;\n}\n\n/* Horizontal navigation */\n.nav-item {\n  display: inline-block;\n  padding: 10px 15px;\n}\n\n/* Grid of items (pre-flexbox) */\n.grid-item {\n  display: inline-block;\n  width: 30%;\n  margin: 1%;\n  vertical-align: top;  /* Align to top */\n}\n```\n\n**Inline-block gotcha - whitespace:**\n\n```html\n<!-- Space between elements creates gap -->\n<div class=\"inline-block\">Box1</div>\n<div class=\"inline-block\">Box2</div>\n<!-- Gap appears! -->\n\n<!-- Solutions: -->\n\n<!-- 1. Remove whitespace -->\n<div class=\"inline-block\">Box1</div><div class=\"inline-block\">Box2</div>\n\n<!-- 2. HTML comments -->\n<div class=\"inline-block\">Box1</div><!--\n--><div class=\"inline-block\">Box2</div>\n\n<!-- 3. Font-size: 0 on parent -->\n<div style=\"font-size: 0;\">\n  <div class=\"inline-block\" style=\"font-size: 16px;\">Box1</div>\n  <div class=\"inline-block\" style=\"font-size: 16px;\">Box2</div>\n</div>\n\n<!-- 4. Use Flexbox instead -->\n<div style=\"display: flex;\">\n  <div>Box1</div>\n  <div>Box2</div>\n</div>\n```"
+  },
+  {
+    "id": "b4c5d6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What does the @media rule do in CSS?",
+    "codeSnippet": null,
+    "options": [
+      "Creates responsive designs for different screen sizes",
+      "Imports media files",
+      "Defines media players",
+      "Creates animations"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`@media` applies CSS rules conditionally based on device characteristics like **screen size**, **orientation**, or **resolution**.\n\n**Basic syntax:**\n\n```css\n/* Mobile-first approach */\n.container {\n  width: 100%;  /* Default: mobile */\n  padding: 10px;\n}\n\n/* Tablet and up */\n@media (min-width: 768px) {\n  .container {\n    width: 750px;\n    padding: 20px;\n  }\n}\n\n/* Desktop and up */\n@media (min-width: 1024px) {\n  .container {\n    width: 960px;\n    padding: 30px;\n  }\n}\n\n/* Large desktop */\n@media (min-width: 1200px) {\n  .container {\n    width: 1140px;\n  }\n}\n```\n\n**Common breakpoints:**\n\n```css\n/* Mobile */\n@media (max-width: 767px) { }\n\n/* Tablet */\n@media (min-width: 768px) and (max-width: 1023px) { }\n\n/* Desktop */\n@media (min-width: 1024px) { }\n\n/* Range */\n@media (min-width: 768px) and (max-width: 1200px) { }\n```\n\n**Media features:**\n\n```css\n/* Width/Height */\n@media (min-width: 600px) { }\n@media (max-width: 1200px) { }\n@media (min-height: 600px) { }\n\n/* Orientation */\n@media (orientation: portrait) {\n  /* Vertical orientation */\n}\n\n@media (orientation: landscape) {\n  /* Horizontal orientation */\n}\n\n/* Resolution */\n@media (min-resolution: 2dppx) {\n  /* Retina/high-DPI screens */\n  .logo {\n    background-image: url('logo@2x.png');\n  }\n}\n\n/* Aspect ratio */\n@media (aspect-ratio: 16/9) { }\n\n/* Color scheme */\n@media (prefers-color-scheme: dark) {\n  body {\n    background: #1a1a1a;\n    color: white;\n  }\n}\n\n/* Reduced motion */\n@media (prefers-reduced-motion: reduce) {\n  * {\n    animation: none !important;\n    transition: none !important;\n  }\n}\n```\n\n**Logical operators:**\n\n```css\n/* AND */\n@media (min-width: 768px) and (max-width: 1024px) { }\n\n/* OR (comma-separated) */\n@media (max-width: 767px), (min-width: 1200px) { }\n\n/* NOT */\n@media not screen and (max-width: 768px) { }\n\n/* ONLY (hides from old browsers) */\n@media only screen and (min-width: 768px) { }\n```\n\n**Media types:**\n\n```css\n/* Screen (default) */\n@media screen and (min-width: 768px) { }\n\n/* Print */\n@media print {\n  .no-print { display: none; }\n  * { color: black !important; }\n}\n\n/* All (default if not specified) */\n@media all and (min-width: 768px) { }\n```\n\n**Practical examples:**\n\n```css\n/* Responsive navigation */\n.nav {\n  display: flex;\n  flex-direction: column;  /* Mobile: stacked */\n}\n\n@media (min-width: 768px) {\n  .nav {\n    flex-direction: row;  /* Desktop: horizontal */\n  }\n}\n\n/* Hide/show elements */\n.mobile-only {\n  display: block;\n}\n\n.desktop-only {\n  display: none;\n}\n\n@media (min-width: 768px) {\n  .mobile-only { display: none; }\n  .desktop-only { display: block; }\n}\n\n/* Responsive grid */\n.grid {\n  display: grid;\n  grid-template-columns: 1fr;  /* Mobile: 1 column */\n  gap: 20px;\n}\n\n@media (min-width: 768px) {\n  .grid {\n    grid-template-columns: repeat(2, 1fr);  /* Tablet: 2 columns */\n  }\n}\n\n@media (min-width: 1024px) {\n  .grid {\n    grid-template-columns: repeat(3, 1fr);  /* Desktop: 3 columns */\n  }\n}\n```"
+  },
+  {
+    "id": "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is SCSS and how does it differ from regular CSS?",
+    "codeSnippet": null,
+    "options": [
+      "SCSS is CSS with superpowers: variables, nesting, mixins, functions",
+      "SCSS is a JavaScript framework",
+      "SCSS is slower than CSS",
+      "SCSS and CSS are identical"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**SCSS** (Sassy CSS) is a CSS preprocessor that extends CSS with features like **variables**, **nesting**, **mixins**, **functions**, and more.\n\n**Variables:**\n\n```scss\n// SCSS\n$primary-color: #0066cc;\n$spacing: 16px;\n$border-radius: 4px;\n\n.button {\n  background: $primary-color;\n  padding: $spacing;\n  border-radius: $border-radius;\n}\n\n// Compiles to CSS:\n.button {\n  background: #0066cc;\n  padding: 16px;\n  border-radius: 4px;\n}\n```\n\n**Nesting:**\n\n```scss\n// SCSS\n.nav {\n  background: white;\n  \n  .nav-list {\n    display: flex;\n    \n    .nav-item {\n      padding: 10px;\n      \n      &:hover {  // & = parent selector\n        background: #f0f0f0;\n      }\n      \n      a {\n        color: black;\n        text-decoration: none;\n      }\n    }\n  }\n}\n\n// Compiles to CSS:\n.nav { background: white; }\n.nav .nav-list { display: flex; }\n.nav .nav-list .nav-item { padding: 10px; }\n.nav .nav-list .nav-item:hover { background: #f0f0f0; }\n.nav .nav-list .nav-item a {\n  color: black;\n  text-decoration: none;\n}\n```\n\n**Mixins (reusable blocks):**\n\n```scss\n// SCSS\n@mixin flex-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n@mixin button-style($bg-color, $text-color) {\n  background: $bg-color;\n  color: $text-color;\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n}\n\n.modal {\n  @include flex-center;  // Use mixin\n}\n\n.primary-btn {\n  @include button-style(#0066cc, white);\n}\n\n.secondary-btn {\n  @include button-style(#6c757d, white);\n}\n```\n\n**Functions:**\n\n```scss\n// SCSS\n@function calculate-rem($px) {\n  @return $px / 16 * 1rem;\n}\n\n.element {\n  font-size: calculate-rem(24);  // 1.5rem\n  padding: calculate-rem(16);    // 1rem\n}\n\n// Built-in functions\n$color: #0066cc;\n\n.lighter {\n  background: lighten($color, 20%);\n}\n\n.darker {\n  background: darken($color, 20%);\n}\n\n.transparent {\n  background: rgba($color, 0.5);\n}\n```\n\n**Partials and imports:**\n\n```scss\n// _variables.scss\n$primary-color: #0066cc;\n$secondary-color: #6c757d;\n\n// _mixins.scss\n@mixin flex-center {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n}\n\n// main.scss\n@import 'variables';\n@import 'mixins';\n\n.button {\n  background: $primary-color;\n  @include flex-center;\n}\n```\n\n**Extend/Inheritance:**\n\n```scss\n// SCSS\n.button {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n}\n\n.primary-button {\n  @extend .button;  // Inherit .button styles\n  background: #0066cc;\n  color: white;\n}\n\n.secondary-button {\n  @extend .button;\n  background: #6c757d;\n  color: white;\n}\n\n// Compiles to:\n.button, .primary-button, .secondary-button {\n  padding: 10px 20px;\n  border: none;\n  border-radius: 4px;\n}\n\n.primary-button {\n  background: #0066cc;\n  color: white;\n}\n\n.secondary-button {\n  background: #6c757d;\n  color: white;\n}\n```\n\n**Control directives:**\n\n```scss\n// SCSS\n@for $i from 1 through 12 {\n  .col-#{$i} {\n    width: percentage($i / 12);\n  }\n}\n\n// Compiles to:\n.col-1 { width: 8.333%; }\n.col-2 { width: 16.666%; }\n// ... up to .col-12\n\n// If/else\n$theme: 'dark';\n\n.page {\n  @if $theme == 'dark' {\n    background: #1a1a1a;\n    color: white;\n  } @else {\n    background: white;\n    color: black;\n  }\n}\n\n// Each\n$colors: (\n  'primary': #0066cc,\n  'secondary': #6c757d,\n  'success': #28a745\n);\n\n@each $name, $color in $colors {\n  .btn-#{$name} {\n    background: $color;\n  }\n}\n```"
+  },
+  {
+    "id": "d6e7f8a9-b0c1-4d2e-3f4a-5b6c7d8e9f0a",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "senior",
+    "questionText": "What is the BEM methodology in CSS?",
+    "codeSnippet": null,
+    "options": [
+      "Block Element Modifier - a naming convention for classes",
+      "Browser Extension Manager",
+      "Best Effect Markup",
+      "Binary Element Method"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**BEM** (Block Element Modifier) is a naming methodology that makes CSS more **maintainable**, **modular**, and **scalable**.\n\n**Structure: block__element--modifier**\n\n```scss\n// Block: standalone component\n.card { }\n\n// Element: part of block (block__element)\n.card__header { }\n.card__body { }\n.card__footer { }\n\n// Modifier: variation of block/element (block--modifier)\n.card--featured { }\n.card--large { }\n.card__header--dark { }\n```\n\n**Complete example:**\n\n```html\n<!-- Block -->\n<div class=\"card card--featured\">\n  <!-- Elements -->\n  <div class=\"card__header card__header--dark\">\n    <h2 class=\"card__title\">Title</h2>\n  </div>\n  \n  <div class=\"card__body\">\n    <p class=\"card__text\">Content</p>\n  </div>\n  \n  <div class=\"card__footer\">\n    <button class=\"card__button card__button--primary\">\n      Click\n    </button>\n  </div>\n</div>\n```\n\n```scss\n// SCSS with BEM\n.card {\n  border: 1px solid #ddd;\n  border-radius: 8px;\n  \n  // Element\n  &__header {\n    padding: 20px;\n    border-bottom: 1px solid #ddd;\n    \n    // Element modifier\n    &--dark {\n      background: #333;\n      color: white;\n    }\n  }\n  \n  &__title {\n    margin: 0;\n    font-size: 1.5rem;\n  }\n  \n  &__body {\n    padding: 20px;\n  }\n  \n  &__text {\n    margin: 0;\n  }\n  \n  &__footer {\n    padding: 20px;\n    border-top: 1px solid #ddd;\n  }\n  \n  &__button {\n    padding: 10px 20px;\n    border: none;\n    border-radius: 4px;\n    \n    &--primary {\n      background: #0066cc;\n      color: white;\n    }\n    \n    &--secondary {\n      background: #6c757d;\n      color: white;\n    }\n  }\n  \n  // Block modifier\n  &--featured {\n    border-color: #0066cc;\n    box-shadow: 0 4px 8px rgba(0,0,0,0.1);\n  }\n  \n  &--large {\n    padding: 30px;\n  }\n}\n```\n\n**Benefits:**\n\n```scss\n/* 1. No naming conflicts */\n.header { }  // Could be page header or card header?\n.card__header { }  // Clear: card's header\n\n/* 2. Self-documenting */\n.button__icon--disabled { }  // Clear hierarchy and state\n\n/* 3. Low specificity */\n.card__title { }  // Specificity: 0,0,1,0\n// vs\n.card .title { }  // Specificity: 0,0,2,0 (harder to override)\n\n/* 4. Reusability */\n.button { }\n.button--primary { }\n.button--large { }\n// Can combine: <button class=\"button button--primary button--large\">\n```\n\n**Common patterns:**\n\n```scss\n// Navigation\n.nav {\n  &__list { }\n  &__item { }\n  &__link {\n    &--active { }\n  }\n}\n\n// Form\n.form {\n  &__group { }\n  &__label { }\n  &__input {\n    &--error { }\n    &--success { }\n  }\n  &__button {\n    &--submit { }\n    &--cancel { }\n  }\n}\n\n// Modal\n.modal {\n  &__overlay { }\n  &__container { }\n  &__header { }\n  &__title { }\n  &__close { }\n  &__body { }\n  &__footer { }\n  \n  &--large { }\n  &--fullscreen { }\n}\n```\n\n**BEM vs other methodologies:**\n\n```scss\n/* BEM */\n.card__title { }  /* ✅ Clear, specific */\n\n/* Nested selectors (avoid) */\n.card .title { }  /* ❌ Less clear, higher specificity */\n\n/* OOCSS (Object-Oriented CSS) */\n.media { }        /* Structural */\n.media-body { }   /* Structural */\n.skin-primary { } /* Skin/theme */\n\n/* SMACSS (Scalable and Modular CSS) */\n.l-header { }     /* Layout */\n.m-card { }       /* Module */\n.is-active { }    /* State */\n```"
+  },
+  {
+    "id": "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is the difference between nth-child() and nth-of-type()?",
+    "codeSnippet": null,
+    "options": [
+      "nth-child counts all children, nth-of-type counts only same element type",
+      "They are exactly the same",
+      "nth-of-type is deprecated",
+      "nth-child is for IDs, nth-of-type is for classes"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`nth-child()` selects based on position among **all siblings**, while `nth-of-type()` selects based on position among **siblings of the same type**.\n\n**nth-child() - counts ALL children:**\n\n```html\n<div class=\"container\">\n  <h2>Title</h2>     <!-- 1st child -->\n  <p>Para 1</p>      <!-- 2nd child -->\n  <p>Para 2</p>      <!-- 3rd child -->\n  <p>Para 3</p>      <!-- 4th child -->\n</div>\n```\n\n```css\n/* Select 2nd child (regardless of type) */\n.container :nth-child(2) {\n  color: red;  /* Para 1 turns red */\n}\n\n/* Select 2nd p element? */\n.container p:nth-child(2) {\n  color: blue;  /* Para 1 turns blue (it IS 2nd child AND is <p>) */\n}\n\n/* Try to select 2nd p */\n.container p:nth-child(3) {\n  color: green;  /* Para 2 turns green (it's 3rd child AND is <p>) */\n}\n```\n\n**nth-of-type() - counts only same type:**\n\n```html\n<div class=\"container\">\n  <h2>Title</h2>     <!-- 1st h2 -->\n  <p>Para 1</p>      <!-- 1st p -->\n  <p>Para 2</p>      <!-- 2nd p -->\n  <p>Para 3</p>      <!-- 3rd p -->\n</div>\n```\n\n```css\n/* Select 2nd p element */\n.container p:nth-of-type(2) {\n  color: red;  /* Para 2 turns red (2nd <p> element) */\n}\n\n/* Select 1st h2 */\n.container h2:nth-of-type(1) {\n  color: blue;  /* Title turns blue */\n}\n```\n\n**Complex example:**\n\n```html\n<article>\n  <h1>Main Title</h1>     <!-- h1: 1st, child: 1st -->\n  <p>Intro</p>           <!-- p: 1st, child: 2nd -->\n  <h2>Subtitle</h2>      <!-- h2: 1st, child: 3rd -->\n  <p>Content 1</p>       <!-- p: 2nd, child: 4th -->\n  <p>Content 2</p>       <!-- p: 3rd, child: 5th -->\n  <h2>Subtitle 2</h2>    <!-- h2: 2nd, child: 6th -->\n  <p>Content 3</p>       <!-- p: 4th, child: 7th -->\n</article>\n```\n\n```css\n/* nth-child */\narticle p:nth-child(4) {\n  /* Selects \"Content 1\" (4th child AND is <p>) ✅ */\n}\n\narticle p:nth-child(2) {\n  /* Selects \"Intro\" (2nd child AND is <p>) ✅ */\n}\n\narticle p:nth-child(3) {\n  /* Selects nothing (3rd child is <h2>, not <p>) ❌ */\n}\n\n/* nth-of-type */\narticle p:nth-of-type(2) {\n  /* Selects \"Content 1\" (2nd <p> element) ✅ */\n}\n\narticle h2:nth-of-type(2) {\n  /* Selects \"Subtitle 2\" (2nd <h2> element) ✅ */\n}\n```\n\n**Formulas:**\n\n```css\n/* Specific number */\n:nth-child(3) { }        /* 3rd child */\n:nth-of-type(3) { }      /* 3rd of type */\n\n/* Keywords */\n:nth-child(odd) { }      /* 1st, 3rd, 5th... */\n:nth-child(even) { }     /* 2nd, 4th, 6th... */\n\n/* Formula: an+b */\n:nth-child(2n) { }       /* Every 2nd: 2, 4, 6... (same as even) */\n:nth-child(2n+1) { }     /* Every 2nd starting at 1: 1, 3, 5... (same as odd) */\n:nth-child(3n) { }       /* Every 3rd: 3, 6, 9... */\n:nth-child(3n+1) { }     /* Every 3rd starting at 1: 1, 4, 7... */\n:nth-child(n+3) { }      /* 3rd and after: 3, 4, 5... */\n:nth-child(-n+3) { }     /* First 3: 1, 2, 3 */\n\n/* From end */\n:nth-last-child(2) { }   /* 2nd from end */\n:nth-last-of-type(2) { } /* 2nd of type from end */\n```\n\n**When to use each:**\n\n```css\n/* Use nth-of-type when targeting specific element types */\n/* Zebra striping for table rows */\ntable tr:nth-of-type(odd) {\n  background: #f0f0f0;\n}\n\n/* First 3 paragraphs */\np:nth-of-type(-n+3) {\n  font-weight: bold;\n}\n\n/* Use nth-child when position matters regardless of type */\n/* Every other child */\n.container > *:nth-child(even) {\n  margin-left: 20px;\n}\n```"
+  },
+  {
+    "id": "f8a9b0c1-d2e3-4f4a-5b6c-7d8e9f0a1b2c",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "junior",
+    "questionText": "What does overflow: hidden; do?",
+    "codeSnippet": null,
+    "options": [
+      "Hides content that overflows the element's box",
+      "Makes element invisible",
+      "Reduces element size",
+      "Removes element from flow"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`overflow: hidden;` **clips** any content that exceeds the element's boundaries and **hides** it from view.\n\n```css\n.box {\n  width: 200px;\n  height: 100px;\n  overflow: hidden;  /* Hide overflowing content */\n}\n```\n\n**Overflow values:**\n\n```css\n/* visible (default) - content flows outside */\n.box1 {\n  overflow: visible;\n  /* Content not clipped, extends beyond box */\n}\n\n/* hidden - content clipped, no scrollbar */\n.box2 {\n  overflow: hidden;\n  /* Content clipped, not visible */\n}\n\n/* scroll - always show scrollbars */\n.box3 {\n  overflow: scroll;\n  /* Scrollbars always visible (even if not needed) */\n}\n\n/* auto - scrollbars only if needed */\n.box4 {\n  overflow: auto;\n  /* Scrollbars appear only when content overflows */\n}\n```\n\n**Directional overflow:**\n\n```css\n.box {\n  /* Control horizontal and vertical separately */\n  overflow-x: hidden;  /* Hide horizontal overflow */\n  overflow-y: scroll;  /* Scroll vertical overflow */\n  \n  /* Shorthand */\n  overflow: hidden scroll;  /* x y */\n}\n```\n\n**Common use cases:**\n\n```css\n/* 1. Clear floats */\n.clearfix {\n  overflow: hidden;  /* Contains floated children */\n}\n\n/* 2. Crop images */\n.image-container {\n  width: 300px;\n  height: 200px;\n  overflow: hidden;\n}\n\n.image-container img {\n  width: 100%;\n  height: auto;\n  /* Image cropped to container size */\n}\n\n/* 3. Create new stacking context */\n.layer {\n  overflow: hidden;  /* Creates stacking context for z-index */\n}\n\n/* 4. Horizontal scrolling container */\n.scroll-container {\n  overflow-x: auto;\n  overflow-y: hidden;\n  white-space: nowrap;\n}\n\n.scroll-container .item {\n  display: inline-block;\n}\n\n/* 5. Text truncation (single line) */\n.truncate {\n  width: 200px;\n  overflow: hidden;\n  white-space: nowrap;\n  text-overflow: ellipsis;  /* Add ... */\n}\n\n/* 6. Multi-line truncation */\n.truncate-multi {\n  overflow: hidden;\n  display: -webkit-box;\n  -webkit-line-clamp: 3;  /* Show 3 lines */\n  -webkit-box-orient: vertical;\n}\n```\n\n**Overflow and scrollbars:**\n\n```css\n/* Custom scrollbar (WebKit browsers) */\n.box {\n  overflow-y: scroll;\n}\n\n.box::-webkit-scrollbar {\n  width: 8px;\n}\n\n.box::-webkit-scrollbar-track {\n  background: #f1f1f1;\n}\n\n.box::-webkit-scrollbar-thumb {\n  background: #888;\n  border-radius: 4px;\n}\n\n.box::-webkit-scrollbar-thumb:hover {\n  background: #555;\n}\n```\n\n**Side effects of overflow: hidden:**\n\n```css\n/* 1. Creates Block Formatting Context (BFC) */\n.parent {\n  overflow: hidden;  /* Contains child margins */\n}\n\n/* 2. Clips absolutely positioned children */\n.parent {\n  position: relative;\n  overflow: hidden;\n}\n\n.child {\n  position: absolute;\n  top: -50px;  /* Clipped if outside parent */\n}\n\n/* 3. Hides box-shadow */\n.box {\n  overflow: hidden;\n  box-shadow: 0 0 10px rgba(0,0,0,0.5);  /* Shadow clipped! */\n}\n\n/* Fix: Use pseudo-element or wrapper */\n.wrapper {\n  padding: 10px;  /* Space for shadow */\n}\n\n.box {\n  overflow: hidden;\n  box-shadow: 0 0 10px rgba(0,0,0,0.5);  /* Shadow visible */\n}\n```"
+  },
+  {
+    "id": "a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "medium",
+    "questionText": "What is the CSS transition property and how does it work?",
+    "codeSnippet": null,
+    "options": [
+      "Animates changes in CSS properties over time",
+      "Changes layout instantly",
+      "Only works with JavaScript",
+      "Replaces keyframe animations"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`transition` creates **smooth animations** when CSS properties change, without requiring keyframes or JavaScript.\n\n**Basic syntax:**\n\n```css\n.box {\n  /* transition: property duration timing-function delay */\n  background: blue;\n  transition: background 0.3s ease-in-out 0s;\n}\n\n.box:hover {\n  background: red;  /* Smoothly transitions to red */\n}\n```\n\n**Individual properties:**\n\n```css\n.button {\n  background: blue;\n  transform: scale(1);\n  \n  /* Specify each property */\n  transition-property: background, transform;\n  transition-duration: 0.3s, 0.5s;  /* Different durations */\n  transition-timing-function: ease, ease-out;\n  transition-delay: 0s, 0.1s;  /* transform delayed */\n}\n\n.button:hover {\n  background: darkblue;\n  transform: scale(1.1);\n}\n```\n\n**Shorthand:**\n\n```css\n/* All properties */\n.box {\n  transition: all 0.3s ease;\n}\n\n/* Specific properties */\n.box {\n  transition: background 0.3s, transform 0.5s;\n}\n\n/* Multiple properties with same settings */\n.box {\n  transition: background 0.3s ease,\n              color 0.3s ease,\n              border 0.3s ease;\n}\n```\n\n**Timing functions:**\n\n```css\n.box {\n  /* Predefined */\n  transition-timing-function: ease;        /* Slow-fast-slow (default) */\n  transition-timing-function: linear;      /* Constant speed */\n  transition-timing-function: ease-in;     /* Slow start */\n  transition-timing-function: ease-out;    /* Slow end */\n  transition-timing-function: ease-in-out; /* Slow start and end */\n  \n  /* Cubic bezier (custom) */\n  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);\n  \n  /* Steps */\n  transition-timing-function: steps(4);            /* 4 equal steps */\n  transition-timing-function: steps(4, jump-start); /* Start at first step */\n}\n```\n\n**Common patterns:**\n\n```css\n/* Button hover */\n.button {\n  background: #0066cc;\n  color: white;\n  transform: translateY(0);\n  box-shadow: 0 2px 4px rgba(0,0,0,0.1);\n  transition: all 0.3s ease;\n}\n\n.button:hover {\n  background: #0052a3;\n  transform: translateY(-2px);\n  box-shadow: 0 4px 8px rgba(0,0,0,0.2);\n}\n\n/* Dropdown menu */\n.dropdown-menu {\n  max-height: 0;\n  overflow: hidden;\n  opacity: 0;\n  transition: max-height 0.3s ease, opacity 0.3s ease;\n}\n\n.dropdown.open .dropdown-menu {\n  max-height: 500px;\n  opacity: 1;\n}\n\n/* Modal fade-in */\n.modal {\n  opacity: 0;\n  visibility: hidden;\n  transition: opacity 0.3s, visibility 0.3s;\n}\n\n.modal.active {\n  opacity: 1;\n  visibility: visible;\n}\n\n/* Smooth width change */\n.sidebar {\n  width: 250px;\n  transition: width 0.3s ease;\n}\n\n.sidebar.collapsed {\n  width: 60px;\n}\n```\n\n**Performance considerations:**\n\n```css\n/* ✅ GPU-accelerated properties (performant) */\n.fast {\n  transition: transform 0.3s, opacity 0.3s;\n}\n\n/* ❌ Avoid transitioning layout properties (slow) */\n.slow {\n  transition: width 0.3s, height 0.3s, top 0.3s, left 0.3s;\n}\n\n/* ✅ Use transform instead */\n.better {\n  transition: transform 0.3s;\n}\n\n.better:hover {\n  transform: scale(1.2);  /* Instead of width/height */\n}\n```\n\n**Transition events in JavaScript:**\n\n```javascript\nconst element = document.querySelector('.box');\n\n// When transition starts\nelement.addEventListener('transitionstart', (e) => {\n  console.log(`Transition of ${e.propertyName} started`);\n});\n\n// When transition ends\nelement.addEventListener('transitionend', (e) => {\n  console.log(`Transition of ${e.propertyName} ended`);\n});\n\n// When transition is cancelled\nelement.addEventListener('transitioncancel', (e) => {\n  console.log('Transition cancelled');\n});\n```"
+  },
+  {
+    "id": "b0c1d2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e",
+    "category": "Languages",
+    "topic": "CSS/SCSS",
+    "level": "senior",
+    "questionText": "What are CSS animations and how do they differ from transitions?",
+    "codeSnippet": null,
+    "options": [
+      "Animations use @keyframes for complex multi-step animations, transitions are simple A-to-B changes",
+      "They are exactly the same",
+      "Animations are slower than transitions",
+      "Transitions are newer than animations"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**Animations** use `@keyframes` for complex, **multi-step** sequences, while **transitions** are for simple **two-state** changes.\n\n**Transitions - Simple A to B:**\n\n```css\n.box {\n  background: blue;\n  transition: background 0.3s;\n}\n\n.box:hover {\n  background: red;  /* Simple: blue → red */\n}\n```\n\n**Animations - Multi-step with @keyframes:**\n\n```css\n/* Define keyframes */\n@keyframes pulse {\n  0% {\n    transform: scale(1);\n    opacity: 1;\n  }\n  50% {\n    transform: scale(1.1);\n    opacity: 0.8;\n  }\n  100% {\n    transform: scale(1);\n    opacity: 1;\n  }\n}\n\n/* Apply animation */\n.box {\n  animation: pulse 2s ease-in-out infinite;\n  /*       name duration timing iteration */\n}\n```\n\n**Animation properties:**\n\n```css\n.element {\n  /* Shorthand */\n  animation: name duration timing-function delay iteration-count direction fill-mode play-state;\n  \n  /* Individual properties */\n  animation-name: slideIn;\n  animation-duration: 1s;\n  animation-timing-function: ease-out;\n  animation-delay: 0.5s;\n  animation-iteration-count: 3;          /* or 'infinite' */\n  animation-direction: alternate;         /* normal, reverse, alternate, alternate-reverse */\n  animation-fill-mode: forwards;          /* none, forwards, backwards, both */\n  animation-play-state: running;          /* running or paused */\n}\n```\n\n**Complex keyframes:**\n\n```css\n/* Percentage-based */\n@keyframes complexAnimation {\n  0% {\n    transform: translateX(0) rotate(0deg);\n    background: red;\n  }\n  25% {\n    transform: translateX(100px) rotate(90deg);\n    background: yellow;\n  }\n  50% {\n    transform: translateX(100px) translateY(100px) rotate(180deg);\n    background: green;\n  }\n  75% {\n    transform: translateX(0) translateY(100px) rotate(270deg);\n    background: blue;\n  }\n  100% {\n    transform: translateX(0) rotate(360deg);\n    background: red;\n  }\n}\n\n/* From-to (simple 2-step) */\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n  }\n  to {\n    opacity: 1;\n  }\n}\n```\n\n**Common animations:**\n\n```css\n/* Fade in */\n@keyframes fadeIn {\n  from { opacity: 0; }\n  to { opacity: 1; }\n}\n\n.fade-in {\n  animation: fadeIn 0.5s ease-in;\n}\n\n/* Slide in from left */\n@keyframes slideInLeft {\n  from {\n    transform: translateX(-100%);\n    opacity: 0;\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n  }\n}\n\n/* Bounce */\n@keyframes bounce {\n  0%, 20%, 50%, 80%, 100% {\n    transform: translateY(0);\n  }\n  40% {\n    transform: translateY(-30px);\n  }\n  60% {\n    transform: translateY(-15px);\n  }\n}\n\n/* Spin */\n@keyframes spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n\n.spinner {\n  animation: spin 1s linear infinite;\n}\n\n/* Shake */\n@keyframes shake {\n  0%, 100% { transform: translateX(0); }\n  10%, 30%, 50%, 70%, 90% { transform: translateX(-10px); }\n  20%, 40%, 60%, 80% { transform: translateX(10px); }\n}\n```\n\n**Animation fill-mode:**\n\n```css\n/* none (default) - no styles applied before/after */\n.box1 {\n  animation: fadeIn 1s none;\n  /* Invisible before animation, visible after */\n}\n\n/* forwards - keeps final keyframe styles */\n.box2 {\n  animation: fadeIn 1s forwards;\n  /* Stays at opacity: 1 after animation */\n}\n\n/* backwards - applies first keyframe before animation */\n.box3 {\n  animation: fadeIn 1s backwards;\n  animation-delay: 2s;\n  /* Opacity: 0 during 2s delay */\n}\n\n/* both - applies both forwards and backwards */\n.box4 {\n  animation: fadeIn 1s both;\n  animation-delay: 1s;\n  /* Opacity: 0 during delay, stays at 1 after */\n}\n```\n\n**Transition vs Animation comparison:**\n\n```css\n/* Transitions */\n- Triggered by state change (hover, focus, class toggle)\n- Two states only (start → end)\n- Automatic reverse when state reverts\n- Simpler syntax\n\n/* Animations */\n- Can run automatically on page load\n- Multiple keyframes (0%, 25%, 50%, 100%)\n- Can repeat infinitely\n- More control (direction, fill-mode, play-state)\n- Can pause/play with JavaScript\n```\n\n**JavaScript control:**\n\n```javascript\nconst element = document.querySelector('.box');\n\n// Pause animation\nelement.style.animationPlayState = 'paused';\n\n// Resume animation\nelement.style.animationPlayState = 'running';\n\n// Listen for animation events\nelement.addEventListener('animationstart', () => {\n  console.log('Animation started');\n});\n\nelement.addEventListener('animationiteration', () => {\n  console.log('Animation iteration');\n});\n\nelement.addEventListener('animationend', () => {\n  console.log('Animation ended');\n});\n```"
+  }
+]

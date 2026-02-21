@@ -1,0 +1,322 @@
+[
+  {
+    "id": "a1b2c3d4-ts01-4a7b-8c9d-0e1f2a3b4c5d",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "junior",
+    "questionText": "What is the difference between 'interface' and 'type' in TypeScript?",
+    "codeSnippet": null,
+    "options": [
+      "They are exactly the same",
+      "Interface can be extended, type cannot",
+      "Interface can be extended and merged, type is more flexible for unions/intersections",
+      "Type is deprecated"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "`interface` and `type` are similar but have distinct use cases.\n\n**Interface:**\n- Can be extended and merged\n- Better for object shapes\n\n**Type:**\n- More flexible for unions/intersections\n- Can use computed properties\n\n**Best practice:** Use interface for objects, type for unions/utilities."
+  },
+  {
+    "id": "b2c3d4e5-ts02-4b8c-9d0e-1f2a3b4c5d6e",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "junior",
+    "questionText": "What does the '?' symbol mean in TypeScript?",
+    "codeSnippet": "interface User {\n  name: string;\n  age?: number;\n}",
+    "options": [
+      "Required property",
+      "Optional property",
+      "Nullable property",
+      "Default property"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The `?` makes a property **optional** - it can be present or absent (undefined)."
+  },
+  {
+    "id": "c3d4e5f6-ts03-4c9d-0e1f-2a3b4c5d6e7f",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is a generic type in TypeScript?",
+    "codeSnippet": "function identity<T>(arg: T): T {\n  return arg;\n}",
+    "options": [
+      "A type that works with any value",
+      "A reusable type that works with multiple types",
+      "A type that only works with objects",
+      "A deprecated feature"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "**Generics** allow you to write reusable code that works with multiple types while maintaining type safety."
+  },
+  {
+    "id": "d4e5f6a7-ts04-4d0e-1f2a-3b4c5d6e7f8a",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "junior",
+    "questionText": "What does 'readonly' do in TypeScript?",
+    "codeSnippet": null,
+    "options": [
+      "Makes property writable",
+      "Makes property optional",
+      "Makes property immutable",
+      "Makes property private"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "`readonly` makes a property **immutable** - it can only be assigned during initialization."
+  },
+  {
+    "id": "e5f6a7b8-ts05-4e1f-2a3b-4c5d6e7f8a9b",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is a type guard in TypeScript?",
+    "codeSnippet": null,
+    "options": [
+      "A function that protects types",
+      "A function that narrows types",
+      "A type that prevents errors",
+      "A deprecated feature"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "**Type guards** are expressions that perform runtime checks to **narrow down types** within a conditional block."
+  },
+  {
+    "id": "f6a7b8c9-ts06-4f2a-3b4c-5d6e7f8a9b0c",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "senior",
+    "questionText": "What is the 'Partial<T>' utility type?",
+    "codeSnippet": null,
+    "options": [
+      "Makes all properties required",
+      "Makes all properties optional",
+      "Makes all properties readonly",
+      "Makes all properties nullable"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`Partial<T>` makes **all properties optional** in the type `T`. Commonly used for update functions."
+  },
+  {
+    "id": "a7b8c9d0-ts07-4a3b-4c5d-6e7f8a9b0c1d",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "junior",
+    "questionText": "What is the 'any' type in TypeScript?",
+    "codeSnippet": null,
+    "options": [
+      "A type that accepts any value and disables type checking",
+      "A type that only accepts objects",
+      "A strict type",
+      "A deprecated type"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`any` is a type that **disables type checking** for that variable - it can hold any value. Use `unknown` instead for type safety."
+  },
+  {
+    "id": "b8c9d0e1-ts08-4b4c-5d6e-7f8a9b0c1d2e",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is the difference between 'unknown' and 'any'?",
+    "codeSnippet": null,
+    "options": [
+      "They are the same",
+      "unknown is type-safe, any is not",
+      "any is type-safe, unknown is not",
+      "unknown is deprecated"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`unknown` is **type-safe** - you must check the type before using it. `any` **disables** type checking."
+  },
+  {
+    "id": "c9d0e1f2-ts09-4c5d-6e7f-8a9b0c1d2e3f",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is a union type in TypeScript?",
+    "codeSnippet": "type Status = 'pending' | 'success' | 'error';",
+    "options": [
+      "A type that can be one of several types",
+      "A type that combines multiple types",
+      "A type for arrays only",
+      "A deprecated feature"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "A **union type** describes a value that can be **one of several types**, using the `|` operator."
+  },
+  {
+    "id": "d0e1f2a3-ts10-4d6e-7f8a-9b0c1d2e3f4a",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "senior",
+    "questionText": "What is mapped types in TypeScript?",
+    "codeSnippet": null,
+    "options": [
+      "Types that map values to keys",
+      "Types that transform properties of another type",
+      "Types for Map data structure",
+      "Types for array mapping"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "**Mapped types** allow you to create new types by **transforming properties** of an existing type."
+  },
+  {
+    "id": "e1f2a3b4-ts11-4e7f-8a9b-0c1d2e3f4a5b",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "junior",
+    "questionText": "What is type assertion in TypeScript?",
+    "codeSnippet": "const value = someValue as string;",
+    "options": [
+      "Converting types at runtime",
+      "Telling TypeScript to treat a value as a specific type",
+      "Creating new types",
+      "Type checking"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Type assertion tells TypeScript to **treat a value as a specific type** - it's compile-time only and can be dangerous."
+  },
+  {
+    "id": "f2a3b4c5-ts12-4f8a-9b0c-1d2e3f4a5b6c",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is the 'never' type?",
+    "codeSnippet": null,
+    "options": [
+      "A type for null values",
+      "A type that never occurs",
+      "A type for undefined",
+      "A deprecated type"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`never` represents values that **never occur** - functions that never return or unreachable code."
+  },
+  {
+    "id": "a3b4c5d6-ts13-4a9b-0c1d-2e3f4a5b6c7d",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is an enum in TypeScript?",
+    "codeSnippet": null,
+    "options": [
+      "A way to define named constants",
+      "A type for arrays",
+      "A function type",
+      "A class type"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**Enums** allow you to define a set of **named constants**. Consider using union types instead for better type safety."
+  },
+  {
+    "id": "b4c5d6e7-ts14-4b0c-1d2e-3f4a5b6c7d8e",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "senior",
+    "questionText": "What is conditional types?",
+    "codeSnippet": "type IsString<T> = T extends string ? true : false;",
+    "options": [
+      "Types that depend on a condition",
+      "Types for if statements",
+      "Types for switch statements",
+      "Deprecated feature"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "**Conditional types** select types based on a condition using `extends ? :`."
+  },
+  {
+    "id": "c5d6e7f8-ts15-4c1d-2e3f-4a5b6c7d8e9f",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "junior",
+    "questionText": "What is the 'void' type?",
+    "codeSnippet": null,
+    "options": [
+      "A type for null",
+      "A type for functions that don't return a value",
+      "A type for undefined",
+      "A type for empty objects"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`void` represents the **absence of a return value** in functions."
+  },
+  {
+    "id": "d6e7f8a9-ts16-4d2e-3f4a-5b6c7d8e9f0a",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is the 'keyof' operator?",
+    "codeSnippet": null,
+    "options": [
+      "Gets all keys of an object type",
+      "Gets all values of an object",
+      "Creates new keys",
+      "Deletes keys"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`keyof` creates a **union of all property names** of a type."
+  },
+  {
+    "id": "e7f8a9b0-ts17-4e3f-4a5b-6c7d8e9f0a1b",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "senior",
+    "questionText": "What is the 'infer' keyword?",
+    "codeSnippet": null,
+    "options": [
+      "Infers types in conditional types",
+      "Infers variable types",
+      "Infers function names",
+      "Deprecated keyword"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`infer` allows you to **extract and name types** within conditional types."
+  },
+  {
+    "id": "f8a9b0c1-ts18-4f4a-5b6c-7d8e9f0a1b2c",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "medium",
+    "questionText": "What is the difference between 'extends' in interfaces and conditional types?",
+    "codeSnippet": null,
+    "options": [
+      "They are the same",
+      "Interface extends for inheritance, conditional extends for type checking",
+      "Conditional extends is deprecated",
+      "Interface extends is deprecated"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`extends` has **different meanings** in interfaces (inheritance) vs conditional types (type constraint check)."
+  },
+  {
+    "id": "a9b0c1d2-ts19-4a5b-6c7d-8e9f0a1b2c3d",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "senior",
+    "questionText": "What is template literal types?",
+    "codeSnippet": null,
+    "options": [
+      "Types for template strings",
+      "Types that use template literal syntax",
+      "Types for HTML templates",
+      "Deprecated feature"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "**Template literal types** use template literal syntax to create new string literal types."
+  },
+  {
+    "id": "b0c1d2e3-ts20-4b6c-7d8e-9f0a1b2c3d4e",
+    "category": "Languages",
+    "topic": "TypeScript",
+    "level": "senior",
+    "questionText": "What is the 'satisfies' operator?",
+    "codeSnippet": null,
+    "options": [
+      "Checks if value satisfies a type without widening",
+      "Same as type assertion",
+      "Deprecated operator",
+      "Runtime type check"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`satisfies` validates that a value matches a type **without changing the inferred type**."
+  }
+]

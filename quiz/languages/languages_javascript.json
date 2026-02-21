@@ -1,0 +1,642 @@
+[
+  {
+    "id": "a1b2c3d4-e5f6-4a7b-8c9d-0e1f2a3b4c5d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What is the output of the following code?",
+    "codeSnippet": "console.log(typeof null);",
+    "options": [
+      "\"null\"",
+      "\"object\"",
+      "\"undefined\"",
+      "\"number\""
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "This is a famous JavaScript quirk. `typeof null` returns `\"object\"`, which is actually a bug in JavaScript that has been kept for backward compatibility.\n\n```jsx\nconsole.log(typeof null);        // \"object\"\nconsole.log(typeof undefined);   // \"undefined\"\nconsole.log(typeof {});          // \"object\"\nconsole.log(typeof []);          // \"object\"\n```\n\n**Why?** In the original JavaScript implementation, values were represented as a type tag and a value. The type tag for objects was 0, and `null` was represented as the NULL pointer (0x00), hence it was mistakenly identified as an object."
+  },
+  {
+    "id": "b2c3d4e5-f6a7-4b8c-9d0e-1f2a3b4c5d6e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What will be logged to the console?",
+    "codeSnippet": "console.log(1 + '2' + 3);",
+    "options": [
+      "\"6\"",
+      "\"123\"",
+      "6",
+      "\"15\""
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "JavaScript performs **type coercion** from left to right:\n\n```jsx\n1 + '2' + 3\n// Step 1: 1 + '2' → '12' (number + string = string)\n// Step 2: '12' + 3 → '123' (string + number = string)\n```\n\n**More examples:**\n```jsx\nconsole.log(1 + 2 + '3');    // \"33\" (1+2=3, then 3+'3'='33')\nconsole.log('1' + 2 + 3);    // \"123\" ('1'+2='12', then '12'+3='123')\nconsole.log(1 + 2 + 3);      // 6 (all numbers)\n```\n\n**Rule:** When adding a string to anything, JavaScript converts the other operand to a string and concatenates."
+  },
+  {
+    "id": "c3d4e5f6-a7b8-4c9d-0e1f-2a3b4c5d6e7f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What is the difference between == and ===?",
+    "codeSnippet": null,
+    "options": [
+      "== compares values only, === compares values and types",
+      "They are exactly the same",
+      "=== is faster than ==",
+      "== is strict, === is loose"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`==` (loose equality) performs **type coercion** before comparison, while `===` (strict equality) compares both **value and type** without coercion.\n\n```jsx\n// Loose equality (==) - with type coercion\nconsole.log(5 == '5');       // true (string '5' converted to number)\nconsole.log(null == undefined); // true (special case)\nconsole.log(0 == false);     // true (false converted to 0)\nconsole.log('' == 0);        // true (empty string converted to 0)\n\n// Strict equality (===) - no type coercion\nconsole.log(5 === '5');      // false (different types)\nconsole.log(null === undefined); // false (different types)\nconsole.log(0 === false);    // false (different types)\nconsole.log('' === 0);       // false (different types)\n```\n\n**Best practice:** Always use `===` to avoid unexpected type coercion bugs."
+  },
+  {
+    "id": "d4e5f6a7-b8c9-4d0e-1f2a-3b4c5d6e7f8a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What will the following code output?",
+    "codeSnippet": "const arr = [1, 2, 3];\narr[10] = 11;\nconsole.log(arr.length);",
+    "options": [
+      "4",
+      "10",
+      "11",
+      "3"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "JavaScript arrays are **sparse** - they can have gaps. Setting `arr[10]` creates empty slots from index 3 to 9.\n\n```jsx\nconst arr = [1, 2, 3];\narr[10] = 11;\n\nconsole.log(arr.length);    // 11 (length is highest index + 1)\nconsole.log(arr);           // [1, 2, 3, empty × 7, 11]\nconsole.log(arr[5]);        // undefined (empty slot)\n```\n\n**How it works:**\n```jsx\n// Index:  0  1  2  3  4  5  6  7  8  9  10\n// Value:  1  2  3  -  -  -  -  -  -  -  11\n//                  ^^^^^^^^^^^^^^^^^ (empty slots)\n\n// Array length is always: highest index + 1\n// So: 10 + 1 = 11\n```\n\n**Note:** Empty slots are different from `undefined` - they're completely uninitialized."
+  },
+  {
+    "id": "e5f6a7b8-c9d0-4e1f-2a3b-4c5d6e7f8a9b",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What does the following code output?",
+    "codeSnippet": "console.log(0.1 + 0.2 === 0.3);",
+    "options": [
+      "true",
+      "false",
+      "undefined",
+      "NaN"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "This is `false` due to **floating-point precision issues** in JavaScript (and most programming languages using IEEE 754).\n\n```jsx\nconsole.log(0.1 + 0.2);           // 0.30000000000000004\nconsole.log(0.1 + 0.2 === 0.3);   // false\n```\n\n**Why?** Decimal fractions cannot be represented exactly in binary:\n```jsx\n// Binary representation of 0.1 and 0.2 are infinite/repeating\n// When added, there's a tiny rounding error\n```\n\n**Solution - Use epsilon comparison:**\n```jsx\nconst epsilon = Number.EPSILON || Math.pow(2, -52);\n\nfunction areEqual(a, b) {\n  return Math.abs(a - b) < epsilon;\n}\n\nconsole.log(areEqual(0.1 + 0.2, 0.3));  // true\n```\n\n**Or for currency, use integers:**\n```jsx\n// Store cents instead of dollars\nconst price1 = 10; // $0.10\nconst price2 = 20; // $0.20\nconst total = price1 + price2; // 30 = $0.30\n```"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-4f2a-3b4c-5d6e7f8a9b0c",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What will be logged?",
+    "codeSnippet": "for (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 0);\n}",
+    "options": [
+      "0 1 2 0 1 2",
+      "3 3 3 0 1 2",
+      "0 1 2 3 3 3",
+      "3 3 3 3 3 3"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "This demonstrates the difference between `var` (function-scoped) and `let` (block-scoped).\n\n**With `var`:**\n```jsx\nfor (var i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n// Output: 3 3 3\n// Why? var is function-scoped, all timeouts share the same 'i'\n// By the time timeouts execute, the loop finished and i = 3\n```\n\n**With `let`:**\n```jsx\nfor (let j = 0; j < 3; j++) {\n  setTimeout(() => console.log(j), 0);\n}\n// Output: 0 1 2\n// Why? let is block-scoped, each iteration gets its own 'j'\n```\n\n**How to fix with `var`:**\n```jsx\n// Solution 1: IIFE\nfor (var i = 0; i < 3; i++) {\n  (function(i) {\n    setTimeout(() => console.log(i), 0);\n  })(i);\n}\n\n// Solution 2: Just use let (modern way)\nfor (let i = 0; i < 3; i++) {\n  setTimeout(() => console.log(i), 0);\n}\n```"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-4a3b-4c5d-6e7f8a9b0c1d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the output?",
+    "codeSnippet": "const obj = { a: 1 };\nconst arr = [obj, obj];\narr[0].a = 2;\nconsole.log(arr[1].a);",
+    "options": [
+      "1",
+      "2",
+      "undefined",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Both array elements reference the **same object**, so modifying one affects the other.\n\n```jsx\nconst obj = { a: 1 };\nconst arr = [obj, obj];  // Both elements point to the SAME object\n\narr[0].a = 2;            // Modify the object through arr[0]\nconsole.log(arr[1].a);   // 2 (arr[1] points to the same object)\n```\n\n**Memory visualization:**\n```jsx\nobj ----> { a: 1 }\n          ^\n          |\narr[0] ---+\n          |\narr[1] ---+\n\n// After arr[0].a = 2:\nobj ----> { a: 2 }\n          ^\n          |\narr[0] ---+\n          |\narr[1] ---+\n```\n\n**How to create independent copies:**\n```jsx\n// Shallow copy\nconst arr = [{ ...obj }, { ...obj }];\narr[0].a = 2;\nconsole.log(arr[1].a);  // 1 (different objects)\n\n// Or\nconst arr = [Object.assign({}, obj), Object.assign({}, obj)];\n```"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b4c-5d6e-7f8a9b0c1d2e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What does the spread operator do in this code?",
+    "codeSnippet": "const arr1 = [1, 2, 3];\nconst arr2 = [...arr1, 4, 5];",
+    "options": [
+      "Creates a reference to arr1",
+      "Creates a shallow copy of arr1 and adds 4, 5",
+      "Throws an error",
+      "Concatenates arr1 with [4, 5]"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The spread operator `...` creates a **shallow copy** of the array and allows adding more elements.\n\n```jsx\nconst arr1 = [1, 2, 3];\nconst arr2 = [...arr1, 4, 5];  // [1, 2, 3, 4, 5]\n\n// arr2 is a NEW array (shallow copy)\narr1.push(99);\nconsole.log(arr1);  // [1, 2, 3, 99]\nconsole.log(arr2);  // [1, 2, 3, 4, 5] (unchanged)\n```\n\n**Common use cases:**\n```jsx\n// 1. Copy array\nconst copy = [...original];\n\n// 2. Concatenate arrays\nconst combined = [...arr1, ...arr2];\n\n// 3. Add elements\nconst withMore = [...arr, newItem];\n\n// 4. Function arguments\nMath.max(...numbers);\n\n// 5. Copy object\nconst objCopy = { ...original };\n\n// 6. Merge objects\nconst merged = { ...obj1, ...obj2 };\n```\n\n**Note:** Spread creates a **shallow** copy - nested objects/arrays are still referenced."
+  },
+  {
+    "id": "c9d0e1f2-a3b4-4c5d-6e7f-8a9b0c1d2e3f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What will this code output?",
+    "codeSnippet": "const obj = {\n  a: 1,\n  b: 2,\n  a: 3\n};\nconsole.log(obj.a);",
+    "options": [
+      "1",
+      "2",
+      "3",
+      "Error"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "When an object has **duplicate keys**, the **last value wins**.\n\n```jsx\nconst obj = {\n  a: 1,\n  b: 2,\n  a: 3  // Overwrites the first 'a'\n};\n\nconsole.log(obj.a);  // 3 (last value)\nconsole.log(obj);    // { a: 3, b: 2 }\n```\n\n**This works in all modes:**\n```jsx\n// Even in strict mode\n'use strict';\nconst obj = { a: 1, a: 2 };\nconsole.log(obj.a);  // 2\n```\n\n**However, ES6 classes don't allow duplicate methods:**\n```jsx\nclass MyClass {\n  method() { return 1; }\n  method() { return 2; }  // Syntax Error!\n}\n```\n\n**Practical use - default values:**\n```jsx\nfunction createConfig(userConfig) {\n  return {\n    theme: 'light',\n    size: 'medium',\n    ...userConfig  // User values override defaults\n  };\n}\n```"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-4d6e-7f8a-9b0c1d2e3f4a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What is the output?",
+    "codeSnippet": "function foo() {\n  console.log(this.bar);\n}\n\nconst obj1 = { bar: 'obj1', foo };\nconst obj2 = { bar: 'obj2', foo };\n\nobj1.foo();\nobj2.foo();\nconst fn = obj1.foo;\nfn();",
+    "options": [
+      "obj1, obj2, undefined",
+      "obj1, obj2, obj1",
+      "undefined, undefined, undefined",
+      "obj1, obj2, Error"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "This demonstrates how `this` binding works in JavaScript.\n\n```jsx\nfunction foo() {\n  console.log(this.bar);\n}\n\nconst obj1 = { bar: 'obj1', foo };\nconst obj2 = { bar: 'obj2', foo };\n\nobj1.foo();  // 'obj1' - called as method, this = obj1\nobj2.foo();  // 'obj2' - called as method, this = obj2\n\nconst fn = obj1.foo;\nfn();        // undefined - called as function, this = global/window\n             // (In strict mode, this would be undefined)\n```\n\n**`this` binding rules (in order of precedence):**\n\n1. **new binding:** `new foo()` → `this` = new object\n2. **Explicit binding:** `foo.call(obj)` → `this` = obj\n3. **Implicit binding:** `obj.foo()` → `this` = obj\n4. **Default binding:** `foo()` → `this` = global (or undefined in strict mode)\n\n**How to fix:**\n```jsx\n// Solution 1: Arrow function (lexical this)\nconst obj = {\n  bar: 'value',\n  foo: () => console.log(this.bar)  // this = enclosing scope\n};\n\n// Solution 2: bind\nconst fn = obj1.foo.bind(obj1);\nfn();  // 'obj1'\n\n// Solution 3: call/apply\nfn.call(obj1);  // 'obj1'\n```"
+  },
+  {
+    "id": "e1f2a3b4-c5d6-4e7f-8a9b-0c1d2e3f4a5b",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What is the result of this code?",
+    "codeSnippet": "const arr = [1, 2, 3, 4, 5];\nconst result = arr.map(x => x * 2).filter(x => x > 5);\nconsole.log(result);",
+    "options": [
+      "[2, 4, 6, 8, 10]",
+      "[6, 8, 10]",
+      "[3, 4, 5]",
+      "[1, 2, 3, 4, 5]"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "This code chains `map` and `filter` methods:\n\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// Step 1: map(x => x * 2)\n// [1, 2, 3, 4, 5] → [2, 4, 6, 8, 10]\n\n// Step 2: filter(x => x > 5)\n// [2, 4, 6, 8, 10] → [6, 8, 10]\n\nconsole.log(result);  // [6, 8, 10]\n```\n\n**Common array methods:**\n```jsx\n// map - transform each element\n[1, 2, 3].map(x => x * 2);  // [2, 4, 6]\n\n// filter - keep elements that pass test\n[1, 2, 3, 4].filter(x => x > 2);  // [3, 4]\n\n// reduce - accumulate to single value\n[1, 2, 3].reduce((sum, x) => sum + x, 0);  // 6\n\n// find - first element that passes test\n[1, 2, 3].find(x => x > 1);  // 2\n\n// some - true if any element passes test\n[1, 2, 3].some(x => x > 2);  // true\n\n// every - true if all elements pass test\n[1, 2, 3].every(x => x > 0);  // true\n```"
+  },
+  {
+    "id": "f2a3b4c5-d6e7-4f8a-9b0c-1d2e3f4a5b6c",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What does this code output?",
+    "codeSnippet": "console.log([...'Hello']);",
+    "options": [
+      "\"Hello\"",
+      "[\"Hello\"]",
+      "[\"H\", \"e\", \"l\", \"l\", \"o\"]",
+      "Error"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The spread operator on a **string** converts it into an **array of characters**.\n\n```jsx\nconsole.log([...'Hello']);  // ['H', 'e', 'l', 'l', 'o']\n\n// Equivalent to:\nconsole.log('Hello'.split(''));  // ['H', 'e', 'l', 'l', 'o']\n```\n\n**More examples:**\n```jsx\n// Spread strings\nconsole.log([...'ABC']);     // ['A', 'B', 'C']\n\n// Unicode characters (better than split)\nconsole.log([...'😀🎉']);    // ['😀', '🎉']\nconsole.log('😀🎉'.split(''));  // ['�', '�', '�', '�'] (broken)\n\n// Combine with other elements\nconst arr = ['start', ...'abc', 'end'];\nconsole.log(arr);  // ['start', 'a', 'b', 'c', 'end']\n\n// Count characters (including emoji)\nconst length = [...'Hello 😀'].length;  // 7\n```\n\n**Why spread is better than split for Unicode:**\n```jsx\nconst emoji = '👨‍👩‍👧‍👦';  // Family emoji (single character)\nconsole.log(emoji.split('').length);  // 11 (broken)\nconsole.log([...emoji].length);       // 1 (correct)\n```"
+  },
+  {
+    "id": "a3b4c5d6-e7f8-4a9b-0c1d-2e3f4a5b6c7d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What will be logged?",
+    "codeSnippet": "const promise1 = Promise.resolve(1);\nconst promise2 = Promise.resolve(2);\nconst promise3 = Promise.reject(3);\n\nPromise.all([promise1, promise2, promise3])\n  .then(console.log)\n  .catch(console.error);",
+    "options": [
+      "[1, 2, 3]",
+      "3",
+      "[1, 2]",
+      "Error: undefined"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`Promise.all` **fails fast** - if any promise rejects, it immediately rejects with that error.\n\n```jsx\nconst promise1 = Promise.resolve(1);\nconst promise2 = Promise.resolve(2);\nconst promise3 = Promise.reject(3);\n\nPromise.all([promise1, promise2, promise3])\n  .then(console.log)    // Never called\n  .catch(console.error); // Logs: 3\n```\n\n**Promise.all behavior:**\n- ✅ All resolve → returns array of results\n- ❌ Any rejects → immediately rejects with first error\n\n```jsx\n// All succeed\nPromise.all([Promise.resolve(1), Promise.resolve(2)])\n  .then(result => console.log(result));  // [1, 2]\n\n// One fails\nPromise.all([Promise.resolve(1), Promise.reject('error')])\n  .catch(err => console.log(err));  // 'error'\n```\n\n**Alternatives:**\n\n```jsx\n// Promise.allSettled - wait for all (never rejects)\nPromise.allSettled([promise1, promise2, promise3])\n  .then(results => console.log(results));\n// [\n//   { status: 'fulfilled', value: 1 },\n//   { status: 'fulfilled', value: 2 },\n//   { status: 'rejected', reason: 3 }\n// ]\n\n// Promise.any - first to fulfill (ignores rejections)\nPromise.any([promise3, promise1, promise2])\n  .then(result => console.log(result));  // 1 (first fulfilled)\n\n// Promise.race - first to settle (resolve or reject)\nPromise.race([promise1, promise3])\n  .then(console.log);  // 1 (first to settle)\n```"
+  },
+  {
+    "id": "b4c5d6e7-f8a9-4b0c-1d2e-3f4a5b6c7d8e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the output?",
+    "codeSnippet": "const user = {\n  name: 'John',\n  getName: function() {\n    return this.name;\n  }\n};\n\nconst { getName } = user;\nconsole.log(getName());",
+    "options": [
+      "\"John\"",
+      "undefined",
+      "Error",
+      "null"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "When **destructuring** a method, it loses its `this` binding.\n\n```jsx\nconst user = {\n  name: 'John',\n  getName: function() {\n    return this.name;\n  }\n};\n\nconst { getName } = user;  // Extract method\nconsole.log(getName());     // undefined (this = global/window)\n```\n\n**Why?** The method is now called as a standalone function, not as an object method.\n\n**Solutions:**\n\n```jsx\n// Solution 1: Don't destructure\nconsole.log(user.getName());  // 'John'\n\n// Solution 2: Bind this\nconst getName = user.getName.bind(user);\nconsole.log(getName());  // 'John'\n\n// Solution 3: Arrow function\nconst user = {\n  name: 'John',\n  getName: () => this.name  // this = enclosing scope\n};\n// Note: This won't work as expected in object literal\n\n// Solution 4: Arrow function in class\nclass User {\n  name = 'John';\n  getName = () => this.name;  // this always bound to instance\n}\nconst user = new User();\nconst { getName } = user;\nconsole.log(getName());  // 'John'\n\n// Solution 5: Call with context\nconst { getName } = user;\nconsole.log(getName.call(user));  // 'John'\n```\n\n**Common in React:**\n```jsx\n// Problem\n<button onClick={this.handleClick}>Click</button>\n\n// Solutions\n<button onClick={this.handleClick.bind(this)}>Click</button>\n<button onClick={() => this.handleClick()}>Click</button>\nhandleClick = () => { /* ... */ }  // Class field arrow function\n```"
+  },
+  {
+    "id": "c5d6e7f8-a9b0-4c1d-2e3f-4a5b6c7d8e9f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What does Array.prototype.reduce() do?",
+    "codeSnippet": "const numbers = [1, 2, 3, 4];\nconst sum = numbers.reduce((acc, curr) => acc + curr, 0);",
+    "options": [
+      "Filters array elements",
+      "Maps array to new values",
+      "Reduces array to a single value",
+      "Sorts the array"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "`reduce()` **accumulates** array elements into a **single value** using a reducer function.\n\n```jsx\nconst numbers = [1, 2, 3, 4];\n\n// Syntax: array.reduce((accumulator, current, index, array) => {...}, initialValue)\nconst sum = numbers.reduce((acc, curr) => acc + curr, 0);\n// Step 1: acc=0, curr=1 → return 0+1=1\n// Step 2: acc=1, curr=2 → return 1+2=3\n// Step 3: acc=3, curr=3 → return 3+3=6\n// Step 4: acc=6, curr=4 → return 6+4=10\nconsole.log(sum);  // 10\n```\n\n**Common use cases:**\n\n```jsx\n// 1. Sum\nconst sum = [1, 2, 3].reduce((a, b) => a + b, 0);  // 6\n\n// 2. Product\nconst product = [1, 2, 3, 4].reduce((a, b) => a * b, 1);  // 24\n\n// 3. Flatten array\nconst flattened = [[1, 2], [3, 4]].reduce((acc, arr) => [...acc, ...arr], []);\n// [1, 2, 3, 4]\n\n// 4. Count occurrences\nconst fruits = ['apple', 'banana', 'apple'];\nconst count = fruits.reduce((acc, fruit) => {\n  acc[fruit] = (acc[fruit] || 0) + 1;\n  return acc;\n}, {});\n// { apple: 2, banana: 1 }\n\n// 5. Group by property\nconst people = [\n  { name: 'Alice', age: 25 },\n  { name: 'Bob', age: 25 },\n  { name: 'Charlie', age: 30 }\n];\nconst grouped = people.reduce((acc, person) => {\n  const key = person.age;\n  if (!acc[key]) acc[key] = [];\n  acc[key].push(person);\n  return acc;\n}, {});\n// { 25: [{Alice}, {Bob}], 30: [{Charlie}] }\n\n// 6. Find max\nconst max = [1, 5, 3, 9, 2].reduce((a, b) => Math.max(a, b));\n// 9\n```"
+  },
+  {
+    "id": "d6e7f8a9-b0c1-4d2e-3f4a-5b6c7d8e9f0a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What will this output?",
+    "codeSnippet": "const arr = [1, 2, 3];\narr.length = 0;\nconsole.log(arr);",
+    "options": [
+      "[1, 2, 3]",
+      "[]",
+      "[0]",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Setting `array.length = 0` **empties the array** by truncating it.\n\n```jsx\nconst arr = [1, 2, 3];\narr.length = 0;  // Truncate array\nconsole.log(arr);  // []\n```\n\n**How length works:**\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// Truncate\narr.length = 2;\nconsole.log(arr);  // [1, 2]\n\n// Extend (creates empty slots)\narr.length = 5;\nconsole.log(arr);  // [1, 2, empty × 3]\n\n// Empty completely\narr.length = 0;\nconsole.log(arr);  // []\n```\n\n**Ways to empty an array:**\n\n```jsx\nlet arr = [1, 2, 3];\n\n// Method 1: Set length to 0 (fastest)\narr.length = 0;\n\n// Method 2: Assign new array (if no other references)\narr = [];\n\n// Method 3: splice\narr.splice(0, arr.length);\n\n// Method 4: pop in loop (slowest)\nwhile(arr.length > 0) arr.pop();\n```\n\n**Important difference:**\n```jsx\n// If other variables reference the array:\nlet arr1 = [1, 2, 3];\nlet arr2 = arr1;  // arr2 references same array\n\narr1 = [];  // arr1 now points to new array\nconsole.log(arr2);  // [1, 2, 3] (still has old array)\n\n// vs\nlet arr1 = [1, 2, 3];\nlet arr2 = arr1;\n\narr1.length = 0;  // Modifies the array itself\nconsole.log(arr2);  // [] (also empty)\n```"
+  },
+  {
+    "id": "e7f8a9b0-c1d2-4e3f-4a5b-6c7d8e9f0a1b",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What is the output?",
+    "codeSnippet": "const obj = { a: 1, b: 2, c: 3 };\nconst { a, ...rest } = obj;\ndelete obj.a;\nconsole.log(rest);",
+    "options": [
+      "{ b: 2, c: 3 }",
+      "{ a: 1, b: 2, c: 3 }",
+      "{ b: 2 }",
+      "Error"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Rest operator creates a **shallow copy** of remaining properties, so it's **not affected** by later deletions.\n\n```jsx\nconst obj = { a: 1, b: 2, c: 3 };\n\n// Destructuring with rest\nconst { a, ...rest } = obj;\n// a = 1\n// rest = { b: 2, c: 3 } (new object, copy of remaining props)\n\n// Delete from original\ndelete obj.a;\nconsole.log(obj);   // { b: 2, c: 3 }\nconsole.log(rest);  // { b: 2, c: 3 } (unchanged)\n```\n\n**Rest operator creates a NEW object:**\n```jsx\nconst original = { a: 1, b: 2, c: 3 };\nconst { a, ...copy } = original;\n\nconsole.log(copy === original);  // false (different objects)\n\noriginal.b = 99;\nconsole.log(copy.b);  // 2 (not affected)\n```\n\n**However, it's a SHALLOW copy:**\n```jsx\nconst original = {\n  a: 1,\n  nested: { x: 10 }\n};\n\nconst { a, ...copy } = original;\n\noriginal.nested.x = 99;\nconsole.log(copy.nested.x);  // 99 (nested object is shared!)\n```\n\n**Common patterns:**\n\n```jsx\n// Remove property\nconst { password, ...user } = userData;\n// user doesn't have password property\n\n// Split props\nconst { className, style, ...restProps } = props;\n<div className={className} style={style} {...restProps} />\n\n// Update object immutably\nconst updated = { ...obj, a: newValue };\n```"
+  },
+  {
+    "id": "f8a9b0c1-d2e3-4f4a-5b6c-7d8e9f0a1b2c",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What does Object.freeze() do?",
+    "codeSnippet": "const obj = Object.freeze({ a: 1, b: { c: 2 } });\nobj.a = 99;\nobj.b.c = 99;\nconsole.log(obj);",
+    "options": [
+      "{ a: 99, b: { c: 99 } }",
+      "{ a: 1, b: { c: 2 } }",
+      "{ a: 1, b: { c: 99 } }",
+      "Error"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "`Object.freeze()` makes an object **immutable**, but only **shallow** - nested objects can still be modified.\n\n```jsx\nconst obj = Object.freeze({ a: 1, b: { c: 2 } });\n\nobj.a = 99;    // Silently fails (throws in strict mode)\nobj.b.c = 99;  // Works! (nested object not frozen)\n\nconsole.log(obj);  // { a: 1, b: { c: 99 } }\n```\n\n**What freeze prevents:**\n```jsx\nconst obj = Object.freeze({ a: 1 });\n\nobj.a = 2;        // ❌ Can't modify\nobj.b = 3;        // ❌ Can't add\ndelete obj.a;     // ❌ Can't delete\n\nObject.defineProperty(obj, 'a', { value: 2 });  // ❌ Error\n```\n\n**Deep freeze (recursive):**\n```jsx\nfunction deepFreeze(obj) {\n  Object.freeze(obj);\n  \n  Object.values(obj).forEach(value => {\n    if (typeof value === 'object' && value !== null) {\n      deepFreeze(value);\n    }\n  });\n  \n  return obj;\n}\n\nconst obj = deepFreeze({ a: 1, b: { c: 2 } });\nobj.b.c = 99;  // ❌ Fails (in strict mode)\n```\n\n**Related methods:**\n```jsx\n// Object.seal - can modify, can't add/delete\nconst sealed = Object.seal({ a: 1 });\nsealed.a = 2;    // ✅ Works\nsealed.b = 3;    // ❌ Can't add\ndelete sealed.a; // ❌ Can't delete\n\n// Object.preventExtensions - can modify/delete, can't add\nconst obj = Object.preventExtensions({ a: 1 });\nobj.a = 2;       // ✅ Works\ndelete obj.a;    // ✅ Works\nobj.b = 3;       // ❌ Can't add\n```"
+  },
+  {
+    "id": "a9b0c1d2-e3f4-4a5b-6c7d-8e9f0a1b2c3d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What is the difference between null and undefined?",
+    "codeSnippet": null,
+    "options": [
+      "They are exactly the same",
+      "null is assigned, undefined is default absence",
+      "undefined is assigned, null is default absence",
+      "null is for objects, undefined is for primitives"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`undefined` means a variable has been **declared but not assigned**, while `null` is an **intentional absence** of value.\n\n```jsx\n// undefined - default absence\nlet x;\nconsole.log(x);  // undefined\n\nfunction foo() {}  // No return statement\nconsole.log(foo());  // undefined\n\nconst obj = {};\nconsole.log(obj.nonExistent);  // undefined\n\n// null - intentional absence\nlet y = null;  // Explicitly set to null\nconsole.log(y);  // null\n```\n\n**Type differences:**\n```jsx\ntypeof undefined;  // \"undefined\"\ntypeof null;       // \"object\" (historical bug)\n\nundefined === undefined;  // true\nnull === null;            // true\nundefined === null;       // false\nundefined == null;        // true (loose equality)\n```\n\n**When each is used:**\n\n```jsx\n// undefined - JavaScript's default\nlet notAssigned;  // undefined\nfunction noReturn() {}  // returns undefined\nconst obj = {};\nobj.missing;  // undefined\n\n// null - developer's explicit choice\nlet emptyValue = null;  // Intentionally empty\nconst user = getUserById(id);  // Returns null if not found\n```\n\n**Best practices:**\n```jsx\n// ✅ Use null for intentional \"no value\"\nfunction findUser(id) {\n  const user = database.find(id);\n  return user || null;  // null if not found\n}\n\n// ❌ Don't explicitly assign undefined\nlet x = undefined;  // Bad - just don't assign\nlet x;              // Good - naturally undefined\n\n// Check for either\nif (value == null) {  // true for both null and undefined\n  // ...\n}\n\n// Check specifically\nif (value === null) { /* ... */ }\nif (value === undefined) { /* ... */ }\n```"
+  },
+  {
+    "id": "b0c1d2e3-f4a5-4b6c-7d8e-9f0a1b2c3d4e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What will be the output?",
+    "codeSnippet": "const arr = [10, 20, 30];\nconst [a, , b] = arr;\nconsole.log(a, b);",
+    "options": [
+      "10 20",
+      "10 30",
+      "20 30",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Array destructuring with **skipping elements** - commas skip positions.\n\n```jsx\nconst arr = [10, 20, 30];\n\n// Skip middle element with empty comma\nconst [a, , b] = arr;\n// a = arr[0] = 10\n// (skip arr[1])\n// b = arr[2] = 30\n\nconsole.log(a, b);  // 10 30\n```\n\n**More destructuring patterns:**\n\n```jsx\n// Basic\nconst [x, y, z] = [1, 2, 3];\n// x=1, y=2, z=3\n\n// Skip elements\nconst [first, , third] = [1, 2, 3];\n// first=1, third=3\n\n// Rest operator\nconst [head, ...tail] = [1, 2, 3, 4];\n// head=1, tail=[2, 3, 4]\n\n// Default values\nconst [a = 0, b = 0] = [1];\n// a=1, b=0\n\n// Nested arrays\nconst [a, [b, c]] = [1, [2, 3]];\n// a=1, b=2, c=3\n\n// Swapping variables\nlet x = 1, y = 2;\n[x, y] = [y, x];\n// x=2, y=1\n\n// Function returns\nfunction getCoords() {\n  return [10, 20];\n}\nconst [x, y] = getCoords();\n// x=10, y=20\n```\n\n**React useState:**\n```jsx\nconst [count, setCount] = useState(0);\n// count = state value\n// setCount = setter function\n```"
+  },
+  {
+    "id": "c1d2e3f4-a5b6-4c7d-8e9f-0a1b2c3d4e5f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What is the result?",
+    "codeSnippet": "const obj = {\n  x: 1,\n  getX: function() {\n    const inner = function() {\n      return this.x;\n    };\n    return inner();\n  }\n};\nconsole.log(obj.getX());",
+    "options": [
+      "1",
+      "undefined",
+      "Error",
+      "null"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The inner **regular function** loses the `this` context - it doesn't inherit from the outer function.\n\n```jsx\nconst obj = {\n  x: 1,\n  getX: function() {\n    const inner = function() {\n      return this.x;  // this = global/window (or undefined in strict mode)\n    };\n    return inner();  // Called as function, not method\n  }\n};\n\nconsole.log(obj.getX());  // undefined\n```\n\n**Why?** Regular functions get their own `this` based on how they're called:\n- `obj.method()` → `this` = obj\n- `function()` → `this` = global/window (undefined in strict mode)\n\n**Solutions:**\n\n```jsx\n// Solution 1: Arrow function (inherits this)\nconst obj = {\n  x: 1,\n  getX: function() {\n    const inner = () => {  // Arrow function\n      return this.x;  // this = obj (lexical)\n    };\n    return inner();\n  }\n};\nconsole.log(obj.getX());  // 1 ✅\n\n// Solution 2: Store this in variable\nconst obj = {\n  x: 1,\n  getX: function() {\n    const self = this;  // Save reference\n    const inner = function() {\n      return self.x;\n    };\n    return inner();\n  }\n};\n\n// Solution 3: bind\nconst obj = {\n  x: 1,\n  getX: function() {\n    const inner = function() {\n      return this.x;\n    }.bind(this);  // Bind outer this\n    return inner();\n  }\n};\n\n// Solution 4: call/apply\nconst obj = {\n  x: 1,\n  getX: function() {\n    const inner = function() {\n      return this.x;\n    };\n    return inner.call(this);  // Pass this explicitly\n  }\n};\n```\n\n**Modern best practice:**\n```jsx\nconst obj = {\n  x: 1,\n  getX() {  // Method shorthand\n    return this.x;  // Direct access, no nested function\n  }\n};\n```"
+  },
+  {
+    "id": "d2e3f4a5-b6c7-4d8e-9f0a-1b2c3d4e5f6a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What does the following code output?",
+    "codeSnippet": "const arr1 = [1, 2, 3];\nconst arr2 = arr1;\narr2.push(4);\nconsole.log(arr1);",
+    "options": [
+      "[1, 2, 3]",
+      "[1, 2, 3, 4]",
+      "Error",
+      "undefined"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Arrays are **reference types** - `arr2` and `arr1` point to the **same array** in memory.\n\n```jsx\nconst arr1 = [1, 2, 3];\nconst arr2 = arr1;  // arr2 references the SAME array\n\narr2.push(4);  // Modifies the shared array\n\nconsole.log(arr1);  // [1, 2, 3, 4] (also modified)\nconsole.log(arr2);  // [1, 2, 3, 4]\nconsole.log(arr1 === arr2);  // true (same reference)\n```\n\n**Memory visualization:**\n```jsx\narr1 ---->\n          [1, 2, 3]  (array in memory)\narr2 ---->\n\n// After push:\narr1 ---->\n          [1, 2, 3, 4]\narr2 ---->\n```\n\n**How to create independent copies:**\n\n```jsx\n// Method 1: Spread operator (shallow copy)\nconst arr2 = [...arr1];\n\n// Method 2: Array.from\nconst arr2 = Array.from(arr1);\n\n// Method 3: slice\nconst arr2 = arr1.slice();\n\n// Method 4: concat\nconst arr2 = [].concat(arr1);\n\n// Now modifications are independent:\nconst arr1 = [1, 2, 3];\nconst arr2 = [...arr1];\narr2.push(4);\nconsole.log(arr1);  // [1, 2, 3] (unchanged)\nconsole.log(arr2);  // [1, 2, 3, 4]\n```\n\n**Deep copy for nested arrays:**\n```jsx\nconst arr1 = [[1, 2], [3, 4]];\n\n// Shallow copy - nested arrays still shared\nconst arr2 = [...arr1];\narr2[0].push(99);\nconsole.log(arr1);  // [[1, 2, 99], [3, 4]] (modified!)\n\n// Deep copy\nconst arr3 = JSON.parse(JSON.stringify(arr1));\n// or\nconst arr3 = structuredClone(arr1);  // Modern browsers\n```"
+  },
+  {
+    "id": "e3f4a5b6-c7d8-4e9f-0a1b-2c3d4e5f6a7b",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What is the purpose of the ternary operator?",
+    "codeSnippet": "const result = age >= 18 ? 'Adult' : 'Minor';",
+    "options": [
+      "Loop through values",
+      "Conditional assignment",
+      "Declare variables",
+      "Import modules"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The ternary operator `? :` is a **shorthand for if-else** used for conditional expressions.\n\n```jsx\n// Syntax: condition ? valueIfTrue : valueIfFalse\nconst result = age >= 18 ? 'Adult' : 'Minor';\n\n// Equivalent to:\nlet result;\nif (age >= 18) {\n  result = 'Adult';\n} else {\n  result = 'Minor';\n}\n```\n\n**Common use cases:**\n\n```jsx\n// 1. Conditional assignment\nconst greeting = isLoggedIn ? 'Welcome back!' : 'Please login';\n\n// 2. Default values\nconst name = user.name ? user.name : 'Guest';\n// Better: const name = user.name || 'Guest';\n\n// 3. Inline conditionals\nconsole.log(score >= 60 ? 'Pass' : 'Fail');\n\n// 4. React JSX\nreturn (\n  <div>\n    {isLoading ? <Spinner /> : <Content />}\n  </div>\n);\n\n// 5. Nested ternaries (use sparingly)\nconst grade = score >= 90 ? 'A' \n            : score >= 80 ? 'B' \n            : score >= 70 ? 'C' \n            : 'F';\n\n// 6. Function calls\nconst result = isValid ? processData() : showError();\n```\n\n**Best practices:**\n```jsx\n// ✅ Good - simple condition\nconst status = isActive ? 'on' : 'off';\n\n// ✅ Good - with parentheses for clarity\nconst price = (isMember ? basePrice * 0.9 : basePrice).toFixed(2);\n\n// ❌ Bad - too complex/nested\nconst x = a ? b ? c ? d : e : f : g;\n// Better: use if-else\n\n// ❌ Bad - side effects\nconst x = flag ? (count++, doSomething()) : doOtherThing();\n// Better: use if-else for side effects\n```"
+  },
+  {
+    "id": "f4a5b6c7-d8e9-4f0a-1b2c-3d4e5f6a7b8c",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What will this code output?",
+    "codeSnippet": "console.log('5' - 3);\nconsole.log('5' + 3);",
+    "options": [
+      "2, 8",
+      "2, \"53\"",
+      "\"2\", \"53\"",
+      "NaN, \"53\""
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "JavaScript **type coercion** works differently for different operators.\n\n```jsx\nconsole.log('5' - 3);  // 2 (string converted to number)\nconsole.log('5' + 3);  // \"53\" (number converted to string)\n```\n\n**Rules:**\n- **Subtraction (-), multiplication (*), division (/)**: Strings converted to numbers\n- **Addition (+)**: If either operand is a string, concatenation happens\n\n**More examples:**\n\n```jsx\n// Arithmetic operators (except +) → convert to numbers\nconsole.log('10' - 5);    // 5\nconsole.log('10' * 2);    // 20\nconsole.log('10' / 2);    // 5\nconsole.log('10' % 3);    // 1\n\n// Addition (+) → string concatenation if any operand is string\nconsole.log('5' + 3);     // \"53\"\nconsole.log(5 + '3');     // \"53\"\nconsole.log('5' + '3');   // \"53\"\nconsole.log(5 + 3);       // 8 (both numbers)\n\n// Order matters\nconsole.log(1 + 2 + '3');     // \"33\" (3 + '3')\nconsole.log('1' + 2 + 3);     // \"123\" ('1' + 2 = '12', then '12' + 3)\nconsole.log(1 + 2 + 3);       // 6\n\n// Non-numeric strings\nconsole.log('hello' - 5);     // NaN\nconsole.log('hello' + 5);     // \"hello5\"\n\n// Unary plus converts to number\nconsole.log(+'5');            // 5 (number)\nconsole.log(+'5' + 3);        // 8\n```\n\n**Best practice - explicit conversion:**\n```jsx\n// ❌ Implicit (confusing)\nconst result = '5' - 3;\n\n// ✅ Explicit (clear intent)\nconst result = Number('5') - 3;\nconst result = parseInt('5', 10) - 3;\n```"
+  },
+  {
+    "id": "a5b6c7d8-e9f0-4a1b-2c3d-4e5f6a7b8c9d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What is the output?",
+    "codeSnippet": "const a = {};\nconst b = { key: 'b' };\nconst c = { key: 'c' };\n\na[b] = 123;\na[c] = 456;\n\nconsole.log(a[b]);",
+    "options": [
+      "123",
+      "456",
+      "undefined",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "When using **objects as keys**, they're converted to strings, and `[object Object]` is used for all objects.\n\n```jsx\nconst a = {};\nconst b = { key: 'b' };\nconst c = { key: 'c' };\n\n// Objects as keys are converted to strings\na[b] = 123;  // a['[object Object]'] = 123\na[c] = 456;  // a['[object Object]'] = 456 (overwrites!)\n\nconsole.log(a[b]);  // 456\n\n// What actually happened:\nconsole.log(String(b));  // '[object Object]'\nconsole.log(String(c));  // '[object Object]'\nconsole.log(a);  // { '[object Object]': 456 }\n```\n\n**Why?** All objects convert to the same string `\"[object Object]\"` when used as keys.\n\n**Solutions for using objects as keys:**\n\n```jsx\n// Solution 1: Use Map (designed for any key type)\nconst map = new Map();\nconst b = { key: 'b' };\nconst c = { key: 'c' };\n\nmap.set(b, 123);\nmap.set(c, 456);\n\nconsole.log(map.get(b));  // 123 ✅\nconsole.log(map.get(c));  // 456 ✅\n\n// Solution 2: Use WeakMap (for object keys only)\nconst weakMap = new WeakMap();\nweakMap.set(b, 123);\nweakMap.set(c, 456);\n\n// Solution 3: Use unique string keys\nconst a = {};\na[b.key] = 123;  // a['b'] = 123\na[c.key] = 456;  // a['c'] = 456\nconsole.log(a['b']);  // 123\n```\n\n**Map vs Object:**\n```jsx\n// Map - any key type\nconst map = new Map();\nmap.set(1, 'one');      // number key\nmap.set('1', 'string'); // string key\nmap.set({}, 'object');  // object key\nmap.size;  // 3\n\n// Object - only string/symbol keys\nconst obj = {};\nobj[1] = 'one';      // Converted to '1'\nobj['1'] = 'string'; // Same key, overwrites\nobj[{}] = 'object';  // Converted to '[object Object]'\nObject.keys(obj).length;  // 2\n```"
+  },
+  {
+    "id": "b6c7d8e9-f0a1-4b2c-3d4e-5f6a7b8c9d0e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What does Array.prototype.flat() do?",
+    "codeSnippet": "const arr = [1, [2, [3, [4]]], 5];\nconsole.log(arr.flat(2));",
+    "options": [
+      "[1, 2, 3, 4, 5]",
+      "[1, 2, [3, [4]], 5]",
+      "[1, 2, 3, [4], 5]",
+      "Error"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "`flat()` **flattens nested arrays** up to the specified depth.\n\n```jsx\nconst arr = [1, [2, [3, [4]]], 5];\n\n// flat(depth)\nconsole.log(arr.flat());     // [1, 2, [3, [4]], 5] (default depth=1)\nconsole.log(arr.flat(1));    // [1, 2, [3, [4]], 5]\nconsole.log(arr.flat(2));    // [1, 2, 3, [4], 5]\nconsole.log(arr.flat(3));    // [1, 2, 3, 4, 5]\nconsole.log(arr.flat(Infinity)); // [1, 2, 3, 4, 5] (all levels)\n```\n\n**Common use cases:**\n\n```jsx\n// 1. Flatten one level\nconst arr = [[1, 2], [3, 4], [5]];\nconsole.log(arr.flat());  // [1, 2, 3, 4, 5]\n\n// 2. Remove empty slots\nconst arr = [1, 2, , 4, 5];\nconsole.log(arr.flat());  // [1, 2, 4, 5] (empty removed)\n\n// 3. Flatten all levels\nconst deep = [1, [2, [3, [4, [5]]]]];\nconsole.log(deep.flat(Infinity));  // [1, 2, 3, 4, 5]\n\n// 4. Combined with map - flatMap\nconst arr = [1, 2, 3];\nconst result = arr.flatMap(x => [x, x * 2]);\nconsole.log(result);  // [1, 2, 2, 4, 3, 6]\n\n// Equivalent to:\nconst result = arr.map(x => [x, x * 2]).flat();\n```\n\n**Before flat() (polyfill):**\n```jsx\n// Recursive approach\nfunction flatten(arr, depth = 1) {\n  if (depth === 0) return arr;\n  \n  return arr.reduce((acc, val) => {\n    return acc.concat(\n      Array.isArray(val) ? flatten(val, depth - 1) : val\n    );\n  }, []);\n}\n\n// Infinite depth\nfunction flattenDeep(arr) {\n  return arr.reduce((acc, val) => \n    Array.isArray(val) \n      ? acc.concat(flattenDeep(val)) \n      : acc.concat(val),\n    []\n  );\n}\n```"
+  },
+  {
+    "id": "c7d8e9f0-a1b2-4c3d-4e5f-6a7b8c9d0e1f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What is the output of the following?",
+    "codeSnippet": "const name = 'Alice';\nconst greeting = `Hello, ${name}!`;\nconsole.log(greeting);",
+    "options": [
+      "\"Hello, ${name}!\"",
+      "\"Hello, Alice!\"",
+      "Error",
+      "undefined"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Template literals (backticks) allow **string interpolation** using `${expression}`.\n\n```jsx\nconst name = 'Alice';\nconst age = 25;\n\n// Template literal with interpolation\nconst greeting = `Hello, ${name}!`;\nconsole.log(greeting);  // \"Hello, Alice!\"\n\n// Multiple expressions\nconst message = `${name} is ${age} years old`;\nconsole.log(message);  // \"Alice is 25 years old\"\n\n// Expressions\nconst result = `2 + 2 = ${2 + 2}`;\nconsole.log(result);  // \"2 + 2 = 4\"\n```\n\n**Template literal features:**\n\n```jsx\n// 1. Multiline strings\nconst multiline = `\n  Line 1\n  Line 2\n  Line 3\n`;\n\n// 2. Expression evaluation\nconst price = 10;\nconst tax = 0.1;\nconst total = `Total: $${price * (1 + tax)}`;\n// \"Total: $11\"\n\n// 3. Function calls\nconst getName = () => 'Bob';\nconst greeting = `Hello, ${getName()}!`;\n// \"Hello, Bob!\"\n\n// 4. Nested templates\nconst isActive = true;\nconst status = `Status: ${isActive ? `Active` : `Inactive`}`;\n// \"Status: Active\"\n\n// 5. Tagged templates (advanced)\nfunction highlight(strings, ...values) {\n  return strings.reduce((result, str, i) => \n    result + str + (values[i] ? `<mark>${values[i]}</mark>` : ''),\n    ''\n  );\n}\n\nconst name = 'Alice';\nconst html = highlight`Hello, ${name}!`;\n// \"Hello, <mark>Alice</mark>!\"\n```\n\n**vs Regular strings:**\n```jsx\n// Regular string - no interpolation\nconst msg1 = 'Hello, ${name}!';\nconsole.log(msg1);  // \"Hello, ${name}!\" (literal)\n\n// Template literal - interpolation\nconst msg2 = `Hello, ${name}!`;\nconsole.log(msg2);  // \"Hello, Alice!\"\n```"
+  },
+  {
+    "id": "d8e9f0a1-b2c3-4d4e-5f6a-7b8c9d0e1f2a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What does this code output?",
+    "codeSnippet": "console.log(1 < 2 < 3);\nconsole.log(3 > 2 > 1);",
+    "options": [
+      "true, true",
+      "true, false",
+      "false, true",
+      "false, false"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "JavaScript evaluates comparison operators **left to right**, and booleans are converted to numbers (true=1, false=0).\n\n```jsx\n// First expression\nconsole.log(1 < 2 < 3);\n// Step 1: 1 < 2 → true\n// Step 2: true < 3 → 1 < 3 (true converts to 1) → true\n\n// Second expression\nconsole.log(3 > 2 > 1);\n// Step 1: 3 > 2 → true\n// Step 2: true > 1 → 1 > 1 (true converts to 1) → false\n```\n\n**Boolean to number conversion:**\n```jsx\nNumber(true);   // 1\nNumber(false);  // 0\n\ntrue < 3;   // 1 < 3 → true\nfalse < 3;  // 0 < 3 → true\ntrue > 1;   // 1 > 1 → false\nfalse > 1;  // 0 > 1 → false\n```\n\n**Why this is confusing:**\n```jsx\n// This looks like it should work, but doesn't\n1 < 2 < 3  // true (accidentally correct)\n3 > 2 > 1  // false (wrong!)\n\n// Common mistake - checking ranges\nconst x = 5;\nif (1 < x < 10) {  // ❌ WRONG - always true!\n  // This evaluates as: (1 < x) < 10 → true/false < 10 → 0/1 < 10 → true\n}\n\n// ✅ CORRECT way\nif (x > 1 && x < 10) {\n  // Proper range check\n}\n```\n\n**More examples:**\n```jsx\nconsole.log(5 > 4 > 3);      // false (true > 3 → 1 > 3)\nconsole.log(5 < 6 < 7);      // true (true < 7 → 1 < 7)\nconsole.log(1 < 2 < 2);      // true (true < 2 → 1 < 2)\nconsole.log(2 > 1 > 0);      // true (true > 0 → 1 > 0)\n```\n\n**Best practice:**\n```jsx\n// Always use explicit logical operators for multiple comparisons\nif (a < b && b < c) { /* ... */ }\nif (x >= min && x <= max) { /* ... */ }\n```"
+  },
+  {
+    "id": "e9f0a1b2-c3d4-4e5f-6a7b-8c9d0e1f2a3b",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the difference between slice() and splice()?",
+    "codeSnippet": null,
+    "options": [
+      "They are the same",
+      "slice() modifies original, splice() doesn't",
+      "slice() returns new array, splice() modifies original",
+      "slice() is for strings only"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "`slice()` returns a **new array** without modifying the original, while `splice()` **modifies** the original array.\n\n**slice() - Non-mutating:**\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// slice(start, end) - end not included\nconst sliced = arr.slice(1, 4);\n\nconsole.log(sliced);  // [2, 3, 4]\nconsole.log(arr);     // [1, 2, 3, 4, 5] (unchanged)\n```\n\n**splice() - Mutating:**\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// splice(start, deleteCount, ...items)\nconst removed = arr.splice(1, 2, 'a', 'b');\n\nconsole.log(removed);  // [2, 3] (removed elements)\nconsole.log(arr);      // [1, 'a', 'b', 4, 5] (modified!)\n```\n\n**slice() examples:**\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\narr.slice(2);       // [3, 4, 5] (from index 2 to end)\narr.slice(1, 3);    // [2, 3] (from 1 to 3, not including 3)\narr.slice(-2);      // [4, 5] (last 2 elements)\narr.slice(-3, -1);  // [3, 4] (from -3 to -1, not including -1)\narr.slice();        // [1, 2, 3, 4, 5] (shallow copy)\n```\n\n**splice() examples:**\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// Delete elements\narr.splice(2, 2);        // Remove 2 elements from index 2\n// arr: [1, 2, 5]\n\n// Insert elements\narr.splice(1, 0, 'a', 'b');  // Insert at index 1, delete 0\n// arr: [1, 'a', 'b', 2, 3, 4, 5]\n\n// Replace elements\narr.splice(1, 2, 'x', 'y');  // Remove 2, insert 2\n// arr: [1, 'x', 'y', 4, 5]\n\n// Remove from end\narr.splice(-2);  // Remove last 2 elements\n// arr: [1, 2, 3]\n```\n\n**Quick reference:**\n```jsx\n// slice() - READ (non-mutating)\n- Returns: new array\n- Original: unchanged\n- Use: extracting, copying\n\n// splice() - MODIFY (mutating)\n- Returns: removed elements\n- Original: modified\n- Use: adding, removing, replacing\n```"
+  },
+  {
+    "id": "f0a1b2c3-d4e5-4f6a-7b8c-9d0e1f2a3b4c",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What will be logged?",
+    "codeSnippet": "const arr = [1, 2, 3];\nconsole.log(arr.includes(2));\nconsole.log(arr.indexOf(2));",
+    "options": [
+      "true, 1",
+      "false, -1",
+      "true, 2",
+      "1, true"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`includes()` returns **boolean** (exists or not), while `indexOf()` returns the **index** (or -1 if not found).\n\n```jsx\nconst arr = [1, 2, 3];\n\nconsole.log(arr.includes(2));  // true (element exists)\nconsole.log(arr.indexOf(2));   // 1 (element at index 1)\n\nconsole.log(arr.includes(5));  // false (doesn't exist)\nconsole.log(arr.indexOf(5));   // -1 (not found)\n```\n\n**Key differences:**\n\n```jsx\nconst arr = [1, 2, NaN, 4];\n\n// includes() can find NaN\nconsole.log(arr.includes(NaN));  // true ✅\n\n// indexOf() cannot find NaN\nconsole.log(arr.indexOf(NaN));   // -1 ❌\n\n// Why? indexOf uses === which fails for NaN\nconsole.log(NaN === NaN);  // false\n```\n\n**Use cases:**\n\n```jsx\n// includes() - when you just need to check existence\nif (fruits.includes('apple')) {\n  console.log('Has apple');\n}\n\n// indexOf() - when you need the position\nconst index = fruits.indexOf('apple');\nif (index !== -1) {\n  console.log(`Apple at position ${index}`);\n  fruits.splice(index, 1);  // Remove it\n}\n\n// With start position\nconst arr = [1, 2, 3, 2, 1];\narr.includes(2, 2);  // true (search from index 2)\narr.indexOf(2, 2);   // 3 (first occurrence after index 2)\n```\n\n**Related methods:**\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// find() - returns element (or undefined)\nconst found = arr.find(x => x > 3);  // 4\n\n// findIndex() - returns index (or -1)\nconst index = arr.findIndex(x => x > 3);  // 3\n\n// some() - checks if any element passes test\nconst hasEven = arr.some(x => x % 2 === 0);  // true\n\n// every() - checks if all elements pass test\nconst allPositive = arr.every(x => x > 0);  // true\n```"
+  },
+  {
+    "id": "a1b2c3d4-e5f6-7a8b-9c0d-1e2f3a4b5c6d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the output?",
+    "codeSnippet": "const obj = { a: 1, b: 2 };\nconst newObj = { ...obj, b: 3, c: 4 };\nconsole.log(newObj);",
+    "options": [
+      "{ a: 1, b: 2 }",
+      "{ a: 1, b: 3, c: 4 }",
+      "{ b: 3, c: 4 }",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The spread operator creates a new object, and **later properties override earlier ones**.\n\n```jsx\nconst obj = { a: 1, b: 2 };\nconst newObj = { ...obj, b: 3, c: 4 };\n\n// Order of operations:\n// 1. Spread obj: { a: 1, b: 2 }\n// 2. Add b: 3 (overwrites b: 2)\n// 3. Add c: 4\n\nconsole.log(newObj);  // { a: 1, b: 3, c: 4 }\n```\n\n**Property override rules:**\n```jsx\n// Last value wins\nconst obj = { a: 1, a: 2, a: 3 };\nconsole.log(obj);  // { a: 3 }\n\n// With spread - order matters\nconst defaults = { theme: 'light', size: 'medium' };\nconst userPrefs = { theme: 'dark' };\n\n// User preferences override defaults\nconst config1 = { ...defaults, ...userPrefs };\nconsole.log(config1);  // { theme: 'dark', size: 'medium' }\n\n// Defaults override user (wrong!)\nconst config2 = { ...userPrefs, ...defaults };\nconsole.log(config2);  // { theme: 'light', size: 'medium' }\n```\n\n**Common patterns:**\n\n```jsx\n// 1. Update object immutably\nconst user = { name: 'Alice', age: 25 };\nconst updated = { ...user, age: 26 };\n// user unchanged, updated is new object\n\n// 2. Merge multiple objects\nconst obj1 = { a: 1, b: 2 };\nconst obj2 = { b: 3, c: 4 };\nconst obj3 = { c: 5, d: 6 };\nconst merged = { ...obj1, ...obj2, ...obj3 };\n// { a: 1, b: 3, c: 5, d: 6 }\n\n// 3. Add/override properties\nconst base = { x: 1, y: 2 };\nconst extended = { ...base, z: 3, y: 99 };\n// { x: 1, y: 99, z: 3 }\n\n// 4. Conditional properties\nconst obj = {\n  a: 1,\n  ...(condition && { b: 2 }),  // Only add if condition true\n  c: 3\n};\n\n// 5. Remove property (with destructuring)\nconst { password, ...safeUser } = user;\n// safeUser has all properties except password\n```\n\n**Note - Shallow copy:**\n```jsx\nconst original = { a: 1, nested: { b: 2 } };\nconst copy = { ...original };\n\ncopy.a = 99;\nconsole.log(original.a);  // 1 (not affected)\n\ncopy.nested.b = 99;\nconsole.log(original.nested.b);  // 99 (affected! nested object shared)\n```"
+  },
+  {
+    "id": "b2c3d4e5-f6a7-8b9c-0d1e-2f3a4b5c6d7e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What does this code output?",
+    "codeSnippet": "async function test() {\n  console.log('1');\n  await Promise.resolve();\n  console.log('2');\n}\n\nconsole.log('3');\ntest();\nconsole.log('4');",
+    "options": [
+      "1, 2, 3, 4",
+      "3, 1, 4, 2",
+      "3, 4, 1, 2",
+      "1, 3, 4, 2"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "This demonstrates the **event loop** and how `async/await` works with the microtask queue.\n\n```jsx\nasync function test() {\n  console.log('1');  // Synchronous - executes immediately\n  await Promise.resolve();  // Pauses function, queues continuation as microtask\n  console.log('2');  // Executes later from microtask queue\n}\n\nconsole.log('3');  // 1st: Main thread\ntest();             // 2nd: Calls test() - logs '1', then pauses at await\nconsole.log('4');  // 3rd: Main thread continues\n// 4th: Microtask queue processes - logs '2'\n\n// Output: 3, 1, 4, 2\n```\n\n**Execution order breakdown:**\n\n```jsx\n// Call stack and queues:\n\n1. console.log('3')     → Output: 3\n2. test() called\n   - console.log('1')   → Output: 1\n   - await pauses function\n   - continuation queued in microtask queue\n3. console.log('4')     → Output: 4\n4. Call stack empty\n5. Microtask queue processes\n   - console.log('2')   → Output: 2\n\n// Final: 3, 1, 4, 2\n```\n\n**Understanding async/await:**\n\n```jsx\n// async/await is syntactic sugar over Promises\nasync function foo() {\n  console.log('A');\n  await Promise.resolve();\n  console.log('B');\n}\n\n// Equivalent to:\nfunction foo() {\n  return Promise.resolve()\n    .then(() => {\n      console.log('A');\n      return Promise.resolve();\n    })\n    .then(() => {\n      console.log('B');\n    });\n}\n```\n\n**More complex example:**\n\n```jsx\nconsole.log('1');\n\nsetTimeout(() => console.log('2'), 0);\n\nPromise.resolve().then(() => console.log('3'));\n\nasync function test() {\n  console.log('4');\n  await Promise.resolve();\n  console.log('5');\n}\n\ntest();\n\nconsole.log('6');\n\n// Output: 1, 4, 6, 3, 5, 2\n// Explanation:\n// 1, 4, 6 - synchronous\n// 3, 5 - microtasks (Promises)\n// 2 - macrotask (setTimeout)\n```\n\n**Task queues priority:**\n```jsx\n// 1. Synchronous code (call stack)\n// 2. Microtasks (Promises, async/await)\n// 3. Macrotasks (setTimeout, setInterval, I/O)\n```"
+  },
+  {
+    "id": "c3d4e5f6-a7b8-9c0d-1e2f-3a4b5c6d7e8f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the result?",
+    "codeSnippet": "const arr = [1, 2, 3, 4, 5];\nconst result = arr.reduce((acc, val) => acc + val);\nconsole.log(result);",
+    "options": [
+      "15",
+      "0",
+      "undefined",
+      "Error"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "When `reduce()` is called **without an initial value**, it uses the **first element** as the initial accumulator.\n\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// Without initial value\nconst result = arr.reduce((acc, val) => acc + val);\n\n// Execution:\n// Start: acc = 1 (first element), val = 2 (second element)\n// Step 1: acc = 1 + 2 = 3, val = 3 → return 6\n// Step 2: acc = 6, val = 4 → return 10\n// Step 3: acc = 10, val = 5 → return 15\n\nconsole.log(result);  // 15\n```\n\n**With vs without initial value:**\n\n```jsx\nconst arr = [1, 2, 3];\n\n// WITH initial value (0)\narr.reduce((acc, val) => acc + val, 0);\n// acc=0, val=1 → 1\n// acc=1, val=2 → 3\n// acc=3, val=3 → 6\n// Result: 6\n\n// WITHOUT initial value\narr.reduce((acc, val) => acc + val);\n// acc=1 (first elem), val=2 → 3\n// acc=3, val=3 → 6\n// Result: 6\n\n// Same result for sum, but different for other operations!\n```\n\n**When initial value matters:**\n\n```jsx\n// Empty array - needs initial value\nconst empty = [];\nempty.reduce((acc, val) => acc + val, 0);  // 0 ✅\nempty.reduce((acc, val) => acc + val);     // Error! ❌\n\n// Object accumulator\nconst items = ['a', 'b', 'c'];\n\n// With initial value (correct)\nitems.reduce((acc, item) => {\n  acc[item] = true;\n  return acc;\n}, {});  // { a: true, b: true, c: true } ✅\n\n// Without initial value (wrong!)\nitems.reduce((acc, item) => {\n  acc[item] = true;  // Error: 'a' is string, not object\n  return acc;\n});  // Error! ❌\n\n// Array accumulator\nconst nums = [1, 2, 3];\n\n// With initial value\nnums.reduce((acc, n) => [...acc, n * 2], []);\n// [2, 4, 6] ✅\n\n// Without initial value\nnums.reduce((acc, n) => [...acc, n * 2]);\n// Error: 1 is not iterable ❌\n```\n\n**Best practice:**\n```jsx\n// ✅ Always provide initial value for clarity and safety\narr.reduce((acc, val) => acc + val, 0);\n\n// Especially for:\n// - Empty arrays\n// - Object/array accumulators\n// - Complex operations\n```"
+  },
+  {
+    "id": "d4e5f6a7-b8c9-0d1e-2f3a-4b5c6d7e8f9a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What does the following code return?",
+    "codeSnippet": "const str = 'hello';\nconsole.log(str.toUpperCase());",
+    "options": [
+      "\"hello\"",
+      "\"HELLO\"",
+      "\"Hello\"",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`toUpperCase()` converts all characters in a string to **uppercase letters**.\n\n```jsx\nconst str = 'hello';\nconsole.log(str.toUpperCase());  // \"HELLO\"\n```\n\n**String case methods:**\n\n```jsx\nconst str = 'Hello World';\n\n// toUpperCase() - all uppercase\nstr.toUpperCase();  // \"HELLO WORLD\"\n\n// toLowerCase() - all lowercase\nstr.toLowerCase();  // \"hello world\"\n\n// Original unchanged (strings are immutable)\nconsole.log(str);  // \"Hello World\"\n```\n\n**Common use cases:**\n\n```jsx\n// 1. Case-insensitive comparison\nconst input = 'HELLO';\nconst expected = 'hello';\n\nif (input.toLowerCase() === expected.toLowerCase()) {\n  console.log('Match!');\n}\n\n// 2. Normalize user input\nconst username = userInput.trim().toLowerCase();\n\n// 3. Title case (capitalize first letter)\nfunction titleCase(str) {\n  return str\n    .toLowerCase()\n    .split(' ')\n    .map(word => word.charAt(0).toUpperCase() + word.slice(1))\n    .join(' ');\n}\n\ntitleCase('hello world');  // \"Hello World\"\n\n// 4. Toggle case\nfunction toggleCase(str) {\n  return str\n    .split('')\n    .map(char => \n      char === char.toUpperCase() \n        ? char.toLowerCase() \n        : char.toUpperCase()\n    )\n    .join('');\n}\n\ntoggleCase('Hello');  // \"hELLO\"\n```\n\n**Special characters:**\n```jsx\n// Works with international characters\n'café'.toUpperCase();     // \"CAFÉ\"\n'MÜNCHEN'.toLowerCase();  // \"münchen\"\n\n// Locale-specific (for Turkish, etc.)\n'i'.toLocaleUpperCase('tr-TR');  // \"İ\" (dotted I)\n'I'.toLocaleLowerCase('tr-TR');  // \"ı\" (dotless i)\n```"
+  },
+  {
+    "id": "e5f6a7b8-c9d0-1e2f-3a4b-5c6d7e8f9a0b",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the output?",
+    "codeSnippet": "const numbers = [1, 2, 3, 4];\nconst doubled = numbers.map(n => n * 2);\nnumbers.push(5);\nconsole.log(doubled);",
+    "options": [
+      "[2, 4, 6, 8, 10]",
+      "[2, 4, 6, 8]",
+      "[1, 2, 3, 4, 5]",
+      "Error"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`map()` creates a **new array**, so changes to the original array don't affect it.\n\n```jsx\nconst numbers = [1, 2, 3, 4];\n\n// map() creates NEW array\nconst doubled = numbers.map(n => n * 2);\n// doubled = [2, 4, 6, 8] (separate array)\n\n// Modifying original doesn't affect mapped array\nnumbers.push(5);\n// numbers = [1, 2, 3, 4, 5]\n// doubled = [2, 4, 6, 8] (unchanged)\n\nconsole.log(doubled);  // [2, 4, 6, 8]\n```\n\n**map() characteristics:**\n\n```jsx\n// 1. Returns NEW array (doesn't mutate original)\nconst arr = [1, 2, 3];\nconst mapped = arr.map(x => x * 2);\nconsole.log(arr);     // [1, 2, 3] (unchanged)\nconsole.log(mapped);  // [2, 4, 6]\n\n// 2. Same length as original\nconst arr = [1, 2, 3, 4, 5];\nconst result = arr.map(x => x > 3);\nconsole.log(result);  // [false, false, false, true, true] (5 elements)\n\n// 3. Can access index and original array\nconst arr = ['a', 'b', 'c'];\nconst indexed = arr.map((val, i, original) => `${i}: ${val}`);\n// ['0: a', '1: b', '2: c']\n```\n\n**However, shallow copy caveat:**\n\n```jsx\n// Objects are referenced, not copied\nconst users = [\n  { name: 'Alice', age: 25 },\n  { name: 'Bob', age: 30 }\n];\n\n// Map creates new array, but objects are same references\nconst mapped = users.map(user => user);\n\nusers[0].age = 99;\nconsole.log(mapped[0].age);  // 99 (same object!)\n\n// To create independent objects:\nconst cloned = users.map(user => ({ ...user }));\nusers[0].age = 100;\nconsole.log(cloned[0].age);  // 99 (different object)\n```\n\n**Common patterns:**\n\n```jsx\n// Transform data\nconst prices = [10, 20, 30];\nconst withTax = prices.map(p => p * 1.1);\n\n// Extract property\nconst users = [{ id: 1, name: 'Alice' }, { id: 2, name: 'Bob' }];\nconst names = users.map(u => u.name);\n\n// Add index\nconst items = ['a', 'b', 'c'];\nconst withIndex = items.map((item, i) => ({ id: i, value: item }));\n\n// Parse strings\nconst strings = ['1', '2', '3'];\nconst numbers = strings.map(Number);\n// or: strings.map(s => parseInt(s, 10))\n```"
+  },
+  {
+    "id": "f6a7b8c9-d0e1-2f3a-4b5c-6d7e8f9a0b1c",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What does this output?",
+    "codeSnippet": "const obj = {\n  value: 1,\n  getValue: function() {\n    return this.value;\n  }\n};\n\nconst getValue = obj.getValue;\nconst boundGetValue = obj.getValue.bind(obj);\n\nconsole.log(getValue());\nconsole.log(boundGetValue());",
+    "options": [
+      "1, 1",
+      "undefined, 1",
+      "1, undefined",
+      "Error, 1"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`bind()` creates a **new function** with `this` permanently bound to the specified object.\n\n```jsx\nconst obj = {\n  value: 1,\n  getValue: function() {\n    return this.value;\n  }\n};\n\n// Extract method - loses 'this' context\nconst getValue = obj.getValue;\nconsole.log(getValue());  // undefined (this = global/window)\n\n// bind() creates new function with fixed 'this'\nconst boundGetValue = obj.getValue.bind(obj);\nconsole.log(boundGetValue());  // 1 (this = obj)\n```\n\n**How bind() works:**\n\n```jsx\n// bind(thisArg, arg1, arg2, ...)\n// Returns NEW function with:\n// 1. 'this' set to thisArg\n// 2. Pre-filled arguments (partial application)\n\nfunction greet(greeting, punctuation) {\n  return `${greeting}, ${this.name}${punctuation}`;\n}\n\nconst user = { name: 'Alice' };\n\n// Bind 'this' only\nconst boundGreet = greet.bind(user);\nconsole.log(boundGreet('Hello', '!'));  // \"Hello, Alice!\"\n\n// Bind 'this' and first argument\nconst sayHello = greet.bind(user, 'Hello');\nconsole.log(sayHello('!'));  // \"Hello, Alice!\"\nconsole.log(sayHello('?'));  // \"Hello, Alice?\"\n\n// Bind all arguments\nconst sayHi = greet.bind(user, 'Hi', '!!!');\nconsole.log(sayHi());  // \"Hi, Alice!!!\"\n```\n\n**bind vs call vs apply:**\n\n```jsx\nfunction greet(greeting) {\n  return `${greeting}, ${this.name}`;\n}\n\nconst user = { name: 'Alice' };\n\n// call() - invokes immediately with arguments\ngreet.call(user, 'Hello');  // \"Hello, Alice\" (immediate)\n\n// apply() - invokes immediately with array of arguments\ngreet.apply(user, ['Hello']);  // \"Hello, Alice\" (immediate)\n\n// bind() - returns new function (doesn't invoke)\nconst boundGreet = greet.bind(user, 'Hello');\nboundGreet();  // \"Hello, Alice\" (invoke later)\n```\n\n**Common use cases:**\n\n```jsx\n// 1. Event handlers in React (class components)\nclass Button extends React.Component {\n  constructor(props) {\n    super(props);\n    this.handleClick = this.handleClick.bind(this);\n  }\n  \n  handleClick() {\n    console.log(this.props);\n  }\n  \n  render() {\n    return <button onClick={this.handleClick}>Click</button>;\n  }\n}\n\n// 2. Partial application\nfunction multiply(a, b) {\n  return a * b;\n}\n\nconst double = multiply.bind(null, 2);\nconsole.log(double(5));  // 10\n\n// 3. Preserving context in callbacks\nconst obj = {\n  value: 42,\n  getValue() {\n    setTimeout(function() {\n      console.log(this.value);  // undefined\n    }, 100);\n  }\n};\n\n// Fix with bind:\nsetTimeout(function() {\n  console.log(this.value);  // 42\n}.bind(obj), 100);\n\n// Or arrow function:\nsetTimeout(() => {\n  console.log(this.value);  // 42\n}, 100);\n```"
+  },
+  {
+    "id": "a7b8c9d0-e1f2-3a4b-5c6d-7e8f9a0b1c2d",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What is the result?",
+    "codeSnippet": "const set = new Set([1, 2, 2, 3, 3, 3]);\nconsole.log(set.size);\nconsole.log([...set]);",
+    "options": [
+      "6, [1, 2, 2, 3, 3, 3]",
+      "3, [1, 2, 3]",
+      "6, [1, 2, 3]",
+      "3, [1, 2, 2, 3, 3, 3]"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`Set` stores **unique values** - duplicates are automatically removed.\n\n```jsx\nconst set = new Set([1, 2, 2, 3, 3, 3]);\n\nconsole.log(set.size);  // 3 (only unique values)\nconsole.log([...set]);  // [1, 2, 3] (duplicates removed)\n```\n\n**Set characteristics:**\n\n```jsx\n// 1. Only unique values\nconst set = new Set();\nset.add(1);\nset.add(2);\nset.add(2);  // Ignored (duplicate)\nconsole.log(set);  // Set(2) {1, 2}\n\n// 2. Can store any type\nconst set = new Set([1, '1', true, {}, []]);\nconsole.log(set.size);  // 5 (all different)\n\n// 3. Object/array references\nconst obj = { a: 1 };\nconst set = new Set([obj, obj, { a: 1 }]);\nconsole.log(set.size);  // 2 (obj counted once, { a: 1 } is different object)\n```\n\n**Set methods:**\n\n```jsx\nconst set = new Set([1, 2, 3]);\n\n// add() - add element\nset.add(4);  // Set(4) {1, 2, 3, 4}\nset.add(2);  // Set(4) {1, 2, 3, 4} (no change)\n\n// has() - check existence\nset.has(2);  // true\nset.has(5);  // false\n\n// delete() - remove element\nset.delete(2);  // true (removed)\nset.delete(5);  // false (not found)\n\n// clear() - remove all\nset.clear();  // Set(0) {}\n\n// size - number of elements\nset.size;  // 0\n```\n\n**Common use cases:**\n\n```jsx\n// 1. Remove duplicates from array\nconst arr = [1, 2, 2, 3, 3, 3];\nconst unique = [...new Set(arr)];\n// [1, 2, 3]\n\n// 2. Check if array has duplicates\nfunction hasDuplicates(arr) {\n  return arr.length !== new Set(arr).size;\n}\n\nhasDuplicates([1, 2, 3]);     // false\nhasDuplicates([1, 2, 2, 3]);  // true\n\n// 3. Union of arrays\nconst arr1 = [1, 2, 3];\nconst arr2 = [2, 3, 4];\nconst union = [...new Set([...arr1, ...arr2])];\n// [1, 2, 3, 4]\n\n// 4. Intersection\nconst intersection = arr1.filter(x => arr2.includes(x));\n// [2, 3]\n// Or: [...new Set(arr1.filter(x => arr2.includes(x)))]\n\n// 5. Difference\nconst diff = arr1.filter(x => !arr2.includes(x));\n// [1]\n```\n\n**Iteration:**\n\n```jsx\nconst set = new Set(['a', 'b', 'c']);\n\n// forEach\nset.forEach(val => console.log(val));\n\n// for...of\nfor (const val of set) {\n  console.log(val);\n}\n\n// Convert to array\nconst arr = [...set];\nconst arr2 = Array.from(set);\n```"
+  },
+  {
+    "id": "b8c9d0e1-f2a3-4b5c-6d7e-8f9a0b1c2d3e",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "junior",
+    "questionText": "What does parseInt('123abc', 10) return?",
+    "codeSnippet": null,
+    "options": [
+      "123",
+      "NaN",
+      "\"123abc\"",
+      "Error"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "`parseInt()` parses a string and returns an integer, **stopping at the first non-numeric character**.\n\n```jsx\nparseInt('123abc', 10);  // 123 (stops at 'a')\n```\n\n**parseInt() behavior:**\n\n```jsx\n// Syntax: parseInt(string, radix)\n\n// Stops at first non-numeric character\nparseInt('123abc');     // 123\nparseInt('12.34');      // 12 (stops at '.')\nparseInt('  99 ');      // 99 (trims whitespace)\nparseInt('abc123');     // NaN (starts with non-numeric)\n\n// Radix (base) parameter\nparseInt('10', 10);     // 10 (decimal)\nparseInt('10', 2);      // 2 (binary: 10₂ = 2₁₀)\nparseInt('10', 16);     // 16 (hexadecimal: 10₁₆ = 16₁₀)\nparseInt('FF', 16);     // 255\n\n// Always specify radix!\nparseInt('08');         // 8 (modern browsers)\nparseInt('08', 10);     // 8 (explicit, recommended)\n```\n\n**parseInt vs Number vs +:**\n\n```jsx\nconst str = '123';\n\n// parseInt() - stops at non-numeric\nparseInt('123abc');     // 123 ✅\nparseInt('12.34');      // 12\n\n// Number() - strict, entire string must be numeric\nNumber('123abc');       // NaN ❌\nNumber('12.34');        // 12.34 ✅\nNumber('123');          // 123 ✅\n\n// Unary + - same as Number()\n+'123abc';              // NaN ❌\n+'12.34';               // 12.34 ✅\n+'123';                 // 123 ✅\n```\n\n**Common mistakes:**\n\n```jsx\n// Missing radix with leading zeros (old browsers)\nparseInt('08');         // Could be 0 in old browsers!\nparseInt('08', 10);     // 8 (always correct)\n\n// Using in map without radix\n['1', '2', '3'].map(parseInt);\n// Expected: [1, 2, 3]\n// Actual: [1, NaN, NaN]\n// Why? map passes (value, index):\n// parseInt('1', 0) → 1 (radix 0 defaults to 10)\n// parseInt('2', 1) → NaN (radix 1 is invalid)\n// parseInt('3', 2) → NaN ('3' is not valid binary)\n\n// Fix:\n['1', '2', '3'].map(x => parseInt(x, 10));  // [1, 2, 3] ✅\n['1', '2', '3'].map(Number);                  // [1, 2, 3] ✅\n```\n\n**parseFloat:**\n\n```jsx\n// For decimals, use parseFloat\nparseFloat('12.34');      // 12.34\nparseFloat('12.34abc');   // 12.34\nparseFloat('.5');         // 0.5\nparseFloat('abc');        // NaN\n```"
+  },
+  {
+    "id": "c9d0e1f2-a3b4-5c6d-7e8f-9a0b1c2d3e4f",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "medium",
+    "questionText": "What will this code output?",
+    "codeSnippet": "const arr = [1, 2, 3];\narr.forEach((item, index, array) => {\n  if (index === 1) return;\n  console.log(item);\n});",
+    "options": [
+      "1",
+      "1, 3",
+      "1, 2, 3",
+      "Nothing"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`return` in `forEach` only **skips the current iteration**, not the entire loop. You cannot break out of `forEach`.\n\n```jsx\nconst arr = [1, 2, 3];\n\narr.forEach((item, index, array) => {\n  if (index === 1) return;  // Skip index 1, continue to index 2\n  console.log(item);\n});\n\n// Output:\n// 1  (index 0)\n// 3  (index 2, skipped index 1)\n```\n\n**forEach characteristics:**\n\n```jsx\n// 1. Cannot break/return early (except by throwing error)\nconst arr = [1, 2, 3, 4, 5];\n\narr.forEach(item => {\n  if (item === 3) return;  // Only skips this iteration\n  console.log(item);       // Still logs 1, 2, 4, 5\n});\n\n// 2. Cannot use break or continue\narr.forEach(item => {\n  if (item === 3) break;     // ❌ SyntaxError\n  if (item === 2) continue;  // ❌ SyntaxError\n  console.log(item);\n});\n\n// 3. Returns undefined (always)\nconst result = arr.forEach(x => x * 2);\nconsole.log(result);  // undefined\n```\n\n**When you need to break early - use alternatives:**\n\n```jsx\nconst arr = [1, 2, 3, 4, 5];\n\n// Alternative 1: for...of loop\nfor (const item of arr) {\n  if (item === 3) break;  // ✅ Works\n  console.log(item);      // 1, 2\n}\n\n// Alternative 2: some() - stops when callback returns true\narr.some(item => {\n  if (item === 3) return true;  // Stop\n  console.log(item);            // 1, 2\n  return false;                 // Continue\n});\n\n// Alternative 3: every() - stops when callback returns false\narr.every(item => {\n  if (item === 3) return false;  // Stop\n  console.log(item);             // 1, 2\n  return true;                   // Continue\n});\n\n// Alternative 4: find/findIndex - stops when found\narr.find(item => {\n  console.log(item);  // Stops when condition met\n  return item === 3;\n});\n\n// Alternative 5: Traditional for loop\nfor (let i = 0; i < arr.length; i++) {\n  if (arr[i] === 3) break;\n  console.log(arr[i]);\n}\n```\n\n**forEach vs map vs filter:**\n\n```jsx\nconst arr = [1, 2, 3];\n\n// forEach - side effects only, returns undefined\narr.forEach(x => console.log(x));\n\n// map - transforms, returns new array\nconst doubled = arr.map(x => x * 2);  // [2, 4, 6]\n\n// filter - selects, returns new array\nconst evens = arr.filter(x => x % 2 === 0);  // [2]\n```"
+  },
+  {
+    "id": "d0e1f2a3-b4c5-6d7e-8f9a-0b1c2d3e4f5a",
+    "category": "Languages",
+    "topic": "JavaScript",
+    "level": "senior",
+    "questionText": "What does Object.create(null) do and how is it different from {}?",
+    "codeSnippet": null,
+    "options": [
+      "They are exactly the same",
+      "Object.create(null) has no prototype",
+      "{} has no prototype",
+      "Object.create(null) is faster"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "`Object.create(null)` creates an object with **no prototype chain**, while `{}` inherits from `Object.prototype`.\n\n```jsx\n// Regular object literal - has prototype\nconst obj1 = {};\nconsole.log(obj1.toString);        // [Function: toString]\nconsole.log(obj1.__proto__);       // Object.prototype\nconsole.log(obj1.hasOwnProperty);  // [Function: hasOwnProperty]\n\n// Object.create(null) - no prototype\nconst obj2 = Object.create(null);\nconsole.log(obj2.toString);        // undefined\nconsole.log(obj2.__proto__);       // undefined\nconsole.log(obj2.hasOwnProperty);  // undefined\n```\n\n**Prototype chain visualization:**\n\n```jsx\n// {} or new Object()\nobj → Object.prototype → null\n\n// Object.create(null)\nobj → null\n\n// Object.create(someObject)\nobj → someObject → Object.prototype → null\n```\n\n**Use cases for Object.create(null):**\n\n```jsx\n// 1. Pure data storage (dictionary/map)\n// Avoid prototype pollution\nconst dict = Object.create(null);\ndict.toString = 'safe';  // Won't conflict with Object.prototype.toString\ndict.constructor = 'data';  // Won't conflict with constructor\n\n// vs regular object\nconst dict2 = {};\ndict2.toString = 'unsafe';  // Overwrites inherited method!\n\n// 2. Avoid hasOwnProperty checks\nconst map = Object.create(null);\nmap['toString'] = 'value';  // Safe, no prototype methods\n\nfor (const key in map) {\n  console.log(key, map[key]);  // No need to check hasOwnProperty\n}\n\n// vs regular object\nconst map2 = {};\nmap2['toString'] = 'value';\n\nfor (const key in map2) {\n  if (map2.hasOwnProperty(key)) {  // Need to check!\n    console.log(key, map2[key]);\n  }\n}\n\n// 3. Prevent security issues\nconst userInput = '__proto__';\nconst dict = Object.create(null);\ndict[userInput] = 'malicious';  // Safe, no prototype pollution\n\nconst dict2 = {};\ndict2[userInput] = 'malicious';  // Potentially dangerous!\n```\n\n**Object.create() with prototype:**\n\n```jsx\nconst parent = {\n  greet() {\n    return `Hello, ${this.name}`;\n  }\n};\n\n// Create object with parent as prototype\nconst child = Object.create(parent);\nchild.name = 'Alice';\n\nconsole.log(child.greet());  // \"Hello, Alice\"\nconsole.log(child.hasOwnProperty('greet'));  // false (inherited)\nconsole.log(child.hasOwnProperty('name'));   // true (own property)\n```\n\n**When to use each:**\n\n```jsx\n// {} - normal objects with methods\nconst person = {\n  name: 'Alice',\n  greet() { return 'Hello'; }\n};\n\n// Object.create(null) - pure data dictionaries\nconst config = Object.create(null);\nconfig.apiKey = 'xyz';\nconfig.timeout = 5000;\n\n// Object.create(proto) - inheritance\nconst child = Object.create(parent);\n```"
+  }
+]
