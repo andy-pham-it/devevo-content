@@ -148,3 +148,50 @@ git push origin <tag-name>        # Push tag to remote
 - Always pull before pushing
 - Use feature branches for new work
 - Review changes before committing with `git diff`
+
+## Advanced Commands
+
+### 1. Reflog (The Time Machine)
+Recover "lost" commits or resets.
+```bash
+git reflog                  # Show all head movements
+git reset --hard HEAD@{1}   # Reset to previous state
+```
+
+### 2. Cherry-Pick
+Apply a specific commit from another branch.
+```bash
+git cherry-pick <commit-hash>
+```
+
+### 3. Bisect (Bug Hunting)
+Binary search to find the commit that introduced a bug.
+```bash
+git bisect start
+git bisect bad              # Current version is bad
+git bisect good <commit>    # Last known good commit
+# Git will checkout middle commit. Test it.
+git bisect good             # If good
+git bisect bad              # If bad
+# Repeat until found
+git bisect reset            # Finish
+```
+
+### 4. Worktree
+Check out multiple branches in parallel folders (no switching needed).
+```bash
+git worktree add ../feature-branch feature-branch
+```
+
+## Branching Strategies
+
+### Git Flow
+- **Structure**: `main`, `develop`, `feature/*`, `release/*`, `hotfix/*`.
+- **Pros**: Strict control, good for versioned releases.
+- **Cons**: Complex, "merge hell".
+
+### Trunk Based Development (Modern)
+- **Structure**: Only `main`. Developers push small changes frequently.
+- **Pros**: Fast iteration, no merge conflicts.
+- **Cons**: Requires strong testing culture (CI/CD).
+

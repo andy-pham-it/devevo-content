@@ -104,3 +104,39 @@ console.log('Is Hermes enabled?', isHermes());
 1.  **React DevTools Profiler**: identify which component re-renders too much ("Why did this render?").
 2.  **Flipper**: Monitor network requests, databases, and logs.
 3.  **Perf Monitor**: Toggle in Dev Menu. Watch `UI` and `JS` fps. If JS drops to 0, you blocked the bridge. If UI drops, you have too many views.
+
+## 7. The New Architecture (Fabric & TurboModules)
+The biggest change in React Native history.
+
+### JSI (JavaScript Interface)
+- **Old Bridge**: Async, JSON serialization (slow).
+- **New JSI**: Sync, Direct C++ calls (fast). JS can call C++ methods directly.
+
+### Fabric (New Renderer)
+- Uses JSI to render UI.
+- **Benefits**:
+    - **Synchronous Layout**: Reduces "jumpy" UI.
+    - **Concurrency**: React 18 Concurrent features (startTransition) work on Native side.
+    - **Type Safety**: Code generation (Codegen) ensures type safety between JS and Native.
+
+### TurboModules
+- **Lazy Loading**: Native modules load only when used (faster startup).
+- **JSI-based**: Direct communication vs Bridge.
+
+## 8. Startup Time Optimization
+Users expect the app to open instantly.
+
+1.  **Hermes**: Ensure it's enabled (pre-compiles JS).
+2.  **Inline Requires**: Delay loading modules until needed.
+    ```javascript
+    // Instead of top-level import
+    import { VeryLargeLib } from 'very-large-lib'; 
+    
+    // Do this inside component/function
+    const handlePress = () => {
+        const { VeryLargeLib } = require('very-large-lib');
+        VeryLargeLib.doWork();
+    }
+    ```
+3.  **App ENTRY Point**: Keep `index.js` and `App.js` minimal. Don't initialize heavy SDKs (Analytics, Crashlytics) until after the first render (`useEffect`).
+

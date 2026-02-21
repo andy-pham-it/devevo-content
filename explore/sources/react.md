@@ -178,3 +178,81 @@ function UserGreeting({ user }) {
 6. **Test your components**
 7. **Use TypeScript for type safety**
 8. **Follow consistent naming conventions**
+
+## Advanced Patterns
+
+### Server Components (RSC)
+RSC allows components to render exclusively on the server, reducing the client-side bundle size.
+
+- **Server Components**: Can access DB/FS directly. Cannot use hooks (`useState`, `useEffect`).
+- **Client Components**: Labeled with `"use client"`. Can use hooks and interactivity.
+
+**When to use?**
+- Use **Server Components** for data fetching and static content.
+- Use **Client Components** for interactivity (clicks, form inputs, animations).
+
+### Suspense & Transitions
+Handle async states gracefully without scattered `isLoading` flags.
+
+```jsx
+// Suspense for loading states
+<Suspense fallback={<Spinner />}>
+  <UserData />
+</Suspense>
+
+// Transitions for non-urgent updates
+const [isPending, startTransition] = useTransition();
+
+function handleClick() {
+  startTransition(() => {
+    // This state update is low priority
+    setTab('profile');
+  });
+}
+```
+
+### State Management: Which one to choose?
+
+| Library | Best For | Pros | Cons |
+|---|---|---|---|
+| **Context API** | Theming, Auth, Localization | Built-in, simple API. | Performance issues with frequent updates (re-renders entire subtree). |
+| **Redux Toolkit** | Large complex apps | Redux DevTools, predictable flow, widely used. | Boilerplate, steep learning curve. |
+| **Zustand** | Mid-to-large apps | Minimalist, no boilerplate, highly performant. | Less "strict" structure than Redux. |
+| **Recoil / Jotai** | Atomic state | Great for derived state dependencies. | Specific mental model (Atoms). |
+
+### Compound Components Pattern
+Great for building flexible, reusable UI libraries (like Select, Tabs, Accordion).
+
+```jsx
+// 1. Create Context
+const ToggleContext = createContext();
+
+// 2. Parent Component
+function Toggle({ children }) {
+  const [on, setOn] = useState(false);
+  const toggle = () => setOn(!on);
+  
+  return (
+    <ToggleContext.Provider value={{ on, toggle }}>
+      {children}
+    </ToggleContext.Provider>
+  );
+}
+
+// 3. Child Components
+Toggle.On = ({ children }) => {
+  const { on } = useContext(ToggleContext);
+  return on ? children : null;
+}
+
+Toggle.Button = () => {
+  const { toggle } = useContext(ToggleContext);
+  return <Switch onPress={toggle} />;
+}
+
+// Usage
+<Toggle>
+  <Toggle.On>The light is ON</Toggle.On>
+  <Toggle.Button />
+</Toggle>
+```

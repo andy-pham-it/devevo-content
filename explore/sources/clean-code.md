@@ -106,3 +106,75 @@ class UserService {
     constructor(private db: IDatabase) {} // Inject any DB implementing IDatabase
 }
 ```
+
+## 3. Refactoring Techniques
+
+### Extract Method
+Break down large functions into smaller, named functions.
+*Why?* Increases readability and reusability.
+
+```typescript
+// Bad
+function printOwing() {
+  printBanner();
+  console.log("name: " + _name);
+  console.log("amount: " + _outstanding);
+}
+
+// Good
+function printOwing() {
+  printBanner();
+  printDetails(_name, _outstanding);
+}
+```
+
+### Direct Return (Guard Clauses)
+Avoid deep nesting (`if` inside `if`).
+*Why?* Makes the "happy path" clear.
+
+```typescript
+// Bad
+function getPayAmount() {
+  if (isDead) {
+    result = deadAmount();
+  } else {
+    if (isSeparated) {
+        result = separatedAmount();
+    } else {
+        result = normalPayAmount();
+    }
+  }
+  return result;
+}
+
+// Good
+function getPayAmount() {
+  if (isDead) return deadAmount();
+  if (isSeparated) return separatedAmount();
+  return normalPayAmount();
+}
+```
+
+## 4. Functional Programming Concepts
+Make code more predictable.
+
+1.  **Pure Functions**: Same input always equals same output. No side effects (no API calls, no global var changes).
+2.  **Immutability**: Don't mutate data; create new copies.
+    ```typescript
+    // Bad
+    const addItem = (arr, item) => {
+        arr.push(item); // Mutates original array
+    }
+    
+    // Good
+    const addItem = (arr, item) => [...arr, item]; // Returns new array
+    ```
+
+## 5. Common Code Smells
+Signs that your code might need refactoring.
+
+1.  **Magic Numbers**: Using `3.14` instead of `const PI = 3.14`.
+2.  **Long Function**: If it doesn't fit on one screen, split it.
+3.  **Large Class (God Object)**: A class doing too much (violates SRP).
+4.  **Primitive Obsession**: Using `string` for everything instead of creating types (e.g., `PhoneNumber`, `Email`).
+

@@ -75,6 +75,34 @@ Proposed by Kent C. Dodds, it emphasizes **Integration tests** to maximize "conf
 ---
 
 ## 4. Key Takeaways
-- **Testing implementation details** (how it's written) makes refactoring hard.
 - **Testing behavioral results** (what the user sees) makes your app resilient.
 - Focus on the tests that give you the **most confidence** with the **least maintenance**.
+
+## 5. Advanced Strategies
+
+### TDD (Test Driven Development)
+Write tests *before* writing code.
+**The Cycle**:
+1.  **Red**: Write a failing test.
+2.  **Green**: Write minimum code to pass.
+3.  **Refactor**: Clean up the code.
+
+### Mocking Strategies
+When to fake it?
+- **Mock**: External services (Stripe, Email), complex native modules (Camera).
+- **Don't Mock**: Logic within your control (Redux reducers, Utils).
+- **Tool**: MSW (Mock Service Worker) intercepts network requests at the network level, simulating a real server.
+
+### Visual Regression Testing (VRT)
+Detects pixel-level changes.
+- **Tools**: Storybook + Chromatic / Percy.
+- **Workflow**: 
+    1. Capture screenshots of components.
+    2. Compare with "baseline" images.
+    3. Alert if pixels differ.
+
+### Contract Testing
+Ensures Frontend and Backend agree on API schema.
+- **Tools**: Pact.
+- **Why**: Prevents "Backend changed the API response structure" bugs.
+
