@@ -28,6 +28,38 @@
   ],
   "videos": [
     {
+      "id": "16",
+      "youtubeId": "zwL1LOjE5ec",
+      "title": "Don't Just Build, Architect: The Scalable System Blueprint",
+      "description": "System design isn't about finding the one perfect answer—it's about making intelligent, deliberate trade-offs.",
+      "author": "An Pham Official",
+      "authorChannel": "anphamofficial1865",
+      "duration": "1h",
+      "tags": [
+        "System Design",
+        "Architecture"
+      ],
+      "category": "talk",
+      "relatedExploreIds": [
+        "system-design-basics"
+      ]
+    },
+    {
+      "id": "17",
+      "youtubeId": "pA_qcZI6vPw",
+      "title": "Why Your Code Decays: From SOLID to Composition over Inheritance",
+      "description": "Have you ever started a project that was clean and fast, only to see it turn into a \"tangled mess\" six months later? That slow decay has a name: Technical Debt.",
+      "author": "An Pham Official",
+      "authorChannel": "anphamofficial1865",
+      "duration": "45m",
+      "tags": [
+        "Clean Code",
+        "Architecture",
+        "Best Practices"
+      ],
+      "category": "talk"
+    },
+    {
       "id": "1",
       "youtubeId": "mZbpuNSnAeI",
       "title": "Don't Just Prompt, AI Architect: Mastering the CIRA Framework",
