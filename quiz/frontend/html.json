@@ -1,0 +1,130 @@
+[
+  {
+    "id": "html-func-1",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "junior",
+    "questionText": "Why is it important to include the 'alt' attribute in an <img> tag?",
+    "codeSnippet": "<img src=\"logo.png\" alt=\"Company Logo\" />",
+    "options": [
+      "It determines the vertical alignment of the image",
+      "It provides alternative text for screen readers (accessibility) and is displayed if the image fails to load",
+      "It is required for the image to scale appropriately on mobile devices",
+      "It adds a tooltip that appears when a user hovers over the image"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The 'alt' (alternative text) attribute is crucial for accessibility, allowing screen readers to describe the image to visually impaired users. It is also displayed when an image cannot be loaded and improves SEO."
+  },
+  {
+    "id": "html-func-2",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "junior",
+    "questionText": "Which HTML5 attribute allows you to perform basic regex validation directly in the input field without JavaScript?",
+    "codeSnippet": "<input type=\"text\" name=\"zipcode\" pattern=\"[0-9]{5}\" />",
+    "options": [
+      "validate",
+      "regex",
+      "pattern",
+      "mask"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The 'pattern' attribute takes a regular expression that the input's value is checked against when the form is submitted."
+  },
+  {
+    "id": "html-func-3",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "medium",
+    "questionText": "What is the primary difference between Semantic and Non-Semantic HTML tags?",
+    "codeSnippet": null,
+    "options": [
+      "Semantic tags render faster in modern browsers than non-semantic tags",
+      "Semantic tags (like <article>, <header>) clearly describe their meaning to both the browser and developer, whereas non-semantic tags (like <div>, <span>) tell nothing about their content",
+      "Semantic tags automatically apply CSS styling, whereas non-semantic tags require a CSS stylesheet",
+      "Semantic tags can only contain text, whereas non-semantic tags can contain images and videos"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Semantic tags structurally describe the content. This is heavily utilized by Search Engines for SEO ranking and by screen readers for accessibility."
+  },
+  {
+    "id": "html-func-4",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "medium",
+    "questionText": "If you want to store small amounts of user data directly in the browser that will persist even after the browser is closed, which HTML5 API should you use?",
+    "codeSnippet": "localStorage.setItem('theme', 'dark');",
+    "options": [
+      "SessionStorage",
+      "LocalStorage",
+      "Cookies",
+      "Web Workers API"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "LocalStorage saves data across browser sessions indefinitely (unless cleared by the user or through code). SessionStorage, conversely, is cleared when the page session ends (when the tab is closed)."
+  },
+  {
+    "id": "html-func-5",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "senior",
+    "questionText": "What is the primary purpose of the Shadow DOM in Web Components?",
+    "codeSnippet": "const shadow = this.attachShadow({ mode: 'open' });\nshadow.innerHTML = `<style>button { color: red; }</style><button>I am protected</button>`;",
+    "options": [
+      "To render complex 3D graphics and shadows using WebGL",
+      "To create a virtual DOM for faster re-rendering, similar to React",
+      "To attach an encapsulated, protected DOM tree scoped specifically to the element so that global CSS does not leak in or out",
+      "To execute heavy JavaScript computations in a background thread"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Shadow DOM provides encapsulation for the DOM and CSS in a Web Component. It ensures that styles defined inside the component do not bleed out and styles outside do not bleed in, ensuring true isolation."
+  },
+  {
+    "id": "html-func-6",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "senior",
+    "questionText": "In Web Components, when reacting to attribute changes using 'attributeChangedCallback', what else must you explicitly define in the class?",
+    "codeSnippet": "class MyComponent extends HTMLElement {\n  static get observedAttributes() {\n    return ['theme'];\n  }\n}",
+    "options": [
+      "A constructor utilizing super()",
+      "The 'observedAttributes' static getter to explicitly state which attributes the browser should watch",
+      "A connectedCallback method to attach event listeners",
+      "A CustomEvent dispatcher attached to the Shadow Root"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The 'attributeChangedCallback' will only fire for attributes that have been explicitly listed in the 'observedAttributes' static getter array. This is a performance optimization mechanism."
+  },
+  {
+    "id": "html-func-7",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "senior",
+    "questionText": "How do Web Components typically pass data from a parent component down to a child, and communicate actions from the child back to the parent?",
+    "codeSnippet": null,
+    "options": [
+      "Data down via Context API, Events up via Callbacks",
+      "Data down via Attributes/Properties, Events up via CustomEvents",
+      "Two-way data binding via v-model",
+      "Both Data and Events are managed internally holding a Global State Object"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Web Components follow the 'Data down, Events up' flow. Data is passed in via HTML Attributes or JS properties, and the component communicates outwards by dispatching CustomEvents (often requiring 'composed: true' to cross the Shadow Root boundary)."
+  },
+  {
+    "id": "html-func-8",
+    "category": "frontend",
+    "topic": "html-web-fundamentals",
+    "level": "medium",
+    "questionText": "What does a Web Worker allow you to do?",
+    "codeSnippet": "const worker = new Worker('worker.js');\nworker.postMessage('Start');",
+    "options": [
+      "Automatically cache assets for offline access",
+      "Inject a service into your application's Dependency Injection container",
+      "Run JavaScript in a background thread, preventing heavy computations from freezing the user interface",
+      "Intercept network requests and respond with cached mock data"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Web Workers enable true multithreading in JavaScript on the web. A worker runs scripts in the background, independently of other scripts, so the main UI thread remains unblocked and responsive during heavy computations."
+  }
+]

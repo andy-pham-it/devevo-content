@@ -1,242 +1,322 @@
 [
   {
     "id": "node-1",
-    "question": "Node.js là gì?",
     "options": [
-      "Một ngôn ngữ lập trình mới",
-      "Một JavaScript Runtime Environment chạy trên V8 engine",
-      "Một Framework frontend",
-      "Một loại Database"
+      "A new programming language",
+      "A JavaScript Runtime Environment running on the V8 engine",
+      "A frontend framework",
+      "A type of database"
     ],
-    "correctAnswer": 1,
-    "explanation": "Node.js không phải là ngôn ngữ hay framework, mà là môi trường thực thi (runtime) cho phép chạy JavaScript phía server, sử dụng V8 Engine của Google Chrome."
+    "explanation": "Node.js is not a programming language or framework. It is a runtime environment that allows execution of JavaScript on the server side using Google Chrome's V8 Engine.",
+    "questionText": "What is Node.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-2",
-    "question": "Đặc điểm nổi bật nhất của Node.js là gì?",
     "options": [
-      "Multi-threaded (Đa luồng)",
-      "Single-threaded, Non-blocking I/O, Event-driven",
-      "Đồng bộ (Synchronous) mặc định",
-      "Sử dụng trình biên dịch Java"
+      "Multi-threaded architecture",
+      "Single-threaded, Non-blocking I/O, Event-driven architecture",
+      "Synchronous by default",
+      "Uses a Java compiler"
     ],
-    "correctAnswer": 1,
-    "explanation": "Node.js sử dụng mô hình đơn luồng (Single-thread) kết hợp với Event Loop và Non-blocking I/O để xử lý hàng ngàn kết nối đồng thời một cách hiệu quả."
+    "explanation": "Node.js uses a single-threaded model combined with an Event Loop and Non-blocking I/O to efficiently handle thousands of concurrent connections.",
+    "questionText": "What is the most prominent characteristic of Node.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-3",
-    "question": "Event Loop trong Node.js có vai trò gì?",
     "options": [
-      "Vòng lặp vô hạn làm treo máy",
-      "Cơ chế giúp Node.js thực hiện các tác vụ bất đồng bộ (non-blocking) trên một luồng đơn",
-      "Quản lý sự kiện chuột và bàn phím",
-      "Xử lý đồ họa"
+      "An infinite loop that freezes the computer",
+      "The mechanism that allows Node.js to perform non-blocking asynchronous operations on a single thread",
+      "Managing mouse and keyboard events",
+      "Processing graphics rendering"
     ],
-    "correctAnswer": 1,
-    "explanation": "Event Loop là trái tim của Node.js, nó liên tục kiểm tra Call Stack và Callback Queue để điều phối việc thực thi code, đẩy các tác vụ nặng (I/O) xuống hệ thống (libuv)."
+    "explanation": "The Event Loop is the heart of Node.js. It continuously checks the Call Stack and Callback Queue to coordinate code execution and offloads heavy tasks (I/O) to the system (libuv).",
+    "questionText": "What role does the Event Loop play in Node.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-4",
-    "question": "Hàm 'process.nextTick()' khác gì so với 'setImmediate()'?",
     "options": [
-      "Giống hệt nhau",
-      "nextTick chạy ngay sau khi thao tác hiện tại hoàn thành (trước IO events), setImmediate chạy ở giai đoạn Check của Event Loop",
-      "setImmediate chạy nhanh hơn nextTick",
-      "nextTick chỉ dùng cho browser"
+      "They are exactly the same",
+      "nextTick fires immediately after the current operation completes (before I/O events), while setImmediate fires in the Check phase of the Event Loop",
+      "setImmediate runs faster than nextTick",
+      "nextTick is only used in the browser environment"
     ],
-    "correctAnswer": 1,
-    "explanation": "process.nextTick() có độ ưu tiên cao nhất, callback của nó được thực thi ngay sau khi operation hiện tại kết thúc, trước khi Event Loop tiếp tục sang phase tiếp theo."
+    "explanation": "process.nextTick() has the highest priority; its callbacks execute immediately after the current operation finishes, before the Event Loop advances to its next phase.",
+    "questionText": "How does 'process.nextTick()' differ from 'setImmediate()'?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-5",
-    "question": "Trong Node.js, 'Buffer' dùng để làm gì?",
     "options": [
-      "Tăng tốc độ internet",
-      "Xử lý dữ liệu nhị phân (binary data) trực tiếp",
-      "Lưu trữ string",
-      "Bộ nhớ đệm cho database"
+      "Speeding up internet connections",
+      "Directly handling raw binary data",
+      "Storing static strings",
+      "Caching database queries"
     ],
-    "correctAnswer": 1,
-    "explanation": "Buffer là class toàn cục được dùng để xử lý dữ liệu nhị phân (raw binary data), rất quan trọng khi làm việc với streams, files, hoặc network protocols."
+    "explanation": "Buffer is a global class in Node.js used to handle raw binary data, which is essential when working with streams, files, or network protocols.",
+    "questionText": "What is the 'Buffer' class used for in Node.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-6",
-    "question": "Module 'fs' trong Node.js cung cấp chức năng gì?",
     "options": [
-      "Full Stack development",
-      "File System (Thao tác với tập tin)",
-      "Fast Speed",
-      "Format String"
+      "Full Stack Development",
+      "File System operations (interacting with files and directories)",
+      "Fast Speed optimization",
+      "Formatting Strings"
     ],
-    "correctAnswer": 1,
-    "explanation": "Module 'fs' (File System) cho phép đọc, ghi, xóa và thao tác với file/thư mục trên máy chủ."
+    "explanation": "The 'fs' (File System) module allows you to read, write, delete, and interact with files and directories on the server.",
+    "questionText": "What functionality does the 'fs' module provide in Node.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-7",
-    "question": "Stream trong Node.js có mấy loại chính?",
     "options": [
       "1 (Readable)",
       "2 (Readable, Writable)",
       "4 (Readable, Writable, Duplex, Transform)",
       "3 (Input, Output, Error)"
     ],
-    "correctAnswer": 2,
-    "explanation": "Có 4 loại streams: Readable (đọc), Writable (ghi), Duplex (cả hai), và Transform (vừa đọc vừa ghi và có thể sửa đổi dữ liệu khi đi qua)."
+    "explanation": "There are 4 fundamental stream types in Node.js: Readable (read), Writable (write), Duplex (both read and write), and Transform (read/write while modifying the data).",
+    "questionText": "How many primary types of Streams exist in Node.js?",
+    "correctAnswerIndex": 2,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-8",
-    "question": "Module.exports và exports khác nhau như thế nào?",
     "options": [
-      "Khác nhau hoàn toàn",
-      "exports là một tham chiếu (reference) đến module.exports",
-      "module.exports chỉ dùng cho file system",
-      "exports không dùng được"
+      "They are entirely different",
+      "exports is just a reference pointing to module.exports",
+      "module.exports is exclusively for the file system",
+      "exports cannot be used in modern Node.js"
     ],
-    "correctAnswer": 1,
-    "explanation": "exports chỉ là một biến trỏ tới module.exports. Nếu bạn gán giá trị mới cho exports (exports = ...), nó sẽ mất liên kết với module.exports."
+    "explanation": "exports is merely a shorthand variable pointing to module.exports. If you assign a new object directly to exports (exports = ...), it breaks the reference to module.exports.",
+    "questionText": "What is the difference between module.exports and exports?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-9",
-    "question": "Libuv là gì?",
     "options": [
-      "Thư viện UI cho Node.js",
-      "Thư viện C++ đa nền tảng cung cấp Event Loop và I/O không đồng bộ cho Node.js",
-      "Thư viện mã hóa mật khẩu",
-      "Thư viện test"
+      "A UI library for Node.js",
+      "A multi-platform C++ library that provides support for asynchronous I/O and the Event Loop in Node.js",
+      "A password hashing library",
+      "A unit testing framework"
     ],
-    "correctAnswer": 1,
-    "explanation": "Libuv là thư viện core viết bằng C++, giúp Node.js tương tác với hệ điều hành để thực hiện các tác vụ I/O (file, network) bất đồng bộ."
+    "explanation": "Libuv is a core library written in C++ that enables Node.js to interact with the underlying OS to execute asynchronous I/O tasks like file or network operations.",
+    "questionText": "What is Libuv?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-10",
-    "question": "Middleware trong Express.js là gì?",
     "options": [
-      "Phần mềm trung gian chạy giữa OS và App",
-      "Các hàm có quyền truy cập vào request (req), response (res) và hàm next(), dùng để xử lý request trước khi đến route handler",
-      "Database driver",
-      "Một loại virus"
+      "Middle-man software running between the OS and the App",
+      "Functions that have access to the request (req), response (res), and next() function in the application's request-response cycle",
+      "A native database driver",
+      "A type of security virus"
     ],
-    "correctAnswer": 1,
-    "explanation": "Middleware là các function chặn request để xử lý (như logging, auth, parsing body) rồi chuyển tiếp (next) hoặc trả về response."
+    "explanation": "Middleware functions intercept requests to handle intermediate operations (like logging, authentication, or body parsing) before forwarding (next) or returning a response.",
+    "questionText": "What is Middleware in Express.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-11",
-    "question": "Package.json dùng để làm gì?",
     "options": [
-      "Chứa code chính của dự án",
-      "Lưu trữ thông tin metadata của dự án và danh sách các dependencies",
-      "Cấu hình database",
-      "Lưu biến môi trường"
+      "It contains the main source code of the project",
+      "It stores the project's metadata configuration and the list of its dependencies",
+      "It configures database credentials",
+      "It stores secure environment variables"
     ],
-    "correctAnswer": 1,
-    "explanation": "Package.json là file manifest của dự án, chứa tên, version, scripts và danh sách các thư viện (dependencies) mà dự án sử dụng."
+    "explanation": "package.json acts as the project's manifest file, holding metadata (name, version, scripts) and the list of libraries (dependencies) used by the project.",
+    "questionText": "What is the primary purpose of the package.json file?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-12",
-    "question": "Biến toàn cục '__dirname' chứa giá trị gì?",
     "options": [
-      "Tên file hiện tại",
-      "Đường dẫn tuyệt đối đến thư mục chứa file hiện tại",
-      "Thư mục gốc của dự án",
-      "Đường dẫn đến node_modules"
+      "The name of the current file being executed",
+      "The absolute path of the directory containing the currently executing file",
+      "The root directory of the entire project",
+      "The absolute path to the node_modules folder"
     ],
-    "correctAnswer": 1,
-    "explanation": "__dirname trả về đường dẫn folder chứa file code đang thực thi. Khác với process.cwd() trả về thư mục nơi lệnh node được gọi."
+    "explanation": "__dirname returns the directory name of the current module. It differs from process.cwd() which returns the directory where the 'node' command was invoked.",
+    "questionText": "What value does the global '__dirname' variable hold?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-13",
-    "question": "Cluster module trong Node.js giúp ích gì?",
     "options": [
-      "Gom nhóm các file code",
-      "Cho phép tạo các Child Processes (Workers) để tận dụng hết các cores của CPU (Multi-core systems)",
-      "Kết nối database cluster",
-      "Quản lý bộ nhớ"
+      "It groups codebase files efficiently",
+      "It allows the creation of child processes (Workers) to fully utilize multi-core CPU systems",
+      "It connects to a distributed database cluster",
+      "It safely manages memory allocation"
     ],
-    "correctAnswer": 1,
-    "explanation": "Do Node.js đơn luồng, Cluster module giúp fork ra nhiều processes con (mỗi core 1 process) để xử lý song song, tận dụng sức mạnh máy chủ đa nhân."
+    "explanation": "Since Node.js is single-threaded, the Cluster module helps fork multiple child processes (usually one per CPU core) to run concurrently, fully exploiting a multi-core machine's power.",
+    "questionText": "How does the Cluster module help a Node.js application?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-14",
-    "question": "Lệnh `npm install --save-dev` có ý nghĩa gì?",
     "options": [
-      "Cài đặt package và lưu vào dependencies",
-      "Cài đặt package và lưu vào devDependencies (chỉ dùng cho môi trường phát triển)",
-      "Cài đặt package toàn cục (global)",
-      "Cài đặt package phiên bản cũ"
+      "Installs the package and saves it in 'dependencies'",
+      "Installs the package and saves it in 'devDependencies' (used only for the development environment)",
+      "Installs the package globally across the system",
+      "Installs an older version of the package"
     ],
-    "correctAnswer": 1,
-    "explanation": "--save-dev (hoặc -D) thêm package vào devDependencies, nghĩa là nó chỉ cần thiết khi code/build, không cần khi chạy production."
+    "explanation": "--save-dev (or -D) saves the package under devDependencies, meaning it is only required for local development and build processes, and is ignored during production deployment.",
+    "questionText": "What is the effect of the command `npm install --save-dev`?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-15",
-    "question": "Callback Hell (Địa ngục Callback) là gì?",
     "options": [
-      "Một lỗi runtime",
-      "Tình trạng code bị lồng nhau quá nhiều cấp do sử dụng callback lồng nhau, khó đọc và khó bảo trì",
-      "Tên một bài hát",
-      "Lỗi tràn bộ nhớ"
+      "A fatal runtime crash",
+      "A situation where asynchronous callbacks are nested deeply, creating code that is difficult to read and maintain",
+      "The name of an internal server response code",
+      "A severe memory overflow bug"
     ],
-    "correctAnswer": 1,
-    "explanation": "Callback hell xảy ra khi các tác vụ bất đồng bộ phụ thuộc nhau được viết lồng vào nhau. Cách giải quyết: dùng Promise hoặc Async/Await."
+    "explanation": "Callback hell occurs when multiple asynchronous operations depend on one another, resulting in deeply nested callback functions (Pyramid of Doom). It is typically mitigated using Promises or Async/Await.",
+    "questionText": "What is 'Callback Hell'?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-16",
-    "question": "EventEmitter là gì?",
     "options": [
-      "Một class trong module 'events' cho phép tạo, phát (emit) và lắng nghe (on) các sự kiện tùy chỉnh",
-      "Một công cụ test",
-      "Một database",
-      "Một loại biến"
+      "A class from the 'events' module that facilitates creating, emitting, and listening to custom events",
+      "A unit testing module",
+      "A lightweight database driver",
+      "A global variable type"
     ],
-    "correctAnswer": 0,
-    "explanation": "Phần lớn core của Node.js (như Stream, HTTP request) đều kế thừa từ EventEmitter để hoạt động theo mô hình hướng sự kiện."
+    "explanation": "A significant portion of Node.js core objects (such as Streams and HTTP requests) inherit from EventEmitter, driving its asynchronous event-driven architecture.",
+    "questionText": "What is EventEmitter?",
+    "correctAnswerIndex": 0,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-17",
-    "question": "Cơ chế 'require()' trong Node.js hoạt động như thế nào?",
     "options": [
-      "Bất đồng bộ (Async)",
-      "Đồng bộ (Synchronous), chặn thực thi cho đến khi file được load xong",
-      "Chỉ load được file JSON",
-      "Tải file từ internet"
+      "It operates Asynchronously (Async)",
+      "It operates Synchronously, blocking execution until the entire file is fully loaded and executed",
+      "It can exclusively load JSON files",
+      "It downloads external files from the internet"
     ],
-    "correctAnswer": 1,
-    "explanation": "require() là đồng bộ (synchronous). Nó đọc file, biên dịch và trả về export object. Do đó nên require ở đầu file, tránh require trong vòng lặp."
+    "explanation": "The require() mechanism is synchronous. It reads the file, parses it, and immediately returns its export object. For this reason, calls to require() should be placed at the top level to prevent blocking the event loop later.",
+    "questionText": "How does the 'require()' loading mechanism behave in Node.js?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-18",
-    "question": "Worker Threads module được dùng để làm gì?",
     "options": [
-      "Tạo giao diện người dùng",
-      "Xử lý các tác vụ nặng về CPU (CPU-intensive tasks) bằng cách chạy chúng trên các luồng riêng biệt",
-      "Xử lý I/O",
-      "Quản lý file"
+      "Creating frontend User Interfaces (UI)",
+      "Handling CPU-intensive operations by executing them on separate isolated threads",
+      "Improving asynchronous network I/O operations",
+      "Managing local hard drive files"
     ],
-    "correctAnswer": 1,
-    "explanation": "Khác với Cluster (tạo process mới), Worker Threads tạo luồng (thread) chia sẻ bộ nhớ, thích hợp để xử lý tính toán nặng (như mã hóa, nén ảnh) mà không block Event Loop."
+    "explanation": "Unlike the Cluster module (which forks a separate process), Worker Threads create lightweight threads sharing memory within the same process. This is ideal for offloading heavy computing tasks (like image resizing or cryptography) without blocking the main Event Loop.",
+    "questionText": "What is the primary use case of the 'Worker Threads' module?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-19",
-    "question": "Để xử lý lỗi trong khối code async/await, ta dùng cấu trúc gì?",
     "options": [
       "if / else",
       "try / catch",
       "then / catch",
       "switch / case"
     ],
-    "correctAnswer": 1,
-    "explanation": "try/catch là cách chuẩn để bắt lỗi khi sử dụng cú pháp async/await, giúp code trông giống như đồng bộ và dễ đọc hơn."
+    "explanation": "A standard try/catch block is used to capture asynchronous errors when executing an async/await flow, allowing asynchronous code to be read just like standard synchronous operations.",
+    "questionText": "Which control structure is widely used to handle errors within async/await code?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "node-20",
-    "question": "Framework nào KHÔNG phải là framework của Node.js?",
     "options": [
       "Express",
       "NestJS",
       "Koa",
       "Django"
     ],
-    "correctAnswer": 3,
-    "explanation": "Django là framework web nổi tiếng của ngôn ngữ Python. Express, NestJS, Koa đều là của Node.js."
+    "explanation": "Django is a widely used web framework written in Python. Express, NestJS, and Koa are heavily used backend frameworks native to the Node.js ecosystem.",
+    "questionText": "Which of the following is NOT a Node.js framework?",
+    "correctAnswerIndex": 3,
+    "category": "backend",
+    "topic": "nodejs",
+    "level": "junior",
+    "codeSnippet": null
   }
 ]

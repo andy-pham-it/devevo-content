@@ -1,0 +1,66 @@
+[
+  {
+    "id": "test-strat-1",
+    "category": "testing",
+    "topic": "testing-strategy",
+    "level": "medium",
+    "questionText": "What is the primary difference between the Testing Pyramid and the Testing Trophy?",
+    "codeSnippet": null,
+    "options": [
+      "The Pyramid focuses on manual testing, while the Trophy focuses entirely on automated testing",
+      "The Pyramid emphasizes a heavy base of Unit tests, while the Trophy emphasizes a heavy middle layer of Integration tests",
+      "The Pyramid is used exclusively for Backend APIs, while the Trophy is strictly for Frontend frameworks",
+      "The Pyramid prioritizes End-to-End (E2E) tests for highest confidence, while the Trophy prioritizes Static Analysis"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The traditional Testing Pyramid (Mike Cohn) advocates for a massive suite of Unit tests. The modern Testing Trophy (Kent C. Dodds), especially popular in modern web development, advocates for prioritizing Integration tests to maximize 'confidence per line of code' without the excessive maintenance overhead of E2E tests."
+  },
+  {
+    "id": "test-strat-2",
+    "category": "testing",
+    "topic": "testing-strategy",
+    "level": "junior",
+    "questionText": "If you want to verify that an external API response format hasn't changed without actually hitting the live API during every test run, which tool/strategy is best?",
+    "codeSnippet": null,
+    "options": [
+      "Visual Regression Testing (VRT)",
+      "Test Driven Development (TDD)",
+      "Mock Service Worker (MSW) or Mocking",
+      "Unit testing with strict mathematical assertions"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Mock Service Worker (MSW) or standard HTTP mocking intercepts network requests and returns predefined responses. This allows you to test how your app handles data (or errors) without hitting real external services."
+  },
+  {
+    "id": "test-strat-3",
+    "category": "testing",
+    "topic": "testing-strategy",
+    "level": "senior",
+    "questionText": "In Test Driven Development (TDD), what is the correct order of the 'Red-Green-Refactor' cycle?",
+    "codeSnippet": null,
+    "options": [
+      "Write a failing test -> Write the minimum code to pass it -> Clean up the code",
+      "Write clean code -> Write a test that passes -> Break the code to ensure the test fails",
+      "Refactor existing code -> Write a failing test -> Write passing code",
+      "Write passing code -> Ensure no errors (Green) -> Write tests to maintain it (Red)"
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "1. Red: Write a test for the desired functionality (it fails because the code doesn't exist). 2. Green: Write just enough code to make the test pass. 3. Refactor: Improve the code structure while ensuring the test stays green."
+  },
+  {
+    "id": "test-strat-4",
+    "category": "testing",
+    "topic": "testing-strategy",
+    "level": "medium",
+    "questionText": "Which type of test provides the absolute highest level of confidence but is often the slowest and most brittle (flaky) to maintain?",
+    "codeSnippet": null,
+    "options": [
+      "Static Analysis (TypeScript/ESLint)",
+      "Unit Tests",
+      "Integration Tests",
+      "End-to-End (E2E) Tests"
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "End-to-End (E2E) tests simulate a real user interacting with a real browser/device against a real database. It provides the most confidence but can break easily due to network latency, minor UI shifts, or slow backend responses."
+  }
+]

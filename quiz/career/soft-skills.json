@@ -1,0 +1,66 @@
+[
+  {
+    "id": "soft-skills-1",
+    "category": "career",
+    "topic": "soft-skills",
+    "level": "junior",
+    "questionText": "When answering behavioral interview questions (e.g., 'Tell me about a time you failed'), which structured method is highly recommended?",
+    "codeSnippet": null,
+    "options": [
+      "The SMART Method (Specific, Measurable, Achievable, Relevant, Time-bound)",
+      "The STAR Method (Situation, Task, Action, Result)",
+      "The KISS Method (Keep It Simple, Stupid)",
+      "The SOLID Method"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The STAR Method ensures you tell a concise, impactful story. Set the Situation, explain your specific Task, detail the Action YOU took, and highlight the measurable Result."
+  },
+  {
+    "id": "soft-skills-2",
+    "category": "career",
+    "topic": "soft-skills",
+    "level": "medium",
+    "questionText": "What is the best way to answer the classic 'What is your greatest weakness?' interview question?",
+    "codeSnippet": null,
+    "options": [
+      "Say 'I am a perfectionist' or 'I work too hard' to spin a positive trait as a weakness",
+      "State a genuine weakness that does not completely disqualify you, followed immediately by the active steps you take to mitigate or improve it",
+      "Declare that you do not have any significant weaknesses that would affect the job",
+      "Name a critical technical skill required by the job description to show honesty"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Interviewers use this question to gauge self-awareness and a growth mindset. 'Fake' weaknesses like perfectionism sound rehearsed. A real weakness paired with a proactive mitigation strategy is the winning formula."
+  },
+  {
+    "id": "soft-skills-3",
+    "category": "career",
+    "topic": "soft-skills",
+    "level": "senior",
+    "questionText": "When asked 'Tell me about a conflict with a coworker', what is the interviewer primarily evaluating?",
+    "codeSnippet": null,
+    "options": [
+      "Your ability to assert dominance and ensure your technical opinion wins",
+      "Your ability to escalate issues quickly to HR or upper management",
+      "Your maturity, empathy, and ability to reach a 'win-win' compromise through communication",
+      "Who was technically 'right' in the situation you describe"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Conflict is inevitable. Interviewers want to see that you handle disagreements professionally, listen to the other person's constraints, and collaborate to find a solution rather than arguing stubbornly."
+  },
+  {
+    "id": "soft-skills-4",
+    "category": "career",
+    "topic": "soft-skills",
+    "level": "medium",
+    "questionText": "During the 'reverse interview' phase (when you ask them questions), which of the following is considered a potential 'Red Flag' in their answers?",
+    "codeSnippet": null,
+    "options": [
+      "'We are currently refactoring a lot of legacy code'",
+      "'We work hard and play hard, we are like a family here'",
+      "'We deploy to production using automated CI/CD pipelines'",
+      "'Our onboarding process takes about 2 to 3 weeks'"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Phrases like 'work hard, play hard' or 'we are a family' are notorious industry red flags often masking toxic cultures, expected unpaid overtime, and a lack of professional boundaries."
+  }
+]

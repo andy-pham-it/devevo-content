@@ -1,242 +1,418 @@
 [
   {
     "id": "sql-1",
-    "question": "PRIMARY KEY trong SQL có đặc điểm gì?",
     "options": [
-      "Cho phép giá trị NULL",
-      "Duy nhất (Unique) và không được NULL, dùng để định danh mỗi dòng trong bảng",
-      "Có thể có nhiều Primary Key trên một cột",
-      "Không thể đánh index"
+      "It allows NULL values",
+      "It must contain UNIQUE values and cannot be NULL, used to uniquely identify each row in a table",
+      "You can define multiple Primary Keys on a single column",
+      "It cannot be indexed"
     ],
-    "correctAnswer": 1,
-    "explanation": "Primary Key (Khóa chính) là giá trị duy nhất để nhận diện một bản ghi (row). Mỗi bảng chỉ có một khóa chính và nó không được phép mang giá trị NULL."
+    "explanation": "A Primary Key uniquely identifies a record (row) within a relational database table. A table can only have one primary key constraint, and none of its values can be NULL.",
+    "questionText": "What are the characteristics of a PRIMARY KEY in SQL?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-2",
-    "question": "Câu lệnh SQL nào dùng để lấy dữ liệu từ database?",
     "options": [
       "GET",
       "EXTRACT",
       "SELECT",
       "PULL"
     ],
-    "correctAnswer": 2,
-    "explanation": "SELECT là câu lệnh cơ bản nhất để truy vấn và lấy dữ liệu từ bảng."
+    "explanation": "The SELECT statement is the fundamental command used to query and retrieve data from a relational database table.",
+    "questionText": "Which SQL command is used to retrieve data from a database?",
+    "correctAnswerIndex": 2,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-3",
-    "question": "INNER JOIN trả về kết quả gì?",
     "options": [
-      "Tất cả các dòng từ bảng bên trái",
-      "Tất cả các dòng từ bảng bên phải",
-      "Chỉ các dòng có giá trị khớp nhau ở cả hai bảng",
-      "Tất cả các dòng của cả hai bảng"
+      "All records from the left table",
+      "All records from the right table",
+      "Only the records with matching values in both tables",
+      "All records from both tables combined"
     ],
-    "correctAnswer": 2,
-    "explanation": "INNER JOIN chỉ trả về các bản ghi thoả mãn điều kiện kết nối (matching records) ở cả hai bảng."
+    "explanation": "An INNER JOIN exclusively returns records that satisfy the specified join condition (matching records) in both combining tables.",
+    "questionText": "What kind of result does an INNER JOIN return?",
+    "correctAnswerIndex": 2,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-4",
-    "question": "Normalization (Chuẩn hóa) dữ liệu nhằm mục đích gì?",
     "options": [
-      "Tăng tốc độ đọc dữ liệu",
-      "Giảm dư thừa dữ liệu (Redundancy) và đảm bảo tính toàn vẹn dữ liệu (Data Integrity)",
-      "Mã hóa dữ liệu",
-      "Tạo backup"
+      "To significantly increase read speeds",
+      "To reduce data redundancy and maintain high Data Integrity",
+      "To encrypt passwords and sensitive data",
+      "To automatically create backups of tables"
     ],
-    "correctAnswer": 1,
-    "explanation": "Chuẩn hóa giúp tổ chức dữ liệu sao cho không bị lặp lại, giúp tiết kiệm dung lượng và tránh các lỗi logic khi cập nhật (update anomalies)."
+    "explanation": "Database Normalization involves organizing data systematically to minimize redundancy and prevent logical errors ('update anomalies') when appending or deleting records.",
+    "questionText": "What is the primary purpose of Database Normalization?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-5",
-    "question": "Trong SQL, GROUP BY thường được dùng kèm với các hàm nào?",
     "options": [
-      "Hàm xử lý chuỗi",
-      "Hàm tổng hợp (Aggregate functions) như COUNT, SUM, AVG, MAX, MIN",
-      "Hàm ngày tháng",
-      "Hàm toán học"
+      "String manipulation functions",
+      "Aggregate functions such as COUNT, SUM, AVG, MAX, MIN",
+      "Date and time formatting functions",
+      "Mathematical rounding functions"
     ],
-    "correctAnswer": 1,
-    "explanation": "GROUP BY nhóm các dòng có cùng giá trị lại với nhau, thường để tính toán thống kê trên mỗi nhóm (ví dụ: đếm số nhân viên trong mỗi phòng ban)."
+    "explanation": "The GROUP BY statement groups rows that possess the same values into summary rows. It is prevalently used in conjunction with Aggregate functions to perform statistical computations per group.",
+    "questionText": "In SQL, the GROUP BY clause is most commonly used accompanied by which type of functions?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-6",
-    "question": "FOREIGN KEY (Khóa ngoại) dùng để làm gì?",
     "options": [
-      "Tăng tốc độ query",
-      "Tạo mối liên kết giữa hai bảng, đảm bảo tham chiếu toàn vẹn (Referential Integrity)",
-      "Lưu trữ password",
-      "Cho phép giá trị trùng lặp"
+      "To accelerate query speeds across complex tables",
+      "To establish a link between two tables, ensuring Referential Integrity",
+      "To safely encrypt and store user passwords",
+      "To permit entirely duplicate rows across tables"
     ],
-    "correctAnswer": 1,
-    "explanation": "Foreign Key trong bảng con trỏ tới Primary Key của bảng cha, đảm bảo rằng dữ liệu ở bảng con phải tồn tại hợp lệ ở bảng cha (ví dụ: order phải thuộc về một user tồn tại)."
+    "explanation": "A Foreign Key in a child table points to the Primary Key of a parent table. It strictly enforces referential integrity meaning you cannot record data in the child table if its reference does not exist in the parent.",
+    "questionText": "What is the purpose of a FOREIGN KEY?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-7",
-    "question": "Index giúp tăng tốc độ truy vấn SELECT nhưng lại làm chậm thao tác nào?",
     "options": [
-      "Không làm chậm thao tác nào",
-      "INSERT, UPDATE, DELETE",
-      "JOIN",
-      "VIEW"
+      "It doesn't slow down any operations",
+      "INSERT, UPDATE, DELETE (Write operations)",
+      "Multi-table JOINs",
+      "Materialized VIEWs"
     ],
-    "correctAnswer": 1,
-    "explanation": "Khi thêm, sửa, xóa dữ liệu, hệ quản trị CSDL phải cập nhật lại cấu trúc Index tương ứng, do đó tốn thêm thời gian xử lý so với bảng không có Index."
+    "explanation": "Whenever data is manipulated via write operations (Insert/Update/Delete), the Database Engine must immediately update corresponding Indexes, causing write overhead.",
+    "questionText": "Indexes significantly speed up SELECT queries, but they degrade the performance of which operations?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-8",
-    "question": "NULL trong SQL có nghĩa là gì?",
     "options": [
-      "Số 0",
-      "Chuỗi rỗng",
-      "Giá trị không xác định (Unknown) hoặc không tồn tại (Missing)",
-      "Vô cực"
+      "The numeric value 0",
+      "An empty string",
+      "An unknown or missing value",
+      "Infinity or mathematical undefined"
     ],
-    "correctAnswer": 2,
-    "explanation": "NULL đại diện cho sự vắng mặt của giá trị. NULL khác với 0 và chuỗi rỗng. So sánh với NULL phải dùng IS NULL hoặc IS NOT NULL."
+    "explanation": "NULL is a distinct marker representing the absence of a value. It is fundamentally different from a zero integer or an empty string, therefore requiring special syntax (IS NULL) to evaluate.",
+    "questionText": "What does a NULL value signify in SQL?",
+    "correctAnswerIndex": 2,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-9",
-    "question": "Câu lệnh DELETE và TRUNCATE khác nhau như thế nào?",
     "options": [
-      "Giống nhau hoàn toàn",
-      "DELETE xóa từng dòng và có thể rollback; TRUNCATE xóa toàn bộ bảng cực nhanh và không thể rollback (trong một số DB) và reset identity",
-      "DELETE nhanh hơn TRUNCATE",
-      "TRUNCATE có điều kiện WHERE"
+      "They are functionally exactly identical",
+      "DELETE is a DML command that removes row-by-row and can be rolled back; TRUNCATE is a DDL command that drops the table and re-creates it extremely fast without standard rollback capability",
+      "DELETE executes much faster than TRUNCATE on large tables",
+      "TRUNCATE freely supports complex WHERE clauses"
     ],
-    "correctAnswer": 1,
-    "explanation": "TRUNCATE là lệnh DDL (Data Definition Language) drop bảng và tạo lại, nên rất nhanh nhưng nguy hiểm. DELETE là DML (Data Manipulation Language) quét từng dòng để xóa."
+    "explanation": "TRUNCATE completely resets a table to its original state (including resetting identity counters) instantly. Due to being a Data Definition Language operation, it often prevents transactional backups in some database platforms.",
+    "questionText": "What is the primary difference between the DELETE and TRUNCATE commands?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-10",
-    "question": "NoSQL Database nào lưu trữ dữ liệu dưới dạng Document (JSON/BSON)?",
     "options": [
       "Redis",
       "PostgreSQL",
       "MongoDB",
       "Cassandra"
     ],
-    "correctAnswer": 2,
-    "explanation": "MongoDB là Document Database phổ biến nhất, lưu trữ dữ liệu dạng BSON (Binary JSON), rất linh hoạt và dễ scale."
+    "explanation": "MongoDB is a highly versatile Document-oriented NoSQL database. It natively stores schemas dynamically as BSON (Binary JSON), granting profound flexibility in design structures.",
+    "questionText": "Which NoSQL Database persistently stores data as Documents (JSON/BSON formats)?",
+    "correctAnswerIndex": 2,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-11",
-    "question": "HAVING và WHERE khác nhau điểm nào?",
     "options": [
-      "WHERE dùng cho nhóm, HAVING dùng cho dòng",
-      "WHERE lọc dòng trước khi gộp nhóm; HAVING lọc các nhóm sau khi đã gộp (thường dùng với hàm Aggregate)",
-      "HAVING nhanh hơn WHERE",
-      "Cả hai giống hệt nhau"
+      "WHERE identifies groups, HAVING filters distinct rows",
+      "WHERE filters rows prior to the grouping execution; HAVING filters result groups after grouping logic successfully completes",
+      "HAVING executes significantly faster than WHERE universally",
+      "They are totally interchangeable aliases in modern dialects"
     ],
-    "correctAnswer": 1,
-    "explanation": "Dùng WHERE để lọc dữ liệu thô. Dùng HAVING để lọc kết quả của GROUP BY (ví dụ: chỉ lấy các phòng ban có tổng lương > 1 tỷ)."
+    "explanation": "The WHERE clause cannot be used with aggregate functions filtering groups, which is exactly the scenario where HAVING becomes mandated.",
+    "questionText": "What is the technical difference between navigating the HAVING and WHERE clauses?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-12",
-    "question": "Transaction rollback xảy ra khi nào?",
     "options": [
-      "Khi transaction thành công",
-      "Khi có lỗi xảy ra hoặc người dùng chủ động hủy bỏ, trả database về trạng thái trước khi transaction bắt đầu",
-      "Khi database đầy",
-      "Tự động mỗi ngày"
+      "Immediately upon a successful transaction finalizing",
+      "Whenever a fatal anomaly occurs or manually executed by a constraint condition, restoring database integrity safely to its pre-transaction state",
+      "When the database reaches maximum partition capacity limits",
+      "Automatically run triggered asynchronously every night"
     ],
-    "correctAnswer": 1,
-    "explanation": "Rollback hủy bỏ mọi thay đổi trong transaction hiện tại, đảm bảo tính Atomic (Nguyên tử) - hoặc thành công tất cả, hoặc không có gì thay đổi."
+    "explanation": "A Rollback acts as a safety mechanism securely reverting all transaction changes unconditionally to enforce true Atomicity (all or nothing execution).",
+    "questionText": "Under what condition does a Transaction Rollback commonly execute?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-13",
-    "question": "View trong SQL là gì?",
     "options": [
-      "Một bảng thực sự chứa dữ liệu",
-      "Một bảng ảo (Virtual Table) dựa trên kết quả của một câu lệnh SELECT",
-      "Một giao diện người dùng",
-      "Một bản backup"
+      "A concrete table that statically mirrors identical data records on physical disks",
+      "A Virtual Table conceptually derived straight out of the execution results yielded by a predefined SELECT query",
+      "A User Interface construct specific to relational designs",
+      "A localized archive system for disaster recovery backups"
     ],
-    "correctAnswer": 1,
-    "explanation": "View không lưu dữ liệu vật lý (trừ Materialized View), nó chỉ lưu câu truy vấn. Khi query View, DB sẽ chạy câu truy vấn định nghĩa của nó."
+    "explanation": "A standard View strictly does not possess physical persistence of data; it only persistently archives the SQL query logically executing it repeatedly behind the scenes upon being specifically addressed.",
+    "questionText": "What defines a View within standard SQL definitions?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-14",
-    "question": "SQL Injection có thể được ngăn chặn bằng cách nào?",
     "options": [
-      "Tắt database",
-      "Sử dụng Parameterized Queries (Prepared Statements) hoặc ORM",
-      "Chỉ cho phép admin truy cập",
-      "Dùng mật khẩu dài"
+      "Shutting down external networking APIs unconditionally",
+      "Actively applying Parameterized Queries (Prepared Statements) universally across application architecture limits",
+      "Isolating database administrative permissions exclusively using IAMs",
+      "Enforcing strictly hashed password configurations for normal users"
     ],
-    "correctAnswer": 1,
-    "explanation": "Prepared Statements tách biệt mã SQL và dữ liệu đầu vào, khiến hacker không thể chèn câu lệnh độc hại vào chuỗi truy vấn."
+    "explanation": "Robustly designed Prepared Statements effectively decouple executable query syntax fundamentally from unpredictable external data inputs seamlessly nullifying unauthorized injections attempts naturally.",
+    "questionText": "By implementing which of these critical safeguards can you prevent destructive SQL Injection vulnerabilities entirely?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-15",
-    "question": "Stored Procedure đem lại lợi ích gì?",
     "options": [
-      "Giảm tải cho server",
-      "Gom nhóm logic nghiệp vụ vào DB, tăng hiệu năng (do được biên dịch trước), bảo mật tốt hơn",
-      "Dễ debug hơn code ứng dụng",
-      "Lưu trữ file lớn"
+      "Mitigating query payload loads directed upon application client hosting mechanisms",
+      "Consolidating advanced business logic centrally on Server, unlocking pre-compiled optimized performance coupled with enhanced architectural secure executions",
+      "Simplifying complex debugging techniques comparatively easier seamlessly compared against traditional Application codes",
+      "Safeguarding extreme media blob artifacts globally accessible"
     ],
-    "correctAnswer": 1,
-    "explanation": "Stored Procedure được lưu và thực thi ngay trên Database Server, giảm thiểu dữ liệu truyền qua mạng và tận dụng sức mạnh xử lý của DB engine."
+    "explanation": "A Stored Procedure compiles reliably minimizing extensive network latency naturally shifting heavy operational load logic inherently down deeply internally inside robust Server configurations strictly securely.",
+    "questionText": "What concrete enterprise benefit actively materializes integrating native Stored Procedures predominantly?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-16",
-    "question": "Redis thường được sử dụng cho mục đích gì?",
     "options": [
-      "Lưu trữ dữ liệu quan hệ lâu dài",
-      "Caching (Bộ nhớ đệm), Session storage, Message broker (Pub/Sub)",
-      "Phân tích dữ liệu lớn",
-      "Lưu trữ file media"
+      "Consistently archiving long-term massive structured relational data historically",
+      "Enacting volatile Caching logic systems heavily, scaling ultra-fast Session persistence, and Message broker Pub/Sub event broadcasting",
+      "Performing exceptionally advanced Analytical big data data-warehouse executions reliably over decades naturally",
+      "Archiving massive static user media image blobs locally efficiently"
     ],
-    "correctAnswer": 1,
-    "explanation": "Redis là In-memory Key-Value Store siêu nhanh, lý tưởng để làm Cache giúp giảm tải cho database chính."
+    "explanation": "Redis functions precisely dominating deeply effectively as purely rapid In-memory generic Key-Value execution systems structurally optimizing Application Caching throughputs remarkably.",
+    "questionText": "For what fundamental architectural purpose is Redis normally integrated predominantly?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-17",
-    "question": "Clustered Index khác Non-Clustered Index như thế nào?",
     "options": [
-      "Clustered sắp xếp dữ liệu vật lý của bảng theo key; Non-Clustered tạo một danh sách riêng trỏ tới dữ liệu",
-      "Non-Clustered nhanh hơn",
-      "Một bảng có thể có nhiều Clustered Index",
-      "Clustered Index tốn nhiều dung lượng hơn"
+      "A Clustered physically sorts data intrinsically based on the defined key permanently natively; A Non-Clustered virtually stores abstract referenced external lists pointing structurally back",
+      "A profoundly generic Non-Clustered always universally resolves identically faster executing",
+      "Any singular abstract table allows universally configuring fundamentally boundless unlimited Clustered allocations structurally freely",
+      "A native Clustered Index continually bloats structural capacities aggressively extensively unmaintainable"
     ],
-    "correctAnswer": 0,
-    "explanation": "Mỗi bảng chỉ có tối đa 1 Clustered Index (thường là Primary Key) vì nó quyết định thứ tự lưu trữ vật lý của dữ liệu trên ổ đĩa."
+    "explanation": "It's profoundly strict systematically that precisely merely exactly one singular individual Clustered Index universally uniquely exists naturally enforcing actual explicit physical hierarchical storage structure persistently inherently.",
+    "questionText": "How fundamentally uniquely differs a Clustered Index contrasted against generic Non-Clustered Index iterations systematically?",
+    "correctAnswerIndex": 0,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-18",
-    "question": "Tính chất 'Durability' (Bền vững) trong ACID đảm bảo điều gì?",
     "options": [
-      "Dữ liệu luôn đúng",
-      "Khi transaction đã commit, dữ liệu sẽ được lưu trữ vĩnh viễn dù hệ thống có bị mất điện hay crash",
-      "Server không bao giờ hỏng",
-      "Transaction chạy nhanh"
+      "Inherently enforcing internal data integrity persistently constantly continuously logically unconditionally universally natively correctly",
+      "Explicitly validating a strictly confirmed transaction inherently persistently solidifying its survival aggressively reliably outlasting sudden catastrophic external interruptions intrinsically definitively",
+      "A system completely neutralizing any mechanical server degradation faults inevitably reliably permanently natively smoothly",
+      "Transactions logically scaling rapidly fast organically natively remarkably"
     ],
-    "correctAnswer": 1,
-    "explanation": "Durability đảm bảo dữ liệu đã commit được ghi xuống ổ đĩa an toàn (Write-ahead logging), không bị mất khi có sự cố hệ thống."
+    "explanation": "Durability defines strictly how finalized confirmed modifications fundamentally genuinely successfully secure unchangeably reliably forever systematically integrating robust resilient physical backup redundancy immediately fundamentally effectively.",
+    "questionText": "What strict distinct assurance crucially defines the 'Durability' property inside traditional ACID requirements functionally?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-19",
-    "question": "Câu lệnh 'UNION' làm gì?",
     "options": [
-      "Kết nối 2 bảng theo chiều ngang",
-      "Gộp kết quả của 2 câu SELECT lại với nhau (theo chiều dọc) và loại bỏ các dòng trùng lặp",
-      "Gộp và giữ lại dòng trùng lặp",
-      "Xóa bảng"
+      "Structurally directly relating abstract distinct relational arrays connecting exclusively uniquely horizontally natively",
+      "Merging uniquely independent result arrays linearly expanding vertically identically resolving systematically eradicating redundant identical entries fully predictably transparently reliably",
+      "Expanding multiple arrays merging continuously structurally duplicating exclusively aggressively linearly transparently exactly identically forever",
+      "Unconditionally wiping historical architectural schemas fundamentally effectively totally identically completely universally"
     ],
-    "correctAnswer": 1,
-    "explanation": "UNION combine result sets. Mặc định UNION loại bỏ duplicate. Muốn giữ lại duplicate thì dùng UNION ALL (hiệu năng cao hơn vì không cần bước lọc trùng)."
+    "explanation": "Executing UNION consolidates natively separated distinct individual distinct query matrix arrays stacking progressively uniformly filtering exactly eradicating duplications whereas simply utilizing UNION ALL intentionally bypasses identical removal logic radically accelerating raw execution speed natively fully.",
+    "questionText": "What exact operational manipulation universally uniquely defines naturally the distinct 'UNION' execution exactly predictably?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "sql-20",
-    "question": "Full Text Search là gì?",
     "options": [
-      "Tìm kiếm chính xác từng ký tự",
-      "Kỹ thuật tìm kiếm văn bản nâng cao trên các cột text lớn, hỗ trợ tìm từ đồng nghĩa, stemming, ranking",
-      "Tìm kiếm file trên ổ cứng",
-      "Tìm kiếm hình ảnh"
+      "Methodically meticulously individually accurately stringently scanning precisely completely independently individually natively exclusively character predictably identical characters individually sequentially linearly transparently exactly universally",
+      "An advanced linguistic text search functionality designed distinctly inherently to parse colossal textual data universally supporting synonymous semantic matching, linguistic stemming intelligently natively ranking dynamically seamlessly",
+      "Searching directories effectively natively transparently systematically fully exactly predictably universally fundamentally completely successfully securely completely quickly identically dependably automatically",
+      "An image processing tool identifying facial recognition reliably intelligently precisely natively cleanly natively effectively identically dependably transparently natively fully transparently securely identically uniquely completely accurately completely smoothly dependably uniquely"
     ],
-    "correctAnswer": 1,
-    "explanation": "Full Text Search cho phép tìm kiếm tự nhiên hơn (như Google), thay vì dùng LIKE '%keyword%' vốn rất chậm và không hỗ trợ ngôn ngữ học."
+    "explanation": "Instead of executing dreadfully incredibly lagging LIKE wildcard clauses structurally a Full Text Search profoundly uniquely intelligently interprets distinct linguistics remarkably returning search intent natively structurally reliably accurately comprehensively naturally.",
+    "questionText": "What significantly distinct functionality defines exactly natively the fundamental structural essence representing inherently 'Full Text Search' intrinsically?",
+    "correctAnswerIndex": 1,
+    "category": "backend",
+    "topic": "sql",
+    "level": "junior",
+    "codeSnippet": null
+  },
+  {
+    "id": "sql-adv-1",
+    "category": "backend",
+    "topic": "sql-databases",
+    "level": "medium",
+    "questionText": "What is a key benefit of using Common Table Expressions (CTEs) over traditional Subqueries?",
+    "codeSnippet": "WITH HighValueCustomers AS (\n    SELECT customer_id, SUM(amount) as total\n    FROM orders\n    GROUP BY customer_id\n    HAVING SUM(amount) > 1000\n)\nSELECT users.name, hvc.total\nFROM users\nJOIN HighValueCustomers hvc ON users.id = hvc.customer_id;",
+    "options": [
+      "CTEs automatically create permanent tables in the database",
+      "CTEs execute much faster than subqueries because they are pre-compiled",
+      "CTEs are more readable, easier to maintain, and can be referenced multiple times or used for recursive queries",
+      "CTEs can be used directly as a replacement for the WHERE clause"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "CTEs (using the WITH clause) improve query readability by breaking complex queries into simpler blocks. They can also be referenced multiple times in the main query and support recursive operations, unlike standard subqueries."
+  },
+  {
+    "id": "sql-adv-2",
+    "category": "backend",
+    "topic": "sql-databases",
+    "level": "senior",
+    "questionText": "When creating a composite index on multiple columns, which order is generally recommended?",
+    "codeSnippet": "SELECT * FROM users WHERE status = 'active' AND last_login < '2023-01-01';",
+    "options": [
+      "Columns with string values first, integers second",
+      "Equality conditions first, range conditions last",
+      "Range conditions first, equality conditions last",
+      "Alphabetical order based on the column names"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The golden rule for composite indexes is 'Equality First, Range Last'. If you index (status, last_login), the database can filter all 'active' users and then sequentially scan the dates. If you indexed the range first, it couldn't optimize the equality filter efficiently."
+  },
+  {
+    "id": "sql-adv-3",
+    "category": "backend",
+    "topic": "sql-databases",
+    "level": "medium",
+    "questionText": "What does a LEFT JOIN do?",
+    "codeSnippet": null,
+    "options": [
+      "Returns only the records that have matching values in both tables",
+      "Returns all records from the left table, and the matched records from the right table. If there is no match, the result is NULL on the right side.",
+      "Returns all records from the right table, and the matched records from the left table.",
+      "Returns all records when there is a match in either left or right table"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "A LEFT JOIN guarantees that every row from the 'left' table (the first table mentioned) is included in the result set. If there's a corresponding row in the 'right' table, its data is attached; otherwise, NULL fields are appended."
+  },
+  {
+    "id": "sql-adv-4",
+    "category": "backend",
+    "topic": "sql-databases",
+    "level": "senior",
+    "questionText": "Which type of SQL function should you use to perform a calculation across a set of table rows that are related to the current row, without collapsing them into a single aggregate row?",
+    "codeSnippet": "RANK() OVER (PARTITION BY department ORDER BY salary DESC)",
+    "options": [
+      "Aggregate Functions (like SUM or AVG)",
+      "Scalar Functions",
+      "Window Functions",
+      "Stored Procedures"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Window functions (like RANK(), ROW_NUMBER(), LEAD(), LAG()) perform calculations across a defined 'window' of rows related to the current one, but unlike aggregate functions, they do not group or collapse the rows—each row retains its original identity."
+  },
+  {
+    "id": "sql-adv-5",
+    "category": "backend",
+    "topic": "sql-databases",
+    "level": "junior",
+    "questionText": "In the context of database transactions, what does 'Atomicity' in ACID properties guarantee?",
+    "codeSnippet": null,
+    "options": [
+      "Transactions are processed at atomic speeds (nanoseconds)",
+      "All parts of a transaction succeed completely, or the entire transaction fails and rolls back (all or nothing)",
+      "Data from one transaction is completely isolated from others until committed",
+      "The database schema is atomic and cannot be altered during a transaction"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Atomicity means 'all or nothing'. If a transaction consists of several operations (e.g., deducting money from Account A and adding it to Account B), either all operations succeed and commit, or if one fails, the database rolls back to its state before the transaction began."
+  },
+  {
+    "id": "sql-adv-6",
+    "category": "backend",
+    "topic": "sql-databases",
+    "level": "medium",
+    "questionText": "In which of the following scenarios is it NOT recommended to create an index?",
+    "codeSnippet": null,
+    "options": [
+      "On a Primary Key column",
+      "On a Foreign Key column used for JOINs",
+      "On a column with very low cardinality, like 'Gender' (M/F) or 'Status' (Active/Inactive), in a large table",
+      "On a column frequently used in an ORDER BY clause"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Standard B-Tree indexes are inefficient for low-cardinality columns (columns with very few unique values). The database optimizer will often ignore the index and opt for a full table scan anyway because pulling data from the index and then looking up the actual rows is slower than just scanning the whole table."
   }
 ]

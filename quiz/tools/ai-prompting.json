@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ai-prompt-1",
+    "category": "tools",
+    "topic": "ai-prompting",
+    "level": "junior",
+    "questionText": "In the CIRA prompting framework, what does 'CIRA' stand for?",
+    "codeSnippet": null,
+    "options": [
+      "Code, Intent, Refactor, Analyze",
+      "Context, Instruction, Requirements, Adopt a Persona",
+      "Context, Ideas, Rationale, Architecture",
+      "Create, Iterate, Review, Automate"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "CIRA is a structured way to get the best out of LLMs: Give Context (framework, files), give Instructions (what to do), set Requirements (constraints), and Adopt a Persona (tell it to act like a Senior Dev)."
+  },
+  {
+    "id": "ai-prompt-2",
+    "category": "tools",
+    "topic": "ai-prompting",
+    "level": "medium",
+    "questionText": "What is 'Few-Shot Prompting'?",
+    "codeSnippet": null,
+    "options": [
+      "Prompting the AI only a few times a day to avoid rate limits",
+      "Providing the AI with a few examples of the desired output within the prompt to 'fine-tune' its response",
+      "Giving the AI a prompt with very few words so it has maximum creative freedom",
+      "Asking the AI to generate code using a deprecated framework"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Few-Shot prompting involves showing the LLM 1-3 examples of the input-output mapping you expect (e.g., 'Here is an example test... now write one for this new function'). It drastically improves output formatting and accuracy."
+  },
+  {
+    "id": "ai-prompt-3",
+    "category": "tools",
+    "topic": "ai-prompting",
+    "level": "senior",
+    "questionText": "When an AI generates code, which of the following is considered a 'hallucination'?",
+    "codeSnippet": null,
+    "options": [
+      "The AI uses an outdated syntax from an older version of a library",
+      "The AI confidently uses variables, methods, or API endpoints that do not actually exist",
+      "The AI writes code that is technically correct but performs very slowly",
+      "The AI refuses to answer the prompt because it violates safety guidelines"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Hallucinations occur when an LLM confidently generates plausible-looking but entirely fake information, such as inventing a method name that isn't actually in the SDK."
+  },
+  {
+    "id": "ai-prompt-4",
+    "category": "tools",
+    "topic": "ai-prompting",
+    "level": "medium",
+    "questionText": "If you want an AI to solve a complex logical problem without rushing to an incorrect conclusion, which prompting technique is best?",
+    "codeSnippet": null,
+    "options": [
+      "Zero-Shot Prompting",
+      "Chain of Thought (CoT) prompting (e.g., 'Think step-by-step')",
+      "Iterative Refinement",
+      "Adversarial Prompting"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Chain of Thought (CoT) prompting forces the model to articulate its reasoning process before giving the final answer. This significantly improves accuracy on logic, math, and architecture problems."
+  }
+]

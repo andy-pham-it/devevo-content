@@ -1,0 +1,130 @@
+[
+  {
+    "id": "sw-arch-1",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "medium",
+    "questionText": "What does the Single Responsibility Principle (SRP) dictate?",
+    "codeSnippet": null,
+    "options": [
+      "A class or module should only contain a single method",
+      "A class should only have a single instance throughout the application (Singleton)",
+      "A class should have one, and only one, reason to change",
+      "A developer should only be responsible for a single microservice"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "SRP states that a class should be focused on a single task or responsibility. If a class has multiple responsibilities (e.g., handling business logic and saving to a database), those responsibilities become coupled, making the class harder to maintain."
+  },
+  {
+    "id": "sw-arch-2",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "senior",
+    "questionText": "If class B inherits from class A, but you cannot pass class B into a method expecting class A without breaking the program, which SOLID principle is violated?",
+    "codeSnippet": null,
+    "options": [
+      "Open/Closed Principle (OCP)",
+      "Liskov Substitution Principle (LSP)",
+      "Interface Segregation Principle (ISP)",
+      "Dependency Inversion Principle (DIP)"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Liskov Substitution Principle states that subtypes must be substitutable for their base types. If inheriting changes the expected behavior of the parent class, the inheritance hierarchy is logically flawed."
+  },
+  {
+    "id": "sw-arch-3",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "medium",
+    "questionText": "Which design pattern is used to define a one-to-many dependency so that when one object changes state, all its dependents are notified automatically?",
+    "codeSnippet": null,
+    "options": [
+      "Singleton",
+      "Facade",
+      "Observer",
+      "Strategy"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The Observer pattern is a Behavioral pattern heavily used in pub/sub architectures, event listeners, and real-time state management mechanisms."
+  },
+  {
+    "id": "sw-arch-4",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "junior",
+    "questionText": "What does the YAGNI principle stand for?",
+    "codeSnippet": null,
+    "options": [
+      "You Aren't Generating New Interfaces",
+      "You Ain't Gonna Need It",
+      "Your API Generates Network Issues",
+      "Your Architecture Goes Nowhere Interactively"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "YAGNI stands for 'You Ain't Gonna Need It'. It is an Extreme Programming (XP) principle that discourages over-engineering by advising developers to only implement things when they actually need them, rather than forecasting future needs."
+  },
+  {
+    "id": "sw-arch-5",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "senior",
+    "questionText": "What is the primary advantage of 'Composition Over Inheritance'?",
+    "codeSnippet": null,
+    "options": [
+      "Composition provides better performance because no parent classes need to be loaded in memory",
+      "Composition builds flexible 'Has-A' relationships allowing behaviors to be changed dynamically, avoiding the rigid 'Is-A' hierarchy trap",
+      "Composition automatically enforces the Interface Segregation Principle",
+      "Composition ensures that all methods are natively synchronized and thread-safe"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Inheritance forces a strict, permanent 'Is-A' relationship resulting in fragile base classes and rigid hierarchies. Composition ('Has-A') allows you to build complex objects by plugging in smaller, decoupled, and interchangeable behavior components."
+  },
+  {
+    "id": "sw-arch-6",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "medium",
+    "questionText": "In the context of the Dependency Inversion Principle (DIP), how should high-level business logic interact with low-level details like a database?",
+    "codeSnippet": null,
+    "options": [
+      "The high-level module should directly instantiate the specific database connection class to ensure maximum performance",
+      "The high-level and low-level modules should both depend on an abstraction (like an interface), allowing the specific database implementation to be injected",
+      "The low-level database module should inherit from the high-level business logic module",
+      "They shouldn't interact directly; all communication must go through an external message queue"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "DIP states that high-level modules should not depend on low-level modules, but both should depend on abstractions. Using Dependency Injection to pass an interface implementation into a class decouples the logic from explicit tools like MySQL or MongoDB."
+  },
+  {
+    "id": "sw-arch-7",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "medium",
+    "questionText": "Which design pattern provides a simplified interface to a complex subsystem of classes (like hiding a 10-step checkout process behind a single 'PlaceOrder' method)?",
+    "codeSnippet": null,
+    "options": [
+      "Adapter",
+      "Proxy",
+      "Decorator",
+      "Facade"
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "The Facade pattern is a Structural pattern that provides a simple, high-level interface that masks the complex underlying interactions of a larger body of code, making the subsystem easier to use."
+  },
+  {
+    "id": "sw-arch-8",
+    "category": "architecture",
+    "topic": "software-engineering",
+    "level": "junior",
+    "questionText": "What is meant by the 'Boy Scout Rule' in software development?",
+    "codeSnippet": null,
+    "options": [
+      "Always work in pairs when debugging difficult code",
+      "Always leave the code cleaner than you found it",
+      "Always wear appropriate uniform clothing during client meetings",
+      "Always prepare for the worst-case scenario by wrapping every function in a try-catch block"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Boy Scout Rule encourages developers to continuously refactor and improve code as they work on it, preventing 'Software Rot' or Technical Debt from building up over time."
+  }
+]

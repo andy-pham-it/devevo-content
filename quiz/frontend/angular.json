@@ -1,0 +1,114 @@
+[
+  {
+    "id": "angular-v14-1",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "medium",
+    "questionText": "What key feature introduced in Angular 14 aimed to eliminate 'Module Hell' by allowing components to define their own dependencies directly?",
+    "codeSnippet": "@Component({\n  selector: 'app-user-card',\n  imports: [CommonModule, MatCardModule],\n  template: `...`\n})\nexport class UserCardComponent {}",
+    "options": [
+      "Strictly Typed Reactive Forms",
+      "Standalone Components (using the 'standalone: true' flag)",
+      "Directive Composition API",
+      "Function-based Error Handlers"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Standalone components remove the necessity of declaring components inside NgModules, making them easier to lazy-load, compose together, and Tree-shake during the build process."
+  },
+  {
+    "id": "angular-v15-1",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "senior",
+    "questionText": "In Angular 15, the 'Directive Composition API' allows you to solve the 'Diamond Problem' (multiple inheritance limitations) by doing what?",
+    "codeSnippet": null,
+    "options": [
+      "By allowing a component class to extend multiple base classes simultaneously in TypeScript",
+      "By applying multiple directives to a component's host element internally via the 'hostDirectives' array in the @Component metadata",
+      "By overriding the ViewContainerRef to dynamically inject multiple template refs into a single ng-container",
+      "By chaining functional router guards together in the app.routes.ts file"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "The Directive Composition API (using 'hostDirectives') lets you mix and match behaviors (like a Tooltip directive and a Ripple behavior) and apply them internally to your component, without forcing the parent template to declare them."
+  },
+  {
+    "id": "angular-v16-1",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "junior",
+    "questionText": "Angular 16 introduced 'Signals' to provide fine-grained reactivity. How do Signals differ primarily from RxJS Observables in terms of accessing their current value?",
+    "codeSnippet": null,
+    "options": [
+      "Signals only emit values when a user interacts with the UI (e.g., clicks), whereas Observables emit on any state change",
+      "Signals require the 'async' pipe in templates, whereas Observables do not",
+      "Signals always hold a current value that can be read synchronously anywhere (by calling them like a function), whereas Observables require 'subscribe()' to listen to events over time",
+      "Signals automatically map external API endpoints to component state, replacing HTTPClient"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Unlike RxJS streams which represent 'events over time', Signals represent 'values that change over time' and can be read synchronously at any moment by calling them (e.g., `mySignal()`)."
+  },
+  {
+    "id": "angular-v16-2",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "medium",
+    "questionText": "How does 'Non-Destructive Hydration' (introduced in Angular 16) improve Server-Side Rendered (SSR) applications?",
+    "codeSnippet": null,
+    "options": [
+      "It completely disables JavaScript on the client side, relying only on server-rendered HTML",
+      "It wakes up (hydrates) the existing DOM sent by the server instead of destroying the server DOM and rebuilding it from scratch, preventing UI flickering",
+      "It hydrates the database by pre-fetching all required API data during the build step using Static Site Generation (SSG)",
+      "It minifies the CSS immediately upon page load to speed up the First Contentful Paint"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Before v16, Angular would destroy the server-provided DOM and rebuild it on the client, causing a visible flicker. Non-destructive hydration preserves the HTML and simply attaches event listeners to it."
+  },
+  {
+    "id": "angular-v17-1",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "junior",
+    "questionText": "Angular 17 replaced structural directives like `*ngIf` and `*ngFor` with what?",
+    "codeSnippet": null,
+    "options": [
+      "Custom Web Components from the lit-html library",
+      "JSX syntax identical to React",
+      "New built-in Control Flow block syntax (e.g., @if, @for, @switch)",
+      "Higher-Order Components (HOCs) that wrap the templates"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "The new built-in control flow (@if, @for) is baked directly into the template compiler. It is significantly faster at runtime, provides better type narrowing, and eliminates the need to import CommonModule."
+  },
+  {
+    "id": "angular-v17-2",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "senior",
+    "questionText": "What powerful functionality does the `@defer` block provide in Angular 17+ templates?",
+    "codeSnippet": "@defer (on viewport) {\n  <app-heavy-chart [data]=\"chartData\" />\n} \n@placeholder {\n  <div>Loading Chart...</div>\n}",
+    "options": [
+      "It defers the execution of long-running JavaScript loops so the main thread does not freeze",
+      "It automatically caches API requests to local storage for offline use",
+      "It allows declarative lazy-loading of specific template chunks (and their dependencies) based on triggers like viewport visibility or interaction",
+      "It delays the change detection cycle of the component until the next animation frame"
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "@defer automatically splits the wrapped components into separate JavaScript chunks during the build process and only loads them over the network when the specified trigger condition is met."
+  },
+  {
+    "id": "angular-v18-1",
+    "category": "frontend",
+    "topic": "angular",
+    "level": "senior",
+    "questionText": "Angular 18 introduced experimental support for 'Zoneless' change detection. What is the primary benefit of removing Zone.js?",
+    "codeSnippet": null,
+    "options": [
+      "It allows Angular to run natively on iOS and Android devices without a web wrapper",
+      "It decreases the initial bundle size and stops global change detection cycles from running excessively on every browser event (like mouse movement or setTimeout)",
+      "It prevents cross-site scripting (XSS) attacks by isolating components into secure zones",
+      "It forces all developers to write purely functional code by strictly preventing state mutation"
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Zone.js works by 'monkey-patching' all browser events, which triggers change detection globally and adds overhead. A 'zoneless' app using Angular Signals only triggers UI updates locally for the specific components that read the changed signal."
+  }
+]

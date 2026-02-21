@@ -18,7 +18,7 @@
       "slug": "css-scss",
       "icon": "logo-css3",
       "color": "#1572B6",
-      "totalQuestions": 17,
+      "totalQuestions": 20,
       "filePath": "languages/css-scss.json",
       "category": "frontend"
     },
@@ -28,7 +28,7 @@
       "slug": "javascript",
       "icon": "logo-javascript",
       "color": "#F7DF1E",
-      "totalQuestions": 26,
+      "totalQuestions": 40,
       "filePath": "languages/javascript.json",
       "category": "languages"
     },
@@ -88,7 +88,7 @@
       "slug": "sql-databases",
       "icon": "file-tray-full-outline",
       "color": "#f59e0b",
-      "totalQuestions": 20,
+      "totalQuestions": 26,
       "filePath": "backend/sql.json",
       "category": "backend"
     },
@@ -101,6 +101,66 @@
       "totalQuestions": 20,
       "filePath": "devops/docker.json",
       "category": "devops"
+    },
+    {
+      "id": "html-web-fundamentals",
+      "name": "HTML & Web Fundamentals",
+      "slug": "html-web-fundamentals",
+      "icon": "logo-html5",
+      "color": "#e34c26",
+      "totalQuestions": 8,
+      "filePath": "frontend/html.json",
+      "category": "frontend"
+    },
+    {
+      "id": "software-engineering",
+      "name": "Software Engineering & Architecture",
+      "slug": "software-engineering",
+      "icon": "construct-outline",
+      "color": "#3b82f6",
+      "totalQuestions": 8,
+      "filePath": "architecture/software-engineering.json",
+      "category": "architecture"
+    },
+    {
+      "id": "testing-strategy",
+      "name": "Testing Strategies",
+      "slug": "testing-strategy",
+      "icon": "flask-outline",
+      "color": "#10b981",
+      "totalQuestions": 4,
+      "filePath": "testing/testing-strategy.json",
+      "category": "testing"
+    },
+    {
+      "id": "ai-prompting",
+      "name": "AI & Prompting",
+      "slug": "ai-prompting",
+      "icon": "hardware-chip-outline",
+      "color": "#8b5cf6",
+      "totalQuestions": 4,
+      "filePath": "tools/ai-prompting.json",
+      "category": "tools"
+    },
+    {
+      "id": "soft-skills",
+      "name": "Soft Skills",
+      "slug": "soft-skills",
+      "icon": "people-outline",
+      "color": "#ec4899",
+      "totalQuestions": 4,
+      "filePath": "career/soft-skills.json",
+      "category": "career"
+    },
+    {
+      "id": "angular",
+      "name": "Angular",
+      "slug": "angular",
+      "icon": "logo-angular",
+      "color": "#dd1b16",
+      "totalQuestions": 7,
+      "filePath": "frontend/angular.json",
+      "category": "frontend"
     }
   ]
 }

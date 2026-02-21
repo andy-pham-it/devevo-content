@@ -1,242 +1,322 @@
 [
   {
     "id": "docker-1",
-    "question": "Docker là gì?",
     "options": [
-      "Một hệ điều hành mới",
-      "Nền tảng container hóa cho phép đóng gói ứng dụng và dependecies vào một container độc lập",
-      "Phần mềm diệt virus",
-      "Ngôn ngữ lập trình"
+      "A new operating system",
+      "A containerization platform that allows packaging an application and its dependencies into an isolated container",
+      "An antivirus software",
+      "A programming language"
     ],
-    "correctAnswer": 1,
-    "explanation": "Docker là nền tảng mã nguồn mở giúp tự động hóa việc triển khai các ứng dụng bên trong các container phần mềm, giúp 'build once, run anywhere'."
+    "explanation": "Docker is an open-source platform that automates the deployment of applications inside software containers, enabling the 'build once, run anywhere' approach.",
+    "questionText": "What is Docker?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-2",
-    "question": "Sự khác biệt chính giữa Docker Container và Virtual Machine (VM)?",
     "options": [
-      "Container chậm hơn VM",
-      "Container chia sẻ kernel của OS máy chủ (nhẹ hơn), VM ảo hóa cả phần cứng và chạy Guest OS riêng (nặng hơn)",
-      "VM không chạy được Linux",
-      "Container phải chạy trên Windows"
+      "Containers are slower than VMs",
+      "Containers share the host OS kernel (lighter), while VMs virtualize hardware and run their own Guest OS (heavier)",
+      "VMs cannot run Linux",
+      "Containers must run on Windows"
     ],
-    "correctAnswer": 1,
-    "explanation": "Container ảo hóa ở cấp độ hệ điều hành (chia sẻ kernel), khởi động cực nhanh. VM ảo hóa phần cứng, cần tài nguyên riêng cho Guest OS."
+    "explanation": "Containers virtualize at the OS level (sharing the kernel), leading to extremely fast startup times. VMs virtualize the hardware and require dedicated resources for a Guest OS.",
+    "questionText": "What is the primary difference between a Docker Container and a Virtual Machine (VM)?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-3",
-    "question": "Docker Image là gì?",
     "options": [
-      "Một bức ảnh chụp màn hình",
-      "Một template read-only chứa mã nguồn, thư viện, dependencies cần thiết để chạy ứng dụng",
-      "Một file văn bản",
-      "Một database"
+      "A screenshot",
+      "A read-only template containing the source code, libraries, and dependencies needed to run an application",
+      "A text file",
+      "A database"
     ],
-    "correctAnswer": 1,
-    "explanation": "Docker Image là bản thiết kế tĩnh (blue-print). Khi Image được chạy (run), nó trở thành một Docker Container."
+    "explanation": "A Docker Image is a static blueprint. When an Image is run, it becomes a Docker Container.",
+    "questionText": "What is a Docker Image?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-4",
-    "question": "File cấu hình nào dùng để định nghĩa cách build một Docker Image?",
     "options": [
       "package.json",
       "Dockerfile",
       "docker-compose.yml",
       "Makefile"
     ],
-    "correctAnswer": 1,
-    "explanation": "Dockerfile chứa các instruction (FROM, RUN, COPY...) để Docker daemon build layer-by-layer tạo thành Image."
+    "explanation": "A Dockerfile contains instructions (FROM, RUN, COPY...) for the Docker daemon to build an Image layer-by-layer.",
+    "questionText": "Which configuration file is used to define how a Docker Image is built?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-5",
-    "question": "Docker Compose dùng để làm gì?",
     "options": [
-      "Soạn thảo văn bản",
-      "Định nghĩa và chạy các ứng dụng Docker đa container (multi-container applications)",
-      "Nén file image",
-      "Tự động test code"
+      "Text editing",
+      "Defining and running multi-container Docker applications",
+      "Compressing image files",
+      "Automating code testing"
     ],
-    "correctAnswer": 1,
-    "explanation": "Docker Compose giúp quản lý phối hợp nhiều container (ví dụ: web app + database + redis) thông qua một file YAML duy nhất."
+    "explanation": "Docker Compose helps coordinate and manage multiple containers (e.g., web app + database + redis) through a single YAML file.",
+    "questionText": "What is the purpose of Docker Compose?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-6",
-    "question": "Lệnh nào dùng để liệt kê các container đang chạy?",
     "options": [
       "docker run",
       "docker ps",
       "docker images",
       "docker list"
     ],
-    "correctAnswer": 1,
-    "explanation": "'docker ps' liệt kê các container đang active. Muốn xem cả container đã tắt, dùng 'docker ps -a'."
+    "explanation": "'docker ps' lists active containers. To see all containers including stopped ones, use 'docker ps -a'.",
+    "questionText": "Which command is used to list currently running containers?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-7",
-    "question": "Docker Volume giúp giải quyết vấn đề gì?",
     "options": [
-      "Tăng dung lượng RAM",
-      "Lưu trữ dữ liệu bền vững (persistent data) độc lập với vòng đời của container",
-      "Tăng tốc độ mạng",
-      "Bảo mật container"
+      "Increasing RAM capacity",
+      "Persisting data independently of the container's lifecycle",
+      "Speeding up network performance",
+      "Securing containers"
     ],
-    "correctAnswer": 1,
-    "explanation": "Mặc định dữ liệu trong container sẽ mất khi container bị xóa. Volume giúp map thư mục trong container ra ngoài máy chủ (host) để dữ liệu tồn tại vĩnh viễn."
+    "explanation": "By default, data within a container is lost when the container is deleted. Volumes map a directory inside the container to the host machine to persist data permanently.",
+    "questionText": "What problem does a Docker Volume solve?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-8",
-    "question": "CI/CD là viết tắt của?",
     "options": [
       "Common Interface / Common Data",
       "Continuous Integration / Continuous Delivery (or Deployment)",
       "Clean Input / Clean Design",
       "Code Import / Code Delete"
     ],
-    "correctAnswer": 1,
-    "explanation": "CI/CD là quy trình tự động hóa để tích hợp code (Integration) và triển khai ứng dụng (Delivery/Deployment) nhanh chóng, an toàn."
+    "explanation": "CI/CD is an automated process for quickly and securely integrating code (Integration) and deploying applications (Delivery/Deployment).",
+    "questionText": "What does CI/CD stand for?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-9",
-    "question": "Trong Dockerfile, lệnh 'FROM' có ý nghĩa gì?",
     "options": [
-      "Gửi mail từ ai",
-      "Chỉ định Base Image để bắt đầu build",
-      "Copy file từ đâu",
-      "Định nghĩa biến môi trường"
+      "Send mail from someone",
+      "Specify the Base Image to build upon",
+      "Copy file from a source",
+      "Define environment variables"
     ],
-    "correctAnswer": 1,
-    "explanation": "Mọi Dockerfile hợp lệ đều phải bắt đầu bằng instruction FROM (ví dụ: FROM node:18-alpine) để kế thừa một môi trường có sẵn."
+    "explanation": "Every valid Dockerfile must start with a FROM instruction (e.g., FROM node:18-alpine) to inherit from an existing environment.",
+    "questionText": "What is the purpose of the 'FROM' instruction in a Dockerfile?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-10",
-    "question": "Kubernetes (K8s) là gì?",
     "options": [
-      "Một bản Linux mới",
-      "Hệ thống mã nguồn mở để tự động hóa việc triển khai, scaling và quản lý container (Container Orchestration)",
-      "Một database của Google",
-      "IDE lập trình"
+      "A new Linux distribution",
+      "An open-source system for automating deployment, scaling, and management of containerized applications (Container Orchestration)",
+      "A database created by Google",
+      "A programming IDE"
     ],
-    "correctAnswer": 1,
-    "explanation": "Kubernetes (do Google phát triển) giúp quản lý hàng nghìn container, tự động healing, scaling, load balancing trong môi trường production."
+    "explanation": "Kubernetes (developed by Google) helps manage thousands of containers with automated healing, scaling, and load balancing in production environments.",
+    "questionText": "What is Kubernetes (K8s)?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-11",
-    "question": "Docker Hub là gì?",
     "options": [
-      "Thiết bị kết nối mạng",
-      "Registry lưu trữ và chia sẻ Docker Images (public và private)",
-      "Ngôn ngữ lập trình",
-      "Phần mềm chat"
+      "A network switching device",
+      "A registry for storing and sharing Docker Images (public and private)",
+      "A programming language",
+      "A chat software"
     ],
-    "correctAnswer": 1,
-    "explanation": "Docker Hub giống như GitHub nhưng dành cho Docker Images. Bạn có thể pull image (ubuntu, nginx, node...) từ đây về dùng."
+    "explanation": "Docker Hub is like GitHub but for Docker Images. You can pull base images (ubuntu, nginx, node...) from here to use them.",
+    "questionText": "What is Docker Hub?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-12",
-    "question": "Lệnh 'docker exec -it <container> bash' dùng để làm gì?",
     "options": [
-      "Xóa container",
-      "Truy cập vào shell (terminal) bên trong container đang chạy",
-      "Build image mới",
-      "Xem log của container"
+      "Delete the container",
+      "Access the shell (terminal) inside a running container",
+      "Build a new image",
+      "View container logs"
     ],
-    "correctAnswer": 1,
-    "explanation": "Lệnh này cho phép bạn mở một phiên tương tác (interactive shell) bên trong container để debug hoặc kiểm tra file."
+    "explanation": "This command allows you to open an interactive shell inside a running container to debug or inspect files.",
+    "questionText": "What does the command 'docker exec -it <container> bash' do?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-13",
-    "question": "Multi-stage build trong Dockerfile giúp ích gì?",
     "options": [
-      "Build nhiều image cùng lúc",
-      "Giảm kích thước Image cuối cùng bằng cách loại bỏ các dependencies chỉ dùng lúc build",
-      "Tăng tốc độ download",
-      "Chạy nhiều app trong 1 container"
+      "Building multiple images simultaneously",
+      "Reducing the final Image size by discarding dependencies only needed during the build phase",
+      "Increasing download speeds",
+      "Running multiple apps within 1 container"
     ],
-    "correctAnswer": 1,
-    "explanation": "Multi-stage cho phép copy artifact từ stage build sang stage run, giúp loại bỏ compiler/source code khỏi image production, làm image cực nhẹ."
+    "explanation": "Multi-stage builds allow copying artifacts from a build stage to a run stage, removing the compiler and raw source code from the production image to keep it extremely lightweight.",
+    "questionText": "What is the benefit of Multi-stage builds in a Dockerfile?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-14",
-    "question": "Trong CI/CD pipeline, bước 'Test' thường diễn ra khi nào?",
     "options": [
-      "Sau khi deploy lên production",
-      "Ngay sau khi build và trước khi deploy",
-      "Trước khi viết code",
-      "Không cần test"
+      "After deploying to production",
+      "Right after building and before deploying",
+      "Before writing any code",
+      "Testing is unnecessary"
     ],
-    "correctAnswer": 1,
-    "explanation": "Quy trình chuẩn: Code -> Commit -> CI (Build -> Test) -> CD (Deploy). Test phải pass thì mới được deploy."
+    "explanation": "Standard procedure: Code -> Commit -> CI (Build -> Test) -> CD (Deploy). Tests must pass before deployment occurs.",
+    "questionText": "In a CI/CD pipeline, when does the 'Test' phase usually occur?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-15",
-    "question": "Lệnh 'COPY' và 'ADD' trong Dockerfile khác nhau thế nào?",
     "options": [
-      "Giống hệt nhau",
-      "COPY chỉ copy file local; ADD có thể tải file từ URL và tự giải nén file tar",
-      "ADD nhanh hơn COPY",
-      "COPY xóa file nguồn"
+      "They are exactly the same",
+      "COPY only copies local files; ADD can download files from a URL and auto-extract tar archives",
+      "ADD is faster than COPY",
+      "COPY deletes the source file"
     ],
-    "correctAnswer": 1,
-    "explanation": "Nên dùng COPY vì nó rõ ràng (explicit). Chỉ dùng ADD khi thực sự cần tải file remote hoặc giải nén tự động."
+    "explanation": "It is recommended to use COPY because it is explicit. Only use ADD when you specifically need to fetch remote files or auto-extract archives.",
+    "questionText": "What is the difference between the 'COPY' and 'ADD' instructions in a Dockerfile?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-16",
-    "question": "Layer Caching trong Docker hoạt động như thế nào?",
     "options": [
-      "Lưu cache trên RAM",
-      "Docker tái sử dụng các layer đã build trước đó nếu instruction và context không đổi, giúp build nhanh hơn",
-      "Không có tác dụng gì",
-      "Tự động xóa cache sau 1 giờ"
+      "It caches data into RAM",
+      "Docker reuses previously built layers if the instruction and context haven't changed, significantly speeding up build times",
+      "It has no effect",
+      "It automatically clears the cache after 1 hour"
     ],
-    "correctAnswer": 1,
-    "explanation": "Nếu bạn đặt lệnh COPY package.json lên trước lệnh COPY . (source code), Docker sẽ cache bước npm install nếu package.json không đổi, tăng tốc độ build."
+    "explanation": "If you place 'COPY package.json' before 'COPY .' (source code), Docker will cache the 'npm install' step if package.json hasn't changed, boosting build speeds.",
+    "questionText": "How does Layer Caching work in Docker?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-17",
-    "question": "Container Orchestration löi giải quyết vấn đề gì?",
     "options": [
-      "Viết code giúp lập trình viên",
-      "Quản lý vòng đời, networking, scaling của hàng loạt container trên nhiều server vật lý",
-      "Chỉnh sửa ảnh",
-      "Tạo máy ảo"
+      "Writing code for developers",
+      "Managing the lifecycle, networking, and scaling of numerous containers across multiple physical servers",
+      "Photo editing",
+      "Creating virtual machines"
     ],
-    "correctAnswer": 1,
-    "explanation": "Khi hệ thống có hàng trăm container, việc quản lý thủ công là không thể. Tools như K8s hay Docker Swarm tự động hóa việc này."
+    "explanation": "When a system has hundreds of containers, manual management becomes impossible. Tools like K8s or Docker Swarm automate this process.",
+    "questionText": "What problem does Container Orchestration solve?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-18",
-    "question": "Jenkins, GitHub Actions, GitLab CI là các công cụ gì?",
     "options": [
-      "Text Editor",
+      "Text Editors",
       "CI/CD Tools",
       "Database Management Systems",
       "Web Browsers"
     ],
-    "correctAnswer": 1,
-    "explanation": "Đây là các nền tảng phổ biến để thiết lập pipeline tự động hóa quy trình Build - Test - Deploy."
+    "explanation": "These are common platforms for setting up pipelines that automate the Build - Test - Deploy process.",
+    "questionText": "What kind of tools are Jenkins, GitHub Actions, and GitLab CI?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-19",
-    "question": "Biến môi trường (Environment Variable) trong Docker thường được dùng để làm gì?",
     "options": [
-      "Đặt tên cho container",
-      "Cấu hình ứng dụng (như DB_HOST, API_KEY) mà không cần hardcode trong image",
-      "Tăng tốc độ CPU",
-      "Thay đổi màu sắc terminal"
+      "Naming the container",
+      "Configuring application settings (like DB_HOST, API_KEY) without hardcoding them into the image",
+      "Speeding up the CPU",
+      "Changing the terminal color"
     ],
-    "correctAnswer": 1,
-    "explanation": "Environment Variables giúp tách biệt cấu hình (config) khỏi mã nguồn (code), tuân thủ nguyên tắc 12-factor app."
+    "explanation": "Environment Variables help separate configuration from source code, adhering to the 12-factor app methodology.",
+    "questionText": "What are Environment Variables commonly used for in Docker?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   },
   {
     "id": "docker-20",
-    "question": "Docker Swarm là gì?",
     "options": [
-      "Một loại virus máy tính",
-      "Công cụ Orchestration 'native' của Docker (đơn giản hơn Kubernetes)",
-      "Một plugin của VS Code",
-      "Chế độ máy bay"
+      "A type of computer virus",
+      "Docker's 'native' orchestration tool (simpler than Kubernetes)",
+      "A VS Code plugin",
+      "Airplane mode"
     ],
-    "correctAnswer": 1,
-    "explanation": "Docker Swarm được tích hợp sẵn trong Docker Engine, dễ cài đặt và sử dụng cho các cụm container quy mô vừa và nhỏ."
+    "explanation": "Docker Swarm comes built-in with the Docker Engine and is easy to setup and use for small-to-medium scaled container clusters.",
+    "questionText": "What is Docker Swarm?",
+    "correctAnswerIndex": 1,
+    "category": "devops",
+    "topic": "docker",
+    "level": "junior",
+    "codeSnippet": null
   }
 ]
